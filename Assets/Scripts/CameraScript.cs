@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraScript : MonoBehaviour
+{
+    private Transform playerTrans;
+    private Rigidbody2D playerRb;
+
+    [SerializeField] float followSpeed;
+    [SerializeField, Range(0f, 1f)] float offsetModifier;
+
+    private Vector3 cameraPointOffset;
+    private bool shouldFollowPlayer;
+
+    private void Awake()
+    {
+        shouldFollowPlayer = true;
+    }
+
+    private void Start()
+    {
+        playerTrans = Global.playerTrans;
+        playerRb = Global.playerRb;
+    }
+
+    private void FixedUpdate()
+    {
+        FollowPlayer();
+    }
+
+    private void FollowPlayer()
+    {
+        if (shouldFollowPlayer)
+        {
+            cameraPointOffset = Vector2.zero;//cameraPointOffset += (Vector3)playerRb.velocity * offsetModifier * Time.deltaTime;
+            Vector3 camPos = transform.position;
+            Vector3 offsetPlayerPos = playerTrans.position + cameraPointOffset;
+            Vector3 toPlayer = offsetPlayerPos - transform.position;
+            camPos += toPlayer * Time.deltaTime * followSpeed;
+            camPos.z = -10;
+            transform.position = camPos;
+        }
+    }
+}
