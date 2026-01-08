@@ -8,7 +8,7 @@
                     "DialogueName": "Intro_01",
                     "Text": "Default dialogue 1",
                     "NextDialogue": "Intro_02"
-                }
+                },
                 {
                     "DialogueName": "Intro_02",
                     "Text": "Default dialogue 2",
