@@ -8,4 +8,9 @@ public class GameManager : MonoBehaviour
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
     }
+
+    private void Start()
+    {
+        DialogueManager.Instance.WriteDialogue("Intro_01");
+    }
 }

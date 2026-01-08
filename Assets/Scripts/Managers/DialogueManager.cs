@@ -25,6 +25,7 @@ public class DialogueManager : MonoBehaviour
     private Coroutine writingRoutine;
 
     [SerializeField] float letterInterval;
+    [SerializeField] float textDuration;
 
     private void Awake()
     {
@@ -34,10 +35,10 @@ public class DialogueManager : MonoBehaviour
     private void LoadDialogue()
     {
         dialogueFile = Resources.Load<TextAsset>("Text/Dialogue");
-        Scene[] scenes = JsonUtility.FromJson<Scene[]>(dialogueFile.text);
-        foreach (Scene scene in scenes)
+        Scenes allScenes = JsonUtility.FromJson<Scenes>(dialogueFile.text);
+        foreach (Scene scene in allScenes.scenes)
         {
-            foreach (Dialogue dialogue in scene.dialogue)
+            foreach (Dialogue dialogue in scene.main)
             {
                 dialogueHolder.Add(dialogue.key, dialogue);
             }
@@ -71,18 +72,28 @@ public class DialogueManager : MonoBehaviour
             UIManager.Instance.ChangeDialogueText(writtenText);
             yield return new WaitForSeconds(letterInterval);
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(textDuration);
         if (dialogue.next != null)
         {
             WriteDialogue(dialogue.next);
+        }
+        else
+        {
+            UIManager.Instance.ChangeDialogueText("");
         }
     }
 }
 
 [Serializable]
+public class Scenes
+{
+    public Scene[] scenes;
+}
+
+[Serializable]
 public class Scene
 {
-    public Dialogue[] dialogue;
+    public Dialogue[] main;
 }
 
 [Serializable]
