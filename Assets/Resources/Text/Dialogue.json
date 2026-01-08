@@ -2,22 +2,18 @@
     "Scenes":
     [
         {
-            "Intro":
-            [
-                {
-                    "DialogueName": "Intro_01",
-                    "Text": "Default dialogue 1",
-                    "NextDialogue": "Intro_02"
-                },
-                {
-                    "DialogueName": "Intro_02",
-                    "Text": "Default dialogue 2",
-                    "NextDialogue": null
-                }
-            ],
             "Main":
             [
-
+                {
+                    "key": "Intro_01",
+                    "text": "Default dialogue 1",
+                    "next": "Intro_02"
+                },
+                {
+                    "key": "Intro_02",
+                    "text": "Default dialogue 2",
+                    "next": null
+                }
             ]
         }
     ]
