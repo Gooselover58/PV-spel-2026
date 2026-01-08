@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Entity
 {
     private Rigidbody2D rb;
     private Transform groundCheckTrans;
 
-    private bool canMove;
+    public static bool canMove;
     private bool isJumping;
+
+    public static float xInput;
+    public static float yInput;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
@@ -42,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
         groundLayer = Global.groundLayer;
     }
 
+    private void OnEnable()
+    {
+        canMove = true;
+        rb.gravityScale = Global.playerGravityScale;
+    }
+
     private void Update()
     {
         if (IsGrounded())
@@ -53,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteTime -= Time.deltaTime;
         }
         
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(InputManager.Instance.GetInput("Jump")))
         {
             jumpBufferTime = jumpBuffer;
         }
@@ -62,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferTime -= Time.deltaTime;
         }
 
-        if (!Input.GetKey(KeyCode.Space) && rb.velocity.y > 0 && isJumping)
+        if (!Input.GetKey(InputManager.Instance.GetInput("Jump")) && rb.velocity.y > 0 && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - jumpCancelSpeed);
         }
@@ -88,8 +97,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            float x = Input.GetAxisRaw("Horizontal");
-            Vector2 movement = new Vector2(x * moveSpeed, rb.velocity.y);
+            xInput = Input.GetAxisRaw("Horizontal");
+            yInput = Input.GetAxisRaw("Vertical");
+            Vector2 movement = new Vector2(xInput * moveSpeed, rb.velocity.y);
             rb.velocity = movement;
         }
     }
