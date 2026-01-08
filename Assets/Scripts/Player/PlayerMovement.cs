@@ -47,6 +47,7 @@ public class PlayerMovement : Entity
 
     private void OnEnable()
     {
+        canMove = true;
         rb.gravityScale = Global.playerGravityScale;
     }
 

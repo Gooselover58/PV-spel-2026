@@ -28,6 +28,7 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Grapple()
     {
+        PlayerMovement.canMove = false;
         rb.gravityScale = 0;
 
         rb.AddForce(Vector2.right * grapplePower, ForceMode2D.Impulse);
@@ -42,6 +43,7 @@ public class PlayerGrappling : MonoBehaviour
     private IEnumerator GrappleDuration()
     {
         yield return new WaitForSeconds(grappleTime);
+        PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
     }
 }

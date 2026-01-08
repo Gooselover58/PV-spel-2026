@@ -641,8 +641,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343add29ecba93d4a8312ee0ec6a2741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grapplePower: 100
-  grappleTime: 1
+  grapplePower: 400
+  grappleTime: 0.5
 --- !u!1 &2116135622
 GameObject:
   m_ObjectHideFlags: 0
