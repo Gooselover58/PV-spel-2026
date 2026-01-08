@@ -29,8 +29,7 @@ public class JumpPad : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         Rigidbody2D objectRb = col.gameObject.GetComponent<Rigidbody2D>();
-        Entity entity = col.gameObject.GetComponent<Entity>();
-        if (objectRb != null && entity != null && coolDown <= 0)
+        if (objectRb != null && coolDown <= 0 && col.gameObject.layer != Global.groundLayer)
         {
             BoostObject(objectRb);
         }
