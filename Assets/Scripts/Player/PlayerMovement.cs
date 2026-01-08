@@ -22,8 +22,8 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpCooldown;
     [SerializeField] LayerMask groundLayer;
 
-    private float coyoteTime;
-    private float jumpBufferTime;
+    public float coyoteTime;
+    public float jumpBufferTime;
     private float jumpCooldownTime;
 
     private void Awake()
@@ -32,6 +32,7 @@ public class PlayerMovement : Entity
         groundCheckTrans = transform.GetChild(0);
         Global.playerTrans = transform;
         Global.playerRb = rb;
+        Global.playerMovement = this;
 
         canMove = true;
         isJumping = false;
@@ -106,15 +107,15 @@ public class PlayerMovement : Entity
 
     private void Jump()
     {
-        if (!IsGrounded())
+        /*if (!IsGrounded())
         {
             return;
-        }
+        }*/
         coyoteTime = 0;
         jumpBufferTime = 0;
         jumpCooldownTime = jumpCooldown;
         isJumping = true;
-        rb.velocity = Vector2.zero;
+        rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 

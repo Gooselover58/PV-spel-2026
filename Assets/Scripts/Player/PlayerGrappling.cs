@@ -7,6 +7,7 @@ public class PlayerGrappling : MonoBehaviour
     private Rigidbody2D rb;
 
     private Coroutine grappleRoutine;
+    private Vector2 maintainedVelocity;
 
     [SerializeField] float grapplePower;
     [SerializeField] float grappleTime;
@@ -31,6 +32,9 @@ public class PlayerGrappling : MonoBehaviour
         PlayerMovement.canMove = false;
         rb.gravityScale = 0;
 
+        maintainedVelocity = rb.velocity;
+        rb.velocity = Vector2.zero;
+
         rb.AddForce(Vector2.right * grapplePower, ForceMode2D.Impulse);
 
         if (grappleRoutine != null)
@@ -45,5 +49,7 @@ public class PlayerGrappling : MonoBehaviour
         yield return new WaitForSeconds(grappleTime);
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
+
+        rb.velocity = maintainedVelocity;
     }
 }
