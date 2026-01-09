@@ -125,4 +125,12 @@ public class PlayerMovement : Entity
         }
         return false;
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.layer == Global.hazardLayer)
+        {
+            GameManager.Instance.RespawnPlayer();
+        }
+    }
 }
