@@ -20,23 +20,34 @@ public class UIManager : MonoBehaviour
     }
 
     private Transform canvas;
+    private GameObject dialogueObject;
     private TextMeshProUGUI dialogueText;
 
     private void Awake()
     {
         LoadUI();
+        SetDialogueState(false);
     }
 
     private void LoadUI()
     {
         canvas = GameObject.FindGameObjectWithTag("Canvas").transform;
-        dialogueText = canvas.GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+        dialogueObject = canvas.GetChild(0).gameObject;
+        dialogueText = dialogueObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
         dialogueText.text = "";
     }
 
+    public void SetDialogueState(bool state)
+    {
+        dialogueObject.SetActive(state);
+    }
+
     public void ChangeDialogueText(string text)
     {
-        dialogueText.text = text;
+        if (dialogueObject.activeSelf)
+        {
+            dialogueText.text = text;
+        }
     }
 }

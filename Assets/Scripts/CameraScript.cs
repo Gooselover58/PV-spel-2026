@@ -86,7 +86,7 @@ public class CameraScript : MonoBehaviour
 
     private void ResetView()
     {
-        cam.rect = zoomedRect;
+        cam.rect = fullRect;
         shouldChangeRect = false;
     }
 }
