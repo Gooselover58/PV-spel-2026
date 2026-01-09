@@ -10,11 +10,12 @@ public class PlayerGrappling : MonoBehaviour
     private Coroutine grappleRoutine;
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
+    private float grappleCooldown;
 
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
-
+    [SerializeField] float grappleCooldownTarget;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,7 +25,9 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")))
+        grappleCooldown -= Time.deltaTime;
+
+        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0)
         {
             Grapple();
         }
@@ -32,34 +35,45 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Grapple()
     {
+        //The player cant move while grappeling
         PlayerMovement.canMove = false;
         rb.gravityScale = 0;
 
         maintainedVelocity = rb.velocity;
         rb.velocity = Vector2.zero;
 
+        //the grappling stops and restarts
         if (grappleRoutine != null)
         {
             StopCoroutine(grappleRoutine);
         }
         grappleRoutine = StartCoroutine(GrappleDuration());
+        grappleCooldown = grappleCooldownTarget;
     }
 
-    private IEnumerator GrappleDuration() //
+    private IEnumerator GrappleDuration() // What happens while grappeling
     {
+        // Spawns and moves grappling hook
         Vector2 grappleDirection = new Vector2(PlayerMovement.xInput, PlayerMovement.yInput).normalized;
         GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
         rbG = spawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
+
+        //Waits
         yield return new WaitForSeconds(grappleWindup);
+
+        //Sets speed to 0
         rbG.velocity = Vector2.zero;
 
+        //Moves player
         rb.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(grappleTime);
+        
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
 
+        //Sets the player speed to what was before grappeling
         rb.velocity = maintainedVelocity;
         Destroy(spawnHook);
     }
