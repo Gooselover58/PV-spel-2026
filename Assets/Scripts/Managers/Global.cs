@@ -8,6 +8,8 @@ public static class Global
     public static Rigidbody2D playerRb;
     public static PlayerMovement playerMovement;
 
+    public static CameraScript gameCamScript;
+
     public static LayerMask groundLayer;
 
     public static float playerGravityScale = 4f;

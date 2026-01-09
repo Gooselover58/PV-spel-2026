@@ -97,6 +97,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1da8d272965eeee41a6bb06b41178237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  zoomedRect:
+    serializedVersion: 2
+    x: 0.45
+    y: 0.45
+    width: 0.5
+    height: 0.5
   followSpeed: 5
   offsetModifier: 0.1
 --- !u!114 &9032709148066524652
