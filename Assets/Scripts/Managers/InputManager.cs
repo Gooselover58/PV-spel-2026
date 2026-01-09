@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         inputs.Add("Jump", KeyCode.Space);
-        inputs.Add("Grapple", KeyCode.Q);
+        inputs.Add("Grapple", KeyCode.K);
     }
 
     public KeyCode GetInput(string key)

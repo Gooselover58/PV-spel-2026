@@ -5,21 +5,20 @@ using UnityEngine;
 public class PlayerGrappling : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Rigidbody2D rbG;
 
     private Coroutine grappleRoutine;
     private Vector2 maintainedVelocity;
+    private GameObject grappleHook;
 
-    [SerializeField] GameObject grappleHook;
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
 
-    private Rigidbody2D rbG;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-
+        grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
         grappleRoutine = null;
     }
 
@@ -46,7 +45,7 @@ public class PlayerGrappling : MonoBehaviour
         grappleRoutine = StartCoroutine(GrappleDuration());
     }
 
-    private IEnumerator GrappleDuration()
+    private IEnumerator GrappleDuration() //
     {
         Vector2 grappleDirection = new Vector2(PlayerMovement.xInput, PlayerMovement.yInput).normalized;
         GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
