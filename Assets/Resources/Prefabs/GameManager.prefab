@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   letterInterval: 0.1
+  textDuration: 3
 --- !u!114 &297444933835624451
 MonoBehaviour:
   m_ObjectHideFlags: 0
