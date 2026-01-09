@@ -9,9 +9,12 @@ public class PlayerGrappling : MonoBehaviour
     private Coroutine grappleRoutine;
     private Vector2 maintainedVelocity;
 
+    [SerializeField] GameObject grappleHook;
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
+
+    private Rigidbody2D rbG;
 
     private void Awake()
     {
@@ -45,14 +48,20 @@ public class PlayerGrappling : MonoBehaviour
 
     private IEnumerator GrappleDuration()
     {
+        Vector2 grappleDirection = new Vector2(PlayerMovement.xInput, PlayerMovement.yInput).normalized;
+        GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
+        rbG = spawnHook.GetComponent<Rigidbody2D>();
+        rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
         yield return new WaitForSeconds(grappleWindup);
+        rbG.velocity = Vector2.zero;
 
-        rb.AddForce(Vector2.right * grapplePower, ForceMode2D.Impulse);
+        rb.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(grappleTime);
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
 
         rb.velocity = maintainedVelocity;
+        Destroy(spawnHook);
     }
 }
