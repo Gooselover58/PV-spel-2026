@@ -74,7 +74,6 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(letterInterval);
         }
         yield return new WaitForSeconds(textDuration);
-        Debug.Log(dialogue.next);
         if (dialogue.next != "")
         {
             WriteDialogue(dialogue.next);
