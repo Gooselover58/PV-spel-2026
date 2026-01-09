@@ -22,8 +22,8 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpCooldown;
     [SerializeField] LayerMask groundLayer;
 
-    public float coyoteTime;
-    public float jumpBufferTime;
+    private float coyoteTime;
+    private float jumpBufferTime;
     private float jumpCooldownTime;
 
     private void Awake()
@@ -107,10 +107,6 @@ public class PlayerMovement : Entity
 
     private void Jump()
     {
-        /*if (!IsGrounded())
-        {
-            return;
-        }*/
         coyoteTime = 0;
         jumpBufferTime = 0;
         jumpCooldownTime = jumpCooldown;
