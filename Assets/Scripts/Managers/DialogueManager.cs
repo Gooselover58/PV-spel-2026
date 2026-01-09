@@ -38,7 +38,7 @@ public class DialogueManager : MonoBehaviour
         Scenes allScenes = JsonUtility.FromJson<Scenes>(dialogueFile.text);
         foreach (Scene scene in allScenes.scenes)
         {
-            foreach (Dialogue dialogue in scene.main)
+            foreach (Dialogue dialogue in scene.scene)
             {
                 dialogueHolder.Add(dialogue.key, dialogue);
             }
