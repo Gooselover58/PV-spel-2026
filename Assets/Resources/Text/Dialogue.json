@@ -1,25 +1,20 @@
 {
-    "scenes":
+    "dialogue":
     [
         {
-            "scene":
-            [
-                {
-                    "key": "Intro_01",
-                    "text": "Default dialogue 1",
-                    "next": "Intro_02"
-                },
-                {
-                    "key": "Intro_02",
-                    "text": "Default dialogue 2",
-                    "next": null
-                },
-                {
-                    "key": "",
-                    "text": "Breaking news: Someone let that sink in.",
-                    "next": null
-                }
-            ]
+            "key": "Intro_01",
+            "text": "Default dialogue 1",
+            "next": "Intro_02"
+        },
+        {
+            "key": "Intro_02",
+            "text": "Default dialogue 2",
+            "next": null
+        },
+        {
+            "key": "A",
+            "text": "Breaking news: Someone let that sink in.",
+            "next": null
         }
     ]
 }

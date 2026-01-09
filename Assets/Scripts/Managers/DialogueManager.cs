@@ -35,10 +35,10 @@ public class DialogueManager : MonoBehaviour
     private void LoadDialogue()
     {
         dialogueFile = Resources.Load<TextAsset>("Text/Dialogue");
-        Scenes allScenes = JsonUtility.FromJson<Scenes>(dialogueFile.text);
-        foreach (Scene scene in allScenes.scenes)
+        AllDialogue allDialogue = JsonUtility.FromJson<AllDialogue>(dialogueFile.text);
+        foreach (Dialogue dialogue in allDialogue.dialogue)
         {
-            foreach (Dialogue dialogue in scene.scene)
+            if (!dialogueHolder.ContainsKey(dialogue.key))
             {
                 dialogueHolder.Add(dialogue.key, dialogue);
             }
@@ -66,6 +66,7 @@ public class DialogueManager : MonoBehaviour
     {
         string text = dialogue.text;
         string writtenText = "";
+        yield return new WaitForSeconds(letterInterval);
         for (int i = 0; i < text.Length; i++)
         {
             writtenText += text[i];
@@ -73,7 +74,8 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(letterInterval);
         }
         yield return new WaitForSeconds(textDuration);
-        if (dialogue.next != null)
+        Debug.Log(dialogue.next);
+        if (dialogue.next != "")
         {
             WriteDialogue(dialogue.next);
         }
@@ -85,15 +87,9 @@ public class DialogueManager : MonoBehaviour
 }
 
 [Serializable]
-public class Scenes
+public class AllDialogue
 {
-    public Scene[] scenes;
-}
-
-[Serializable]
-public class Scene
-{
-    public Dialogue[] scene;
+    public Dialogue[] dialogue;
 }
 
 [Serializable]
