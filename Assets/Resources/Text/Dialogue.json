@@ -13,6 +13,11 @@
                     "key": "Intro_02",
                     "text": "Default dialogue 2",
                     "next": null
+                },
+                {
+                    "key": "",
+                    "text": "Breaking news: Someone let that sink in.",
+                    "next": null
                 }
             ]
         }
