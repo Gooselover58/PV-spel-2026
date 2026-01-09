@@ -14,4 +14,6 @@ public static class Global
 
     public static float playerGravityScale = 4f;
     public static float jumpPadBoostModifier = 1f;
+
+    public static Vector2 respawnPoint = Vector2.zero;
 }
