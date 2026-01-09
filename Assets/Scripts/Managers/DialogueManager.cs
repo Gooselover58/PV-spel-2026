@@ -93,7 +93,7 @@ public class Scenes
 [Serializable]
 public class Scene
 {
-    public Dialogue[] main;
+    public Dialogue[] scene;
 }
 
 [Serializable]

@@ -2,7 +2,7 @@
     "scenes":
     [
         {
-            "main":
+            "scene":
             [
                 {
                     "key": "Intro_01",
@@ -17,11 +17,6 @@
                 {
                     "key": "",
                     "text": "Breaking news: Someone let that sink in.",
-                    "next": null
-                },
-                {
-                    "key": "",
-                    "text": "",
                     "next": null
                 }
             ]
