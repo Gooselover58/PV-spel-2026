@@ -7,6 +7,7 @@ public static class Global
     public static Transform playerTrans;
     public static Rigidbody2D playerRb;
     public static PlayerMovement playerMovement;
+    public static PlayerGrappling playerGrappling;
 
     public static CameraScript gameCamScript;
 

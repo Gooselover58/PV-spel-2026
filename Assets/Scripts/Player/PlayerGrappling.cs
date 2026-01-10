@@ -8,33 +8,55 @@ public class PlayerGrappling : MonoBehaviour
     private Rigidbody2D rbG;
 
     private Coroutine grappleRoutine;
+
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
     private float grappleCooldown;
+    [SerializeField] int remainingGrapples;
 
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
     [SerializeField] float grappleCooldownTarget;
+    [SerializeField] int baseGrapples;
+
     private void Awake()
     {
+        Global.playerGrappling = this;
         rb = GetComponent<Rigidbody2D>();
         grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
         grappleRoutine = null;
+        remainingGrapples = baseGrapples;
     }
 
     private void Update()
     {
         grappleCooldown -= Time.deltaTime;
 
-        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0)
+        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
         }
     }
 
+    public void ResetGrapples()
+    {
+        if (grappleRoutine == null)
+        {
+            remainingGrapples = baseGrapples;
+        }
+    }
+
+    public void IncreaseGrapples(int amount)
+    {
+        remainingGrapples += amount;
+    }
+
     private void Grapple()
     {
+        //Decreases remaining grapples the player can do before touching the ground again
+        remainingGrapples--;
+
         //The player cant move while grappeling
         PlayerMovement.canMove = false;
         rb.gravityScale = 0;
@@ -76,5 +98,6 @@ public class PlayerGrappling : MonoBehaviour
         //Sets the player speed to what was before grappeling
         rb.velocity = maintainedVelocity;
         Destroy(spawnHook);
+        grappleRoutine = null;
     }
 }

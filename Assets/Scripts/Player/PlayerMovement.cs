@@ -6,6 +6,7 @@ public class PlayerMovement : Entity
 {
     private Rigidbody2D rb;
     private Transform groundCheckTrans;
+    private PlayerGrappling playerGrappling;
 
     public static bool canMove;
     private bool isJumping;
@@ -43,6 +44,7 @@ public class PlayerMovement : Entity
 
     private void Start()
     {
+        playerGrappling = Global.playerGrappling;
         groundLayer = Global.groundLayer;
     }
 
@@ -121,6 +123,7 @@ public class PlayerMovement : Entity
         if (col != null && jumpCooldownTime <= 0)
         {
             isJumping = false;
+            playerGrappling.ResetGrapples();
             return true;
         }
         return false;
