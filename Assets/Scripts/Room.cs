@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public Vector2 enterPoint;
-    [SerializeField] Vector2 respawnPoint;
+    [HideInInspector] public Transform enterPoint;
+    private Transform respawnPoint;
+
+    private void Awake()
+    {
+        enterPoint = transform.GetChild(0);
+        respawnPoint = transform.GetChild(1);
+    }
 
     public void EnterRoom()
     {
-        Global.respawnPoint = respawnPoint;
+        Global.respawnPoint = respawnPoint.position;
         Global.playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
         PlayerMovement.canMove = true;

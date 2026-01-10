@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EnterNewRoom(Room destination)
     {
-        playerTrans.position = destination.enterPoint;
+        playerTrans.position = destination.enterPoint.position;
 
         yield return new WaitForSeconds(1f);
 
