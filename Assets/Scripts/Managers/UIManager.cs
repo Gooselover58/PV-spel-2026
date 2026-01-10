@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
         dialogueText = dialogueObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         deathScreenObject = canvas.GetChild(1).gameObject;
 
+        canvas.gameObject.SetActive(true);
         dialogueText.text = "";
 
         uiElements.Add("Dialogue", dialogueObject);

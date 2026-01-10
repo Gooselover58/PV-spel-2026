@@ -126,11 +126,33 @@ public class PlayerMovement : Entity
         return false;
     }
 
+    private void FreezeMovement()
+    {
+        canMove = false;
+        rb.velocity = Vector2.zero;
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
+    {
+        CheckForHazards(col);
+        CheckForTransition(col);
+    }
+
+    private void CheckForHazards(Collider2D col)
     {
         if (col.gameObject.CompareTag("Hazard"))
         {
             GameManager.Instance.RespawnPlayer();
+        }
+    }
+
+    private void CheckForTransition(Collider2D col)
+    {
+        RoomTransition transition = col.GetComponent<RoomTransition>();
+        if (transition != null && canMove)
+        {
+            FreezeMovement();
+            transition.Transition();
         }
     }
 }

@@ -20,9 +20,12 @@ public class GameManager : MonoBehaviour
 
     private Transform playerTrans;
 
+    private Coroutine transitionRoutine;
+
     private void Awake()
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
+        Global.deaths = 0;
     }
 
     private void Start()
@@ -33,8 +36,13 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        Global.deaths += 1;
         playerTrans.gameObject.SetActive(false);
-        StartCoroutine(Respawn());
+        if (transitionRoutine != null)
+        {
+            StopCoroutine(transitionRoutine);
+        }
+        transitionRoutine = StartCoroutine(Respawn());
     }
 
     private IEnumerator Respawn()
@@ -46,5 +54,24 @@ public class GameManager : MonoBehaviour
 
         playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
+    }
+
+    public void ChangeRoom(Room destination)
+    {
+        if (transitionRoutine != null)
+        {
+            StopCoroutine(transitionRoutine);
+        }
+        transitionRoutine = StartCoroutine(EnterNewRoom(destination));
+    }
+
+    private IEnumerator EnterNewRoom(Room destination)
+    {
+        playerTrans.position = destination.enterPoint;
+
+        yield return new WaitForSeconds(1f);
+
+        destination.gameObject.SetActive(true);
+        destination.EnterRoom();
     }
 }

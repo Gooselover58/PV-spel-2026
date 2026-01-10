@@ -29,7 +29,7 @@ public class CameraScript : MonoBehaviour
 
         cam = GetComponent<Camera>();
         shouldFollowPlayer = true;
-        ResetView();
+        ResetView(true);
     }
 
     private void Start()
@@ -84,9 +84,9 @@ public class CameraScript : MonoBehaviour
         shouldChangeRect = true;
     }
 
-    private void ResetView()
+    private void ResetView(bool full)
     {
-        cam.rect = fullRect;
+        cam.rect = (full) ? fullRect : zoomedRect;
         shouldChangeRect = false;
     }
 }
