@@ -102,8 +102,13 @@ public class PlayerMovement : Entity
         {
             xInput = Input.GetAxisRaw("Horizontal");
             yInput = Input.GetAxisRaw("Vertical");
-            Vector2 movement = new Vector2(xInput * moveSpeed, rb.velocity.y);
-            rb.velocity = movement;
+
+            float normalizeMod = (-xInput * rb.velocity.x);
+            normalizeMod *= (xInput > 0) ? 1 : -1;
+            normalizeMod = Mathf.Clamp(normalizeMod, -moveSpeed, moveSpeed);
+
+            Vector2 movement = new Vector2(xInput * moveSpeed + normalizeMod, 0);
+            rb.AddForce(movement, ForceMode2D.Impulse);
         }
     }
 

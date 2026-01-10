@@ -54,7 +54,7 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Grapple()
     {
-        //Decreases remaining grapples the player can do before touching the ground again
+        // Decreases remaining grapples the player can do before touching the ground again
         remainingGrapples--;
 
         //The player cant move while grappeling
@@ -81,13 +81,13 @@ public class PlayerGrappling : MonoBehaviour
         rbG = spawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
-        //Waits
+        // Waits
         yield return new WaitForSeconds(grappleWindup);
 
-        //Sets speed to 0
+        // Sets speed to 0
         rbG.velocity = Vector2.zero;
 
-        //Moves player
+        // Moves player
         rb.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(grappleTime);
@@ -95,8 +95,13 @@ public class PlayerGrappling : MonoBehaviour
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
 
-        //Sets the player speed to what was before grappeling
-        rb.velocity = maintainedVelocity;
+        // Resets players maintained velocity if not in the same direction as the grapple
+        Vector2 normalizedMV= maintainedVelocity.normalized;
+        maintainedVelocity.x = (normalizedMV.x == grappleDirection.x) ? maintainedVelocity.x : 0;
+        maintainedVelocity.y = (normalizedMV.y == grappleDirection.y) ? maintainedVelocity.y : 0;
+
+        // Sets the player speed to what was before grappeling
+        rb.velocity += maintainedVelocity;
         Destroy(spawnHook);
         grappleRoutine = null;
     }
