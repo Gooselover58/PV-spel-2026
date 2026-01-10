@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
@@ -8,6 +9,7 @@ public class CameraScript : MonoBehaviour
     private Camera cam;
     private Transform playerTrans;
     private Rigidbody2D playerRb;
+    private GameObject upsideDownCamObject;
 
     [SerializeField] Rect fullRect;
     [SerializeField] Rect zoomedRect;
@@ -28,7 +30,10 @@ public class CameraScript : MonoBehaviour
         Global.gameCamScript = this;
 
         cam = GetComponent<Camera>();
+        upsideDownCamObject = transform.GetChild(0).gameObject;
+
         shouldFollowPlayer = true;
+        SetUpsideDownCamera(false);
         ResetView(true);
     }
 
@@ -41,6 +46,14 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         ChangeRect();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SetUpsideDownCamera(true);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SetUpsideDownCamera(false);
+        }
     }
 
     private void FixedUpdate()
@@ -88,5 +101,10 @@ public class CameraScript : MonoBehaviour
     {
         cam.rect = (full) ? fullRect : zoomedRect;
         shouldChangeRect = false;
+    }
+
+    public void SetUpsideDownCamera(bool state)
+    {
+        upsideDownCamObject.SetActive(state);
     }
 }
