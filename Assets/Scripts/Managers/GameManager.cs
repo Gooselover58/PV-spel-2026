@@ -40,10 +40,10 @@ public class GameManager : MonoBehaviour
     private IEnumerator Respawn()
     {
         UIManager.Instance.SetUIState("Death", true);
+        playerTrans.position = Global.respawnPoint;
 
         yield return new WaitForSeconds(2f);
 
-        playerTrans.position = Global.respawnPoint;
         playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
     }
