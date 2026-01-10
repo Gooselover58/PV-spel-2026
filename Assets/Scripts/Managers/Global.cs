@@ -11,7 +11,6 @@ public static class Global
     public static CameraScript gameCamScript;
 
     public static LayerMask groundLayer;
-    public static LayerMask hazardLayer;
 
     public static float playerGravityScale = 4f;
     public static float jumpPadBoostModifier = 1f;

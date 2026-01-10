@@ -128,7 +128,7 @@ public class PlayerMovement : Entity
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.layer == Global.hazardLayer)
+        if (col.gameObject.CompareTag("Hazard"))
         {
             GameManager.Instance.RespawnPlayer();
         }

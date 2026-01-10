@@ -23,7 +23,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
-        Global.hazardLayer = LayerMask.GetMask("Hazard");
     }
 
     private void Start()
@@ -40,9 +39,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        UIManager.Instance.SetUIState("Death", true);
+
         yield return new WaitForSeconds(2f);
 
         playerTrans.position = Global.respawnPoint;
         playerTrans.gameObject.SetActive(true);
+        UIManager.Instance.SetUIState("Death", false);
     }
 }
