@@ -65,7 +65,7 @@ public class CameraScript : MonoBehaviour
     {
         if (shouldFollowPlayer)
         {
-            cameraPointOffset = Vector2.zero;//cameraPointOffset += (Vector3)playerRb.velocity * offsetModifier * Time.deltaTime;
+            cameraPointOffset = Vector2.zero;//cameraPointOffset = (Vector3)playerRb.velocity * offsetModifier;
             Vector3 camPos = transform.position;
             Vector3 offsetPlayerPos = playerTrans.position + cameraPointOffset;
             Vector3 toPlayer = offsetPlayerPos - transform.position;
