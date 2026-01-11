@@ -12,7 +12,7 @@ public class PlayerGrappling : MonoBehaviour
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
     private float grappleCooldown;
-    [SerializeField] int remainingGrapples;
+    private int remainingGrapples;
 
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
@@ -27,6 +27,12 @@ public class PlayerGrappling : MonoBehaviour
         grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
         grappleRoutine = null;
         remainingGrapples = baseGrapples;
+    }
+
+    private void OnEnable()
+    {
+        grappleRoutine = null;
+        ResetGrapples();
     }
 
     private void Update()
@@ -91,17 +97,20 @@ public class PlayerGrappling : MonoBehaviour
         rb.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
         yield return new WaitForSeconds(grappleTime);
+
         
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
 
         // Resets players maintained velocity if not in the same direction as the grapple
-        Vector2 normalizedMV= maintainedVelocity.normalized;
+        Vector2 normalizedMV = maintainedVelocity.normalized;
+        //Debug.Log($"{normalizedMV.x}, {grappleDirection.x}, {maintainedVelocity.x}");
         maintainedVelocity.x = (normalizedMV.x == grappleDirection.x) ? maintainedVelocity.x : 0;
         maintainedVelocity.y = (normalizedMV.y == grappleDirection.y) ? maintainedVelocity.y : 0;
 
         // Sets the player speed to what was before grappeling
         rb.velocity += maintainedVelocity;
+
         Destroy(spawnHook);
         grappleRoutine = null;
     }

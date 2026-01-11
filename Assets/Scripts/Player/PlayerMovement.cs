@@ -112,6 +112,14 @@ public class PlayerMovement : Entity
         }
     }
 
+    public override void BoostEntity(Vector2 dir, float power)
+    {
+        if (!isJumping)
+        {
+            rb.AddForce(dir * power, ForceMode2D.Impulse);
+        }
+    }
+
     private void Jump()
     {
         coyoteTime = 0;
@@ -134,7 +142,7 @@ public class PlayerMovement : Entity
         return false;
     }
 
-    private void FreezeMovement()
+    public void FreezeMovement()
     {
         canMove = false;
         rb.velocity = Vector2.zero;
@@ -143,7 +151,7 @@ public class PlayerMovement : Entity
     private void OnTriggerEnter2D(Collider2D col)
     {
         CheckForHazards(col);
-        CheckForTransition(col);
+        CheckForTriggers(col);
     }
 
     private void CheckForHazards(Collider2D col)
@@ -154,13 +162,12 @@ public class PlayerMovement : Entity
         }
     }
 
-    private void CheckForTransition(Collider2D col)
+    private void CheckForTriggers(Collider2D col)
     {
-        RoomTransition transition = col.GetComponent<RoomTransition>();
-        if (transition != null && canMove)
+        ITrigger trigger = col.GetComponent<ITrigger>();
+        if (trigger != null && canMove)
         {
-            FreezeMovement();
-            transition.Transition();
+            trigger.Triggered();
         }
     }
 }

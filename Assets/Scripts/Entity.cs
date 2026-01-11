@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    public virtual void BoostEntity(Vector2 dir, float power)
+    {
 
+    }
 }

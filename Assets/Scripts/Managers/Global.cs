@@ -20,3 +20,8 @@ public static class Global
 
     public static int deaths = 0;
 }
+
+public interface ITrigger
+{
+    public void Triggered();
+}
