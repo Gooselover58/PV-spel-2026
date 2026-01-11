@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,9 +65,12 @@ public class PlayerMovement : Entity
         {
             coyoteTime -= Time.deltaTime;
         }
-        
+
+        bool pressedJump = false;
+
         if (Input.GetKeyDown(InputManager.Instance.GetInput("Jump")))
         {
+            pressedJump = true;
             jumpBufferTime = jumpBuffer;
         }
         else
@@ -85,7 +89,12 @@ public class PlayerMovement : Entity
 
         jumpCooldownTime -= Time.deltaTime;
 
-        if (jumpBufferTime > 0 && coyoteTime > 0)
+        if (pressedJump && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
+        {
+            Jump();
+            playerGrappling.ResetPlayer();
+        }
+        else if (jumpBufferTime > 0 && coyoteTime > 0)
         {
             Jump();
         }

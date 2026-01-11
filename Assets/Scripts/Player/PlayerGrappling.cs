@@ -170,15 +170,13 @@ public class PlayerGrappling : MonoBehaviour
         grappleRoutine = null;
     }
 
-    // If fullCancel is false then some variables will not be reset
-    private void CancelGrapple(bool fullCancel)
+    // If resetPlater is false then the players variables will not be reset
+    private void CancelGrapple(bool resetPlayer)
     {
         // Resets all variables affected by grappling
-        playerState = PlayerState.FREE;
-        if (fullCancel)
+        if (resetPlayer)
         {
-            rb.gravityScale = Global.playerGravityScale;
-            PlayerMovement.canMove = true;
+            ResetPlayer();
         }
 
         // Ensures the grappling routine has been stopped
@@ -198,13 +196,14 @@ public class PlayerGrappling : MonoBehaviour
         {
             return;
         }
-        bool fullCancel = true;
+        bool resetPlayer = true;
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            fullCancel = false;
+            resetPlayer = false;
             playerState = PlayerState.ATTACHED;
+            rb.velocity = Vector2.zero;
         }
-        CancelGrapple(fullCancel);
+        CancelGrapple(resetPlayer);
     }
 
     public enum PlayerState
