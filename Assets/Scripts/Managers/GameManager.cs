@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
         Global.deaths = 0;
-
-        activePowerups.Clear();
     }
 
     private void Start()
@@ -59,6 +57,7 @@ public class GameManager : MonoBehaviour
         // Displays respawn screen and sets the player back to the respawn point
         UIManager.Instance.SetUIState("Death", true);
         playerTrans.position = Global.respawnPoint;
+        ResetPowerups();
 
         yield return new WaitForSeconds(2f);
 

@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetTime: 5
-  grappleIncrease: 2
+  setGrappleAmount: 2

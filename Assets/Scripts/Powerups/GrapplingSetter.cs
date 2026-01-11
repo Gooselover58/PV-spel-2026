@@ -9,7 +9,7 @@ public class GrapplingSetter : Powerup
     private Color activeColor;
     private Color deactiveColor;
 
-    [SerializeField] int grappleIncrease;
+    [SerializeField] int setGrappleAmount;
 
     protected override void Awake()
     {
@@ -21,7 +21,7 @@ public class GrapplingSetter : Powerup
 
     public override void Triggered()
     {
-        Global.playerGrappling.IncreaseGrapples(grappleIncrease);
+        Global.playerGrappling.SetGrapples(setGrappleAmount);
         sr.color = deactiveColor;
         CoolDown();
     }

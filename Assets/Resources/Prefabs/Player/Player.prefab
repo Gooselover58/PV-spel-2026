@@ -321,5 +321,5 @@ MonoBehaviour:
   grapplePower: 400
   grappleWindup: 0.1
   grappleTime: 0.5
-  grappleCooldownTarget: 0.1
+  grappleCooldownTarget: 0.05
   baseGrapples: 1

@@ -93,9 +93,9 @@ public class PlayerGrappling : MonoBehaviour
         }
     }
 
-    public void IncreaseGrapples(int amount)
+    public void SetGrapples(int amount)
     {
-        remainingGrapples += amount;
+        remainingGrapples = amount;
     }
 
     private void Grapple()
