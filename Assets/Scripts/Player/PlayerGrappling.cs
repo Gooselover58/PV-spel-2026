@@ -6,8 +6,11 @@ public class PlayerGrappling : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Rigidbody2D rbG;
+    private Transform grapplingHookHolder;
 
     private Coroutine grappleRoutine;
+
+    private Queue<GameObject> grapplingHooks = new Queue<GameObject>();
 
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
@@ -24,14 +27,19 @@ public class PlayerGrappling : MonoBehaviour
     {
         Global.playerGrappling = this;
         rb = GetComponent<Rigidbody2D>();
+        grapplingHookHolder = GameObject.FindGameObjectWithTag("GrapplingHolder").transform;
+
         grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
         grappleRoutine = null;
         remainingGrapples = baseGrapples;
+
+        CreateGrappleObjects(5);
     }
 
     private void OnEnable()
     {
         grappleRoutine = null;
+        DisableGrappleObjects();
         ResetGrapples();
     }
 
@@ -42,6 +50,29 @@ public class PlayerGrappling : MonoBehaviour
         if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
+        }
+    }
+
+    private void CreateGrappleObjects(int amount)
+    {
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity, grapplingHookHolder);
+            grapplingHooks.Enqueue(spawnHook);
+            spawnHook.SetActive(false);
+        }
+    }
+
+    private void DisableGrappleObjects()
+    {
+        foreach (Transform hook in grapplingHookHolder)
+        {
+            GameObject hookOb = hook.gameObject;
+            hookOb.SetActive(false);
+            if (!grapplingHooks.Contains(hookOb))
+            {
+                grapplingHooks.Enqueue(hookOb);
+            }
         }
     }
 
@@ -74,6 +105,7 @@ public class PlayerGrappling : MonoBehaviour
         if (grappleRoutine != null)
         {
             StopCoroutine(grappleRoutine);
+            DisableGrappleObjects();
         }
         grappleRoutine = StartCoroutine(GrappleDuration());
         grappleCooldown = grappleCooldownTarget;
@@ -81,9 +113,16 @@ public class PlayerGrappling : MonoBehaviour
 
     private IEnumerator GrappleDuration() // What happens while grappeling
     {
+        // Gets input from player
+        float xInput = Input.GetAxisRaw("Horizontal");
+        float yInput = Input.GetAxisRaw("Vertical");
+
         // Spawns and moves grappling hook
-        Vector2 grappleDirection = new Vector2(PlayerMovement.xInput, PlayerMovement.yInput).normalized;
-        GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
+
+        Vector2 grappleDirection = new Vector2(xInput, yInput).normalized;
+        GameObject spawnHook = grapplingHooks.Dequeue();//Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
+        spawnHook.transform.position = transform.position;
+        spawnHook.SetActive(true);
         rbG = spawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
@@ -111,7 +150,9 @@ public class PlayerGrappling : MonoBehaviour
         // Sets the player speed to what was before grappeling
         rb.velocity += maintainedVelocity;
 
-        Destroy(spawnHook);
+        //Destroy(spawnHook);
+        grapplingHooks.Enqueue(spawnHook);
+        spawnHook.SetActive(false);
         grappleRoutine = null;
     }
 }

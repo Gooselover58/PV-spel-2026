@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Canvas
   - Hazard
+  - GrapplingHolder
   layers:
   - Default
   - TransparentFX
