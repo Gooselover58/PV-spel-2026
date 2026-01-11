@@ -26,7 +26,7 @@ public class GrapplingSetter : Powerup
         CoolDown();
     }
 
-    protected override void ResetPowerup()
+    public override void ResetPowerup()
     {
         base.ResetPowerup();
         sr.color = activeColor;

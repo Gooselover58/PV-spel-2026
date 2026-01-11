@@ -18,6 +18,7 @@ public class Powerup : MonoBehaviour, ITrigger
     protected void OnEnable()
     {
         ResetPowerup();
+        GameManager.Instance.activePowerups.Add(this);
     }
 
     public virtual void Triggered()
@@ -41,8 +42,12 @@ public class Powerup : MonoBehaviour, ITrigger
         ResetPowerup();
     }
 
-    protected virtual void ResetPowerup()
+    public virtual void ResetPowerup()
     {
+        if (cooldownRoutine != null)
+        {
+            StopCoroutine(cooldownRoutine);
+        }
         cooldownRoutine = null;
         col.enabled = true;
     }
