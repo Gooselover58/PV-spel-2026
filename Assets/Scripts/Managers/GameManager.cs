@@ -36,8 +36,13 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        // Increases global death count
         Global.deaths += 1;
+
+        // Disables player
         playerTrans.gameObject.SetActive(false);
+
+        // Cancels any running transition routines, then begins respawning
         if (transitionRoutine != null)
         {
             StopCoroutine(transitionRoutine);
@@ -47,17 +52,21 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        // Displays respawn screen and sets the player back to the respawn point
         UIManager.Instance.SetUIState("Death", true);
         playerTrans.position = Global.respawnPoint;
 
         yield return new WaitForSeconds(2f);
 
+        // Removes the respawn screen, respawns the player and resets their variables
         playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
+        Global.playerGrappling.ResetPlayer();
     }
 
     public void ChangeRoom(Room destination)
     {
+        // Cancels any running transition routines, then begins room transitioning
         if (transitionRoutine != null)
         {
             StopCoroutine(transitionRoutine);

@@ -17,6 +17,8 @@ public class PlayerGrappling : MonoBehaviour
     private float grappleCooldown;
     private int remainingGrapples;
 
+    public PlayerState playerState;
+
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
@@ -41,6 +43,13 @@ public class PlayerGrappling : MonoBehaviour
         grappleRoutine = null;
         DisableGrappleObjects();
         ResetGrapples();
+    }
+
+    public void ResetPlayer()
+    {
+        playerState = PlayerState.FREE;
+        PlayerMovement.canMove = true;
+        rb.gravityScale = Global.playerGravityScale;
     }
 
     private void Update()
@@ -117,10 +126,10 @@ public class PlayerGrappling : MonoBehaviour
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
 
-        // Spawns and moves grappling hook
+        // Spawns grappling hook from object pool, then moves it
 
         Vector2 grappleDirection = new Vector2(xInput, yInput).normalized;
-        GameObject spawnHook = grapplingHooks.Dequeue();//Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity);
+        GameObject spawnHook = grapplingHooks.Dequeue();
         spawnHook.transform.position = transform.position;
         spawnHook.SetActive(true);
         rbG = spawnHook.GetComponent<Rigidbody2D>();
@@ -128,6 +137,9 @@ public class PlayerGrappling : MonoBehaviour
 
         // Waits
         yield return new WaitForSeconds(grappleWindup);
+
+        // Sets player in the grappling state
+        playerState = PlayerState.GRAPPLING;
 
         // Sets speed to 0
         rbG.velocity = Vector2.zero;
@@ -137,12 +149,15 @@ public class PlayerGrappling : MonoBehaviour
 
         yield return new WaitForSeconds(grappleTime);
 
-        
+        // Sets player to be in the free state
+        playerState = PlayerState.FREE;
+
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
 
         // Resets players maintained velocity if not in the same direction as the grapple
         Vector2 normalizedMV = maintainedVelocity.normalized;
+
         //Debug.Log($"{normalizedMV.x}, {grappleDirection.x}, {maintainedVelocity.x}");
         maintainedVelocity.x = (normalizedMV.x == grappleDirection.x) ? maintainedVelocity.x : 0;
         maintainedVelocity.y = (normalizedMV.y == grappleDirection.y) ? maintainedVelocity.y : 0;
@@ -150,9 +165,50 @@ public class PlayerGrappling : MonoBehaviour
         // Sets the player speed to what was before grappeling
         rb.velocity += maintainedVelocity;
 
-        //Destroy(spawnHook);
         grapplingHooks.Enqueue(spawnHook);
         spawnHook.SetActive(false);
         grappleRoutine = null;
+    }
+
+    // If fullCancel is false then some variables will not be reset
+    private void CancelGrapple(bool fullCancel)
+    {
+        // Resets all variables affected by grappling
+        playerState = PlayerState.FREE;
+        if (fullCancel)
+        {
+            rb.gravityScale = Global.playerGravityScale;
+            PlayerMovement.canMove = true;
+        }
+
+        // Ensures the grappling routine has been stopped
+        if (grappleRoutine != null)
+        {
+            StopCoroutine(grappleRoutine);
+            grappleRoutine = null;
+        }
+
+        // Disables grappling objects since the routine will be unable to do so
+        DisableGrappleObjects();
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (playerState != PlayerState.GRAPPLING)
+        {
+            return;
+        }
+        bool fullCancel = true;
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            fullCancel = false;
+            playerState = PlayerState.ATTACHED;
+        }
+        CancelGrapple(fullCancel);
+    }
+
+    public enum PlayerState
+    {
+        FREE, GRAPPLING, ATTACHED
     }
 }
