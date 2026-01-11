@@ -21,8 +21,9 @@ public class GrapplingSetter : Powerup
 
     public override void Triggered()
     {
-        Global.playerGrappling.SetGrapples(setGrappleAmount);
+        col.enabled = false;
         sr.color = deactiveColor;
+        Global.playerGrappling.SetGrapples(setGrappleAmount);
         CoolDown();
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour, ITrigger
 {
-    private BoxCollider2D col;
+    protected BoxCollider2D col;
 
     private Coroutine cooldownRoutine;
 
@@ -28,7 +28,6 @@ public class Powerup : MonoBehaviour, ITrigger
 
     protected void CoolDown()
     {
-        col.enabled = false;
         if (cooldownRoutine != null)
         {
             StopCoroutine(cooldownRoutine);
