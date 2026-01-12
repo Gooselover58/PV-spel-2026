@@ -18,6 +18,6 @@ public class Room : MonoBehaviour
         Global.respawnPoint = respawnPoint.position;
         Global.playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
-        PlayerMovement.canMove = true;
+        Global.playerGrappling.ResetPlayer();
     }
 }

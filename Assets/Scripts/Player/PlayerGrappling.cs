@@ -62,6 +62,7 @@ public class PlayerGrappling : MonoBehaviour
         playerState = PlayerState.FREE;
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
+        rope.enabled = false;
     }
 
     private void Update()
@@ -135,7 +136,7 @@ public class PlayerGrappling : MonoBehaviour
 
         rope.enabled = true;
 
-        //the grappleing stops and restarts
+        //the grappling stops and restarts
         if (grappleRoutine != null)
         {
             StopCoroutine(grappleRoutine);
@@ -145,19 +146,38 @@ public class PlayerGrappling : MonoBehaviour
         grappleCooldown = grappleCooldownTarget;
     }
 
-    private IEnumerator GrappleDuration() // What happens while grappleing
+    private float GetGrappleWindup(Vector2 dir)
     {
-        // Spawns grappling hook from object pool, then moves it
+        float windupTime = grappleWindup;
+        // Gets the distance that the hook will travel during the windup
+        float distance = (grapplePower / rb.mass) * grappleWindup;
 
+        // Fires a ray in the grapple direction to look for ground collisions
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, dir, distance, Global.groundLayer);
+        if (ray.collider != null)
+        {
+            // If there is an object in the way, decrease the windup time depending on the distance from the player to the object
+            windupTime *= (ray.distance / distance);
+        }
+        return windupTime;
+    }
+
+    private IEnumerator GrappleDuration() // What happens while grappling
+    {
+        // Gets grappling direction with the players input
         Vector2 grappleDirection = new Vector2(movementInput.x, movementInput.y).normalized;
 
+        // Sets hook object to the right position and moves it
         currentSpawnHook.transform.position = transform.position;
         currentSpawnHook.SetActive(true);
         rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
+        // Changes windup time if there is any objects in the grapple direction
+        float windup = GetGrappleWindup(grappleDirection);
+
         // Waits
-        yield return new WaitForSeconds(grappleWindup);
+        yield return new WaitForSeconds(windup);
 
         // Sets player in the grappling state
         playerState = PlayerState.GRAPPLING;
