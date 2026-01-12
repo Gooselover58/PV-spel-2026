@@ -302,6 +302,7 @@ MonoBehaviour:
   coyoteJump: 0.3
   jumpBuffer: 0.25
   jumpCooldown: 0.05
+  freeInputTime: 0.25
   groundLayer:
     serializedVersion: 2
     m_Bits: 0

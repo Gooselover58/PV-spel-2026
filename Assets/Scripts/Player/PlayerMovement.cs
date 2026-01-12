@@ -22,11 +22,13 @@ public class PlayerMovement : Entity
     [SerializeField] float coyoteJump;
     [SerializeField] float jumpBuffer;
     [SerializeField] float jumpCooldown;
+    [SerializeField] float freeInputTime;
     [SerializeField] LayerMask groundLayer;
 
     private float coyoteTime;
     private float jumpBufferTime;
     private float jumpCooldownTime;
+    private float inputDuration;
 
     private void Awake()
     {
@@ -39,8 +41,9 @@ public class PlayerMovement : Entity
         canMove = true;
         isJumping = false;
 
-        coyoteTime = 0;
-        jumpBufferTime = 0;
+        coyoteTime = 0f;
+        jumpBufferTime = 0f;
+        inputDuration = 0f;
     }
 
     private void Start()
@@ -107,15 +110,34 @@ public class PlayerMovement : Entity
 
     private void Movement()
     {
+        xInput = Input.GetAxisRaw("Horizontal");
+        yInput = Input.GetAxisRaw("Vertical");
+
+        // Counts how long the player has been holding down while attached
+        if (yInput < 0 && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
+        {
+            inputDuration += Time.deltaTime;
+        }
+        else
+        {
+            inputDuration = 0;
+        }
+
+        // If the player has been making inputs for long enough while attached, free them
+        if (inputDuration > freeInputTime)
+        {
+            playerGrappling.ResetPlayer();
+        }
+
+        // Performs player movement if possible
         if (canMove)
         {
-            xInput = Input.GetAxisRaw("Horizontal");
-            yInput = Input.GetAxisRaw("Vertical");
-
+            // Slows movement speed the further away velocity is from 0
             float normalizeMod = (-xInput * rb.velocity.x);
             normalizeMod *= (xInput > 0) ? 1 : -1;
             normalizeMod = Mathf.Clamp(normalizeMod, -moveSpeed, moveSpeed);
 
+            // Moves player
             Vector2 movement = new Vector2(xInput * moveSpeed + normalizeMod, 0);
             rb.AddForce(movement, ForceMode2D.Impulse);
         }
