@@ -8,6 +8,7 @@ TagManager:
   - Hazard
   - GrapplingHolder
   - Grappleable
+  - Fragile
   layers:
   - Default
   - TransparentFX

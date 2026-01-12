@@ -30,6 +30,7 @@ public class PlayerGrappling : MonoBehaviour
     [SerializeField] float grappleCooldownTarget;
     [SerializeField] int baseGrapples;
     [SerializeField] float ropeWidth;
+    [SerializeField] float explosionRadius;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class PlayerGrappling : MonoBehaviour
 
     public void ResetPlayer()
     {
+        Global.isPlayerHoldingBomb = false;
         playerState = PlayerState.FREE;
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
@@ -212,7 +214,7 @@ public class PlayerGrappling : MonoBehaviour
         grappleRoutine = null;
     }
 
-    // If resetPlater is false then the players variables will not be reset
+    // If resetPlayer is false then the players variables will not be reset
     private void CancelGrapple(bool resetPlayer)
     {
         // Resets all variables affected by grappling
@@ -233,19 +235,44 @@ public class PlayerGrappling : MonoBehaviour
         DisableGrappleObjects();
     }
 
+    private void Explode()
+    {
+        // Work in progress
+        // Creates an explosion that deactivates all Fragile objects
+        Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, explosionRadius, Global.groundLayer);
+        foreach (Collider2D col in cols)
+        {
+            if (col.CompareTag("Fragile"))
+            {
+                col.gameObject.SetActive(false);
+            }
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
+        // Only proceed if player is grappling
         if (playerState != PlayerState.GRAPPLING)
         {
             return;
         }
+
         bool resetPlayer = true;
-        if (col.gameObject.CompareTag("Grappleable"))
+        // If player has a bomb, explode
+        // Otherwise attach to surface if possible
+        if (Global.isPlayerHoldingBomb)
+        {
+            Global.isPlayerHoldingBomb = false;
+            Explode();
+        }
+        else if (col.gameObject.CompareTag("Grappleable"))
         {
             resetPlayer = false;
             playerState = PlayerState.ATTACHED;
             rb.velocity = Vector2.zero;
         }
+
+        // Cancel the grapple to reset variables
         CancelGrapple(resetPlayer);
     }
 

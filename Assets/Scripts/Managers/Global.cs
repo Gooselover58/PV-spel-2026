@@ -17,6 +17,7 @@ public static class Global
     public static float jumpPadBoostModifier = 1f;
 
     public static Vector2 respawnPoint = Vector2.zero;
+    public static bool isPlayerHoldingBomb = false;
 
     public static int deaths = 0;
 }

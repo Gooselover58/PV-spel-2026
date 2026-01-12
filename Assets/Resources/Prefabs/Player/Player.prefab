@@ -462,3 +462,4 @@ MonoBehaviour:
   grappleCooldownTarget: 0.05
   baseGrapples: 1
   ropeWidth: 0.2
+  explosionRadius: 3
