@@ -112,6 +112,7 @@ public class PlayerMovement : Entity
     {
         xInput = Input.GetAxisRaw("Horizontal");
         yInput = Input.GetAxisRaw("Vertical");
+        Vector2 meow = InputManager.Instance.GetMovement();
 
         // Counts how long the player has been holding down while attached
         if (yInput < 0 && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
