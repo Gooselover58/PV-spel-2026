@@ -5,8 +5,8 @@ using UnityEngine;
 public class Tile
 {
     Sprite sprite;
-    public Sprite GetSprite() 
+    public int GetSprite() 
     {
-        return sprite;
+        return 1;
     }
 }
