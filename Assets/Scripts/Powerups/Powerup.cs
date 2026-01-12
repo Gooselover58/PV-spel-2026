@@ -32,7 +32,7 @@ public class Powerup : MonoBehaviour, ITrigger
         {
             StopCoroutine(cooldownRoutine);
         }
-        StartCoroutine(CoolDownTime());
+        cooldownRoutine = StartCoroutine(CoolDownTime());
     }
 
     protected IEnumerator CoolDownTime()

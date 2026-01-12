@@ -146,6 +146,7 @@ public class PlayerMovement : Entity
         if (!isJumping)
         {
             rb.AddForce(dir * power, ForceMode2D.Impulse);
+            playerGrappling.ResetGrapples();
         }
     }
 

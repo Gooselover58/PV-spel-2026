@@ -20,10 +20,7 @@ public static class SaveManager
             CreateNewSaveFile();
             return;
         }
-        else
-        {
 
-        }
     }
 
     private static void CreateNewSaveFile()
@@ -35,5 +32,5 @@ public static class SaveManager
 [System.Serializable]
 public class PlayerData
 {
-
+    public int deaths;
 }
