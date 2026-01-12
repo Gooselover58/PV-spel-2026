@@ -203,8 +203,8 @@ public class PlayerGrappling : MonoBehaviour
         maintainedVelocity.x = (normalizedMV.x == grappleDirection.x) ? maintainedVelocity.x : 0;
         maintainedVelocity.y = (normalizedMV.y == grappleDirection.y) ? maintainedVelocity.y : 0;
 
-        // Sets the player speed to what was before grappeling
-        rb.velocity += maintainedVelocity;
+        // Sets the player speed to what was before grappeling (CURRENTLY DISABLED FOR TESTING PURPOSES)
+        //rb.velocity += maintainedVelocity;
 
         rope.enabled = false;
         grapplingHooks.Enqueue(spawnHook);
