@@ -461,3 +461,4 @@ MonoBehaviour:
   grappleTime: 0.5
   grappleCooldownTarget: 0.05
   baseGrapples: 1
+  ropeWidth: 0.2

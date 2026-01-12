@@ -22,25 +22,30 @@ public class PlayerGrappling : MonoBehaviour
     private int remainingGrapples;
 
     public PlayerState playerState;
+    private Vector2 movementInput;
 
     [SerializeField] float grapplePower;
     [SerializeField] float grappleWindup;
     [SerializeField] float grappleTime;
     [SerializeField] float grappleCooldownTarget;
     [SerializeField] int baseGrapples;
+    [SerializeField] float ropeWidth;
 
     private void Awake()
     {
         Global.playerGrappling = this;
         rb = GetComponent<Rigidbody2D>();
-        rope = GetComponentInChildren<LineRenderer>();
-        rope.enabled = false;
-        rope.material = new Material(Shader.Find("Sprites/Default"));
         grapplingHookHolder = GameObject.FindGameObjectWithTag("GrapplingHolder").transform;
 
         grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
         grappleRoutine = null;
         remainingGrapples = baseGrapples;
+
+        rope = GetComponentInChildren<LineRenderer>();
+        rope.enabled = false;
+        rope.positionCount = 2;
+        rope.widthMultiplier = ropeWidth;
+        rope.material = new Material(Shader.Find("Sprites/Default"));
 
         CreateGrappleObjects(5);
     }
@@ -63,15 +68,19 @@ public class PlayerGrappling : MonoBehaviour
     {
         grappleCooldown -= Time.deltaTime;
 
+        // Gets input from player
+        movementInput = InputManager.Instance.GetMovement();
 
-        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0 && remainingGrapples > 0)
+        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && movementInput.magnitude > 0 && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
         }
-        rope.positionCount = 2;
-        rope.SetPosition(0, transform.position);
-        rope.SetPosition(1, currentSpawnHook.transform.position);
-        Debug.Log(currentSpawnHook.transform.position.x + "," + currentSpawnHook.transform.position.y);
+
+        if (rope.enabled == true)
+        {
+            rope.SetPosition(0, transform.position);
+            rope.SetPosition(1, currentSpawnHook.transform.position);
+        }
     }
 
     private void CreateGrappleObjects(int amount)
@@ -115,7 +124,7 @@ public class PlayerGrappling : MonoBehaviour
         // Decreases remaining grapples the player can do before touching the ground again
         remainingGrapples--;
 
-        //The player cant move while grappeling
+        //The player cant move while grappleing
         PlayerMovement.canMove = false;
         rb.gravityScale = 0;
 
@@ -124,7 +133,9 @@ public class PlayerGrappling : MonoBehaviour
 
         currentSpawnHook = grapplingHooks.Dequeue();
 
-        //the grappling stops and restarts
+        rope.enabled = true;
+
+        //the grappleing stops and restarts
         if (grappleRoutine != null)
         {
             StopCoroutine(grappleRoutine);
@@ -134,21 +145,16 @@ public class PlayerGrappling : MonoBehaviour
         grappleCooldown = grappleCooldownTarget;
     }
 
-    private IEnumerator GrappleDuration() // What happens while grappeling
+    private IEnumerator GrappleDuration() // What happens while grappleing
     {
-        // Gets input from player
-        float xInput = InputManager.Instance.GetMovement().x;
-        float yInput = InputManager.Instance.GetMovement().y;
-
         // Spawns grappling hook from object pool, then moves it
 
-        Vector2 grappleDirection = new Vector2(xInput, yInput).normalized;
+        Vector2 grappleDirection = new Vector2(movementInput.x, movementInput.y).normalized;
 
         currentSpawnHook.transform.position = transform.position;
         currentSpawnHook.SetActive(true);
         rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
-
 
         // Waits
         yield return new WaitForSeconds(grappleWindup);
@@ -180,6 +186,7 @@ public class PlayerGrappling : MonoBehaviour
         // Sets the player speed to what was before grappeling
         rb.velocity += maintainedVelocity;
 
+        rope.enabled = false;
         grapplingHooks.Enqueue(spawnHook);
         currentSpawnHook.SetActive(false);
         grappleRoutine = null;
@@ -189,6 +196,7 @@ public class PlayerGrappling : MonoBehaviour
     private void CancelGrapple(bool resetPlayer)
     {
         // Resets all variables affected by grappling
+        rope.enabled = false;
         if (resetPlayer)
         {
             ResetPlayer();
@@ -212,7 +220,7 @@ public class PlayerGrappling : MonoBehaviour
             return;
         }
         bool resetPlayer = true;
-        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        if (col.gameObject.CompareTag("Grappleable"))
         {
             resetPlayer = false;
             playerState = PlayerState.ATTACHED;

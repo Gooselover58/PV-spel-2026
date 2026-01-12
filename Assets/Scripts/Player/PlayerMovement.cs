@@ -96,7 +96,7 @@ public class PlayerMovement : Entity
             Jump();
             playerGrappling.ResetPlayer();
         }
-        else if (jumpBufferTime > 0 && coyoteTime > 0)
+        else if (jumpBufferTime > 0 && coyoteTime > 0 && canMove)
         {
             Jump();
         }
