@@ -16,6 +16,7 @@ public class PlayerGrappling : MonoBehaviour
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
     private GameObject spawnHook;
+    private GameObject currentSpawnHook;
     private LineRenderer rope;
     private float grappleCooldown;
     private int remainingGrapples;
@@ -66,11 +67,11 @@ public class PlayerGrappling : MonoBehaviour
         if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
-            rope.positionCount = 2;
-            rope.SetPosition(0, transform.position);
-            rope.SetPosition(1, spawnHook.transform.position);
-            Debug.Log(spawnHook.transform.position.x + "," + spawnHook.transform.position.y);
         }
+        rope.positionCount = 2;
+        rope.SetPosition(0, transform.position);
+        rope.SetPosition(1, currentSpawnHook.transform.position);
+        Debug.Log(currentSpawnHook.transform.position.x + "," + currentSpawnHook.transform.position.y);
     }
 
     private void CreateGrappleObjects(int amount)
@@ -121,6 +122,8 @@ public class PlayerGrappling : MonoBehaviour
         maintainedVelocity = rb.velocity;
         rb.velocity = Vector2.zero;
 
+        currentSpawnHook = grapplingHooks.Dequeue();
+
         //the grappling stops and restarts
         if (grappleRoutine != null)
         {
@@ -140,10 +143,10 @@ public class PlayerGrappling : MonoBehaviour
         // Spawns grappling hook from object pool, then moves it
 
         Vector2 grappleDirection = new Vector2(xInput, yInput).normalized;
-        GameObject spawnHook = grapplingHooks.Dequeue();
-        spawnHook.transform.position = transform.position;
-        spawnHook.SetActive(true);
-        rbG = spawnHook.GetComponent<Rigidbody2D>();
+
+        currentSpawnHook.transform.position = transform.position;
+        currentSpawnHook.SetActive(true);
+        rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
 
 
@@ -178,7 +181,7 @@ public class PlayerGrappling : MonoBehaviour
         rb.velocity += maintainedVelocity;
 
         grapplingHooks.Enqueue(spawnHook);
-        spawnHook.SetActive(false);
+        currentSpawnHook.SetActive(false);
         grappleRoutine = null;
     }
 
