@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class PlayerGrappling : MonoBehaviour
 
     private Vector2 maintainedVelocity;
     private GameObject grappleHook;
+    private GameObject spawnHook;
+    private LineRenderer rope;
     private float grappleCooldown;
     private int remainingGrapples;
 
@@ -29,6 +32,9 @@ public class PlayerGrappling : MonoBehaviour
     {
         Global.playerGrappling = this;
         rb = GetComponent<Rigidbody2D>();
+        rope = GetComponentInChildren<LineRenderer>();
+        rope.enabled = false;
+        rope.material = new Material(Shader.Find("Sprites/Default"));
         grapplingHookHolder = GameObject.FindGameObjectWithTag("GrapplingHolder").transform;
 
         grappleHook = Resources.Load<GameObject>("Prefabs/Grapple hook");
@@ -56,9 +62,14 @@ public class PlayerGrappling : MonoBehaviour
     {
         grappleCooldown -= Time.deltaTime;
 
+
         if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
+            rope.positionCount = 2;
+            rope.SetPosition(0, transform.position);
+            rope.SetPosition(1, spawnHook.transform.position);
+            Debug.Log(spawnHook.transform.position.x + "," + spawnHook.transform.position.y);
         }
     }
 
@@ -66,7 +77,7 @@ public class PlayerGrappling : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity, grapplingHookHolder);
+            spawnHook = Instantiate<GameObject>(grappleHook, transform.position, Quaternion.identity, grapplingHookHolder);
             grapplingHooks.Enqueue(spawnHook);
             spawnHook.SetActive(false);
         }
@@ -123,8 +134,8 @@ public class PlayerGrappling : MonoBehaviour
     private IEnumerator GrappleDuration() // What happens while grappeling
     {
         // Gets input from player
-        float xInput = Input.GetAxisRaw("Horizontal");
-        float yInput = Input.GetAxisRaw("Vertical");
+        float xInput = InputManager.Instance.GetMovement().x;
+        float yInput = InputManager.Instance.GetMovement().y;
 
         // Spawns grappling hook from object pool, then moves it
 
@@ -134,6 +145,7 @@ public class PlayerGrappling : MonoBehaviour
         spawnHook.SetActive(true);
         rbG = spawnHook.GetComponent<Rigidbody2D>();
         rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
+
 
         // Waits
         yield return new WaitForSeconds(grappleWindup);
