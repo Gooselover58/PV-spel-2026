@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
+    [SerializeField] Vector2 boostDir;
     [SerializeField] float boostPower;
     [SerializeField] bool useBoostModifier;
 
@@ -25,7 +26,7 @@ public class JumpPad : MonoBehaviour
         if (entity != null && coolDown <= 0)
         {
             float power = (useBoostModifier) ? boostPower * Global.jumpPadBoostModifier : boostPower;
-            entity.BoostEntity(Vector2.up, power);
+            entity.BoostEntity(boostDir, power);
             coolDown = 0.1f;
         }
     }
