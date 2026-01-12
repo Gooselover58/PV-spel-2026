@@ -12,8 +12,7 @@ public class PlayerMovement : Entity
     public static bool canMove;
     private bool isJumping;
 
-    public static float xInput;
-    public static float yInput;
+    public static Vector2 movementInput;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
@@ -110,12 +109,10 @@ public class PlayerMovement : Entity
 
     private void Movement()
     {
-        xInput = Input.GetAxisRaw("Horizontal");
-        yInput = Input.GetAxisRaw("Vertical");
-        Vector2 meow = InputManager.Instance.GetMovement();
+        movementInput = InputManager.Instance.GetMovement();
 
         // Counts how long the player has been holding down while attached
-        if (yInput < 0 && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
+        if (movementInput.y < 0 && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
         {
             inputDuration += Time.deltaTime;
         }
@@ -134,12 +131,12 @@ public class PlayerMovement : Entity
         if (canMove)
         {
             // Slows movement speed the further away velocity is from 0
-            float normalizeMod = (-xInput * rb.velocity.x);
-            normalizeMod *= (xInput > 0) ? 1 : -1;
+            float normalizeMod = (-movementInput.x * rb.velocity.x);
+            normalizeMod *= (movementInput.x > 0) ? 1 : -1;
             normalizeMod = Mathf.Clamp(normalizeMod, -moveSpeed, moveSpeed);
 
             // Moves player
-            Vector2 movement = new Vector2(xInput * moveSpeed + normalizeMod, 0);
+            Vector2 movement = new Vector2(movementInput.x * moveSpeed + normalizeMod, 0);
             rb.AddForce(movement, ForceMode2D.Impulse);
         }
     }
