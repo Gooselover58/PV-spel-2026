@@ -50,7 +50,7 @@ public class PlayerMovement : Entity
     {
         playerGrappling = Global.playerGrappling;
         groundLayer = Global.groundLayer;
-        AudioManager.instance.PlayMusic("Musik test");
+        //AudioManager.instance.PlayMusic("Musik test");
     }
 
     private void OnEnable()
@@ -162,7 +162,7 @@ public class PlayerMovement : Entity
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpEffect.Play(true);
-        AudioManager.instance.PlaySFX("Jump");
+        //AudioManager.instance.PlaySFX("Jump");
     }
 
     private bool IsGrounded()

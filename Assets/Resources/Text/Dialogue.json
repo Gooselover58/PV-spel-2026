@@ -18,7 +18,7 @@
         },
         {
             "key": "TestCool",
-            "text": "<cool>Cool words or something i<cool> dunno this is also just for testing :3",
+            "text": "<Casual>Cool words or <Normal>something<Sad> i<Casual> dunno this is also<Terrified> just for testing :3",
             "next": null
         }
     ]

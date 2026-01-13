@@ -20,10 +20,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private string coolRegex = "<cool>";
+    private Dictionary<string, Sprite> anchorExpressions = new Dictionary<string, Sprite>();
+    #pragma warning disable
+    private string pausePattern = @"<Pause=\d";
 
     private TextAsset dialogueFile;
     private Dictionary<string, Dialogue> dialogueHolder = new Dictionary<string, Dialogue>();
+
+    private SpriteRenderer anchorSprite;
 
     private Coroutine writingRoutine;
 
@@ -33,6 +37,7 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         LoadDialogue();
+        LoadExpressions();
     }
 
     private void LoadDialogue()
@@ -47,6 +52,20 @@ public class DialogueManager : MonoBehaviour
             }
         }
         writingRoutine = null;
+    }
+
+    private void LoadExpressions()
+    {
+        anchorSprite = Camera.main.transform.GetChild(1).GetComponent<SpriteRenderer>();
+
+        Sprite[] anchorSprites = Resources.LoadAll<Sprite>("Sprites/NewsAnchor");
+        foreach (Sprite sprite in anchorSprites)
+        {
+            string pattern = $"<{sprite.name}>";
+            anchorExpressions.Add(pattern, sprite);
+        }
+
+        anchorSprite.sprite = anchorExpressions["<Normal>"];
     }
 
     public void WriteDialogue(string dialogueKey)
@@ -67,12 +86,17 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DynamicWrite(Dialogue dialogue)
     {
-        string text = CheckRegex(dialogue.text);
+        DialogueInfo info = CheckRegex(dialogue.text);
+        string text = info.text;
         string writtenText = "";
 
         yield return new WaitForSeconds(letterInterval);
         for (int i = 0; i < text.Length; i++)
         {
+            if (info.spriteChanges.ContainsKey(i))
+            {
+                anchorSprite.sprite = info.spriteChanges[i];
+            }
             writtenText += text[i];
             UIManager.Instance.ChangeDialogueText(writtenText);
             yield return new WaitForSeconds(letterInterval);
@@ -88,16 +112,34 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private string CheckRegex(string dialogue)
+    private DialogueInfo CheckRegex(string dialogue)
     {
-        string text = dialogue;
-        MatchCollection matches = Regex.Matches(text, coolRegex);
-        foreach (Match match in matches)
+        DialogueInfo info = new DialogueInfo();
+        info.text = dialogue;
+        info.IndexLoss = 0;
+        info.spriteChanges = new Dictionary<int, Sprite>();
+
+        Dictionary<string, Sprite>.KeyCollection keys = anchorExpressions.Keys;
+        foreach (string pattern in keys)
         {
-            Debug.Log(match.Value);
+            MatchCollection matches = Regex.Matches(dialogue, pattern);
+            foreach (Match match in matches)
+            {
+                info.text = Regex.Replace(info.text, pattern, "");
+            }
+            foreach (Match match in matches)
+            {
+                info.spriteChanges.Add(match.Index, anchorExpressions[pattern]);
+            }
         }
-        text = Regex.Replace(text, coolRegex, "");
-        return text;
+        return info;
+    }
+
+    public class DialogueInfo
+    {
+        public string text;
+        public int IndexLoss;
+        public Dictionary<int, Sprite> spriteChanges;
     }
 }
 
