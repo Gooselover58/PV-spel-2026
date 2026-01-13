@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class TileGrid : MonoBehaviour
 {
@@ -30,20 +29,20 @@ public class TileGrid : MonoBehaviour
 
             int2 pos = tile.Key;
 
-            Mesh mesh = this.mesh;
+            Mesh mesh1 = this.mesh;
 
-            Vector2[] uvs = mesh.uv;
+            Vector2[] uvs = mesh1.uv;
 
             for (int i = 0; i < uvs.Length; i++)
             {
-                uvs[i].x = uvs[i].x;
+                uvs[i].x = uvs[i].x + 0;
             }
 
-            //mesh.uv = uvs;
+            mesh1.uv = uvs;
 
             combineInstances.Add(new CombineInstance
             {
-                mesh = mesh,
+                mesh = mesh1,
                 transform = Matrix4x4.Translate(new Vector3(pos.x, pos.y, 0))
             });
 
