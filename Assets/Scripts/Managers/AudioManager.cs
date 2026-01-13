@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    public Sound[] musicsounds, sfxsounds;
+    public Sound[] Musicsounds, Sfxsounds;
         public AudioSource musicSource, sfxSource;
        
     private void Awake()
@@ -23,9 +23,9 @@ public class AudioManager : MonoBehaviour
                 Destroy(gameObject);
             }
     }
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(string name)
         {
-            Sound s = Array.Find(musicsounds, x => x.name == name);
+            Sound s = Array.Find(Musicsounds, x => x.name == name);
             if (s == null)
         {
             Debug.Log("Music not found!");
@@ -36,9 +36,9 @@ public class AudioManager : MonoBehaviour
             musicSource.Play();
         }
         }
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(string name)
     {
-        Sound s = Array.Find(sfxsounds, x => x.name == name);
+        Sound s = Array.Find(Sfxsounds, x => x.name == name);
         if (s == null)
         {
             Debug.Log("SFX not found!");
@@ -46,7 +46,6 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-
             sfxSource.PlayOneShot(s.clip);
         }
     }

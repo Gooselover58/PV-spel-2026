@@ -27,5 +27,17 @@ public class SoundUI : MonoBehaviour
                 Screen.fullScreen =!Screen.fullScreen;
     Debug.Log("fullScreen");
     }
+    public void fun()
+    {
+        if(Input.GetKeyUp(KeyCode.Space))
+        {
+            Debug.Log("fun");
+            AudioManager.instance.PlaySFX("fart");
 
+        }
+        if(Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            AudioManager.instance.PlaySFX("fart");
+        }
+    }
 }
