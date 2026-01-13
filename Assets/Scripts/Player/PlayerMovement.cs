@@ -8,6 +8,7 @@ public class PlayerMovement : Entity
     private Rigidbody2D rb;
     private Transform groundCheckTrans;
     private PlayerGrappling playerGrappling;
+    private ParticleSystem jumpEffect;
 
     public static bool canMove;
     private bool isJumping;
@@ -23,7 +24,7 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpCooldown;
     [SerializeField] float freeInputTime;
     [SerializeField] LayerMask groundLayer;
-    [SerializeField] ParticleSystem jumpEffect;
+
 
     private float coyoteTime;
     private float jumpBufferTime;
@@ -32,6 +33,7 @@ public class PlayerMovement : Entity
 
     private void Awake()
     {
+        jumpEffect = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody2D>();
         groundCheckTrans = transform.GetChild(0);
         Global.playerTrans = transform;
@@ -50,7 +52,6 @@ public class PlayerMovement : Entity
     {
         playerGrappling = Global.playerGrappling;
         groundLayer = Global.groundLayer;
-        AudioManager.Instance.PlayMusic("Musik test");
     }
 
     private void OnEnable()
