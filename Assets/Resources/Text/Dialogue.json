@@ -28,9 +28,13 @@
         },
         {
             "key": "Deaths_5",
-            "text": "<Terrified>5 Deaths already?! <Pause=1.5>Uhhhh<Casual> failing is part of learning, folks!",
+            "text": "<Terrified>5 Deaths already?!<Pause=1.5> Uhhhh<Casual> failing is part of learning, folks!",
+            "next": null
+        },
+        {
+            "key": "Deaths_10",
+            "text": "<Terrified>10 DEATHS?!?!<Pause=1.5><Shocked> Well<Pause=1.0> uhm<Pause=1.0><Casual> Anyways!",
             "next": null
         }
-
     ]
 }

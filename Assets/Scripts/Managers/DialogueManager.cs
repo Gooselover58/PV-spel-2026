@@ -147,7 +147,6 @@ public class DialogueManager : MonoBehaviour
             float decimalNumber = float.Parse(value.Remove(0, 2));
             float time = wholeNumber + (decimalNumber / 10);
 
-            Debug.Log($"{time}");
             info.pauses.Add(match.Index, time);
         }
         return info;

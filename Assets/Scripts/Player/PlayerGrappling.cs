@@ -155,7 +155,7 @@ public class PlayerGrappling : MonoBehaviour
     {
         float windupTime = grappleWindup;
         // Gets the distance that the hook will travel during the windup
-        float distance = (grapplePower / rb.mass) * grappleWindup;
+        float distance = (grapplePower * 2 / rb.mass) * grappleWindup;
 
         // Fires three rays in the grapple direction to look for ground collisions
         RaycastHit2D[] rays = new RaycastHit2D[3];
@@ -183,7 +183,7 @@ public class PlayerGrappling : MonoBehaviour
         currentSpawnHook.transform.position = transform.position;
         currentSpawnHook.SetActive(true);
         rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
-        rbG.AddForce(grappleDirection * grapplePower, ForceMode2D.Impulse);
+        rbG.AddForce(grappleDirection * grapplePower * 2, ForceMode2D.Impulse);
 
         // Changes windup time if there is any objects in the grapple direction
         float windup = GetGrappleWindup(grappleDirection);

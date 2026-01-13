@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Global.currentRoom = levels[0];
+        SetRoom(levels[0]);
     }
 
     private void Start()
@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
         {
             DialogueManager.Instance.WriteDialogue("Deaths_5");
         }
+        else if (Global.deaths == 10)
+        {
+            DialogueManager.Instance.WriteDialogue("Deaths_10");
+        }
 
         // Removes the respawn screen, respawns the player and resets their variables
         playerTrans.gameObject.SetActive(true);
@@ -96,14 +100,17 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EnterNewRoom(Room destination)
     {
-        // Sets the current room to the destination
-        Global.currentRoom = destination;
-
         playerTrans.position = destination.enterPoint.position;
 
         yield return new WaitForSeconds(1f);
 
-        destination.gameObject.SetActive(true);
-        destination.EnterRoom();
+        SetRoom(destination);
+    }
+
+    private void SetRoom(Room room)
+    {
+        Global.currentRoom = room;
+        room.gameObject.SetActive(true);
+        room.EnterRoom();
     }
 }

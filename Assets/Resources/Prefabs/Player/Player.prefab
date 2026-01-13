@@ -5289,7 +5289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerState: 0
   grapplePower: 300
-  grappleWindup: 0.6
+  grappleWindup: 0.3
   grappleTime: 0.6
   grappleCooldownTarget: 0.05
   baseGrapples: 1
