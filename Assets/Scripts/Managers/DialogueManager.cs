@@ -95,7 +95,10 @@ public class DialogueManager : MonoBehaviour
         {
             if (info.spriteChanges.ContainsKey(i))
             {
-                anchorSprite.sprite = info.spriteChanges[i];
+                string pattern = info.spriteChanges[i];
+                anchorSprite.sprite = anchorExpressions[pattern];
+                i += pattern.Length - 1;
+                continue;
             }
             writtenText += text[i];
             UIManager.Instance.ChangeDialogueText(writtenText);
@@ -116,20 +119,19 @@ public class DialogueManager : MonoBehaviour
     {
         DialogueInfo info = new DialogueInfo();
         info.text = dialogue;
-        info.IndexLoss = 0;
-        info.spriteChanges = new Dictionary<int, Sprite>();
+        info.spriteChanges = new Dictionary<int, string>();
 
         Dictionary<string, Sprite>.KeyCollection keys = anchorExpressions.Keys;
         foreach (string pattern in keys)
         {
             MatchCollection matches = Regex.Matches(dialogue, pattern);
-            foreach (Match match in matches)
+            /*foreach (Match match in matches)
             {
                 info.text = Regex.Replace(info.text, pattern, "");
-            }
+            }*/
             foreach (Match match in matches)
             {
-                info.spriteChanges.Add(match.Index, anchorExpressions[pattern]);
+                info.spriteChanges.Add(match.Index, pattern);
             }
         }
         return info;
@@ -138,8 +140,7 @@ public class DialogueManager : MonoBehaviour
     public class DialogueInfo
     {
         public string text;
-        public int IndexLoss;
-        public Dictionary<int, Sprite> spriteChanges;
+        public Dictionary<int, string> spriteChanges;
     }
 }
 

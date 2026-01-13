@@ -20,6 +20,12 @@
             "key": "TestCool",
             "text": "<Casual>Cool words or <Normal>something<Sad> i<Casual> dunno this is also<Terrified> just for testing :3",
             "next": null
+        },
+        {
+            "key": "Deaths_5",
+            "text": "<Shocked>5 Deaths! Failing is part of learning though, this is fine",
+            "next": null
         }
+
     ]
 }
