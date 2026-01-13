@@ -90,7 +90,7 @@ public class DialogueManager : MonoBehaviour
         string text = info.text;
         string writtenText = "";
 
-        yield return new WaitForSeconds(letterInterval);
+        //yield return new WaitForSeconds(letterInterval);
         for (int i = 0; i < text.Length; i++)
         {
             if (info.spriteChanges.ContainsKey(i))
