@@ -23,6 +23,7 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpBuffer;
     [SerializeField] float jumpCooldown;
     [SerializeField] float freeInputTime;
+    [SerializeField] float staticDrag;
     [SerializeField] LayerMask groundLayer;
 
     private float coyoteTime;
@@ -129,6 +130,8 @@ public class PlayerMovement : Entity
         {
             playerGrappling.ResetPlayer();
         }
+
+        rb.drag = (movementInput.magnitude == 0) ? staticDrag : 0;
 
         // Performs player movement if possible
         if (canMove)

@@ -65,6 +65,7 @@ public class PlayerGrappling : MonoBehaviour
         playerState = PlayerState.FREE;
         PlayerMovement.canMove = true;
         rb.gravityScale = Global.playerGravityScale;
+        rb.drag = 0;
         rope.enabled = false;
     }
 
@@ -249,6 +250,7 @@ public class PlayerGrappling : MonoBehaviour
         // Work in progress
         // Creates an explosion that deactivates all Fragile objects
         Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, explosionRadius, Global.groundLayer);
+        EffectManager.Instance.PlayParticles("Explosion", transform.position, 50);
         foreach (Collider2D col in cols)
         {
             if (col.CompareTag("Fragile"))

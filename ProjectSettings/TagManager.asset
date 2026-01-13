@@ -10,6 +10,7 @@ TagManager:
   - Grappleable
   - Fragile
   - Levels
+  - Particles
   layers:
   - Default
   - TransparentFX
