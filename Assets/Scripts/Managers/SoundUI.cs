@@ -8,19 +8,19 @@ public class SoundUI : MonoBehaviour
     public Slider _music, _sfx;
     public void toggleM()
     {
-        AudioManager.instance.toggleMusic();
+        AudioManager.Instance.toggleMusic();
     }
     public void toggleS()
     {
-        AudioManager.instance.toggleSFX();
+        AudioManager.Instance.toggleSFX();
     }
     public void musicVolume()
     {
-        AudioManager.instance.MusicVolume(_music.value);
+        AudioManager.Instance.MusicVolume(_music.value);
     }
     public void sfxVolume()
     {
-        AudioManager.instance.SFXVolume(_sfx.value);
+        AudioManager.Instance.SFXVolume(_sfx.value);
     }
     public void fullscreen()
     {
@@ -32,12 +32,12 @@ public class SoundUI : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space))
         {
             Debug.Log("fun");
-            AudioManager.instance.PlaySFX("fart");
+            AudioManager.Instance.PlaySFX("fart");
 
         }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
-            AudioManager.instance.PlaySFX("fart");
+            AudioManager.Instance.PlaySFX("fart");
         }
     }
 }

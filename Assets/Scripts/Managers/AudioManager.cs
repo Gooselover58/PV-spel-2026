@@ -6,16 +6,16 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager Instance;
 
     public Sound[] Musicsounds, Sfxsounds;
         public AudioSource musicSource, sfxSource;
        
     private void Awake()
         {
-            if (instance == null)
+            if (Instance == null)
             {
-                instance = this;
+                Instance = this;
                 DontDestroyOnLoad(gameObject);
             }
             else
