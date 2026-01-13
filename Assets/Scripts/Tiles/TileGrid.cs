@@ -29,32 +29,17 @@ public class TileGrid : MonoBehaviour
 
             int2 pos = tile.Key;
 
-            Mesh mesh1 = this.mesh;
-
-            Vector2[] uvs = mesh1.uv;
-
-            for (int i = 0; i < uvs.Length; i++)
-            {
-                uvs[i].x = uvs[i].x + 0;
-            }
-
-            mesh1.uv = uvs;
-
             combineInstances.Add(new CombineInstance
             {
-                mesh = mesh1,
+                mesh = this.mesh,
                 transform = Matrix4x4.Translate(new Vector3(pos.x, pos.y, 0))
             });
 
             floats.Add(tile.Value.GetSprite());
-
-            Mesh combinedMesh = new Mesh();
-            combinedMesh.CombineMeshes(combineInstances.ToArray());
-            gameObject.GetComponent<MeshFilter>().sharedMesh = combinedMesh;
-
-
-
         }
 
+        Mesh combinedMesh = new Mesh();
+        combinedMesh.CombineMeshes(combineInstances.ToArray());
+        gameObject.GetComponent<MeshFilter>().sharedMesh = combinedMesh;
     }
 }
