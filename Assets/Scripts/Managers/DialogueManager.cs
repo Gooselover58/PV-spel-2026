@@ -22,7 +22,7 @@ public class DialogueManager : MonoBehaviour
 
     private Dictionary<string, Sprite> anchorExpressions = new Dictionary<string, Sprite>();
     #pragma warning disable
-    private string pausePattern = @"<Pause=\d";
+    private string pausePattern = @"<Pause=([0-9]+\.[0-9]+)>";
 
     private TextAsset dialogueFile;
     private Dictionary<string, Dialogue> dialogueHolder = new Dictionary<string, Dialogue>();
@@ -100,6 +100,12 @@ public class DialogueManager : MonoBehaviour
                 i += pattern.Length - 1;
                 continue;
             }
+            else if (info.pauses.ContainsKey(i))
+            {
+                yield return new WaitForSeconds(info.pauses[i]);
+                i += 10;
+                continue;
+            }
             writtenText += text[i];
             UIManager.Instance.ChangeDialogueText(writtenText);
             yield return new WaitForSeconds(letterInterval);
@@ -120,19 +126,29 @@ public class DialogueManager : MonoBehaviour
         DialogueInfo info = new DialogueInfo();
         info.text = dialogue;
         info.spriteChanges = new Dictionary<int, string>();
+        info.pauses = new Dictionary<int, float>();
 
         Dictionary<string, Sprite>.KeyCollection keys = anchorExpressions.Keys;
         foreach (string pattern in keys)
         {
             MatchCollection matches = Regex.Matches(dialogue, pattern);
-            /*foreach (Match match in matches)
-            {
-                info.text = Regex.Replace(info.text, pattern, "");
-            }*/
             foreach (Match match in matches)
             {
                 info.spriteChanges.Add(match.Index, pattern);
             }
+        }
+        MatchCollection pauseMatches = Regex.Matches(dialogue, pausePattern);
+        foreach (Match match in pauseMatches)
+        {
+            string value = match.Value;
+            value = value.Remove(0, 7);
+            value = value.Remove(value.Length - 1, 1);
+            float wholeNumber = float.Parse(value.Remove(1, value.Length - 1));
+            float decimalNumber = float.Parse(value.Remove(0, 2));
+            float time = wholeNumber + (decimalNumber / 10);
+
+            Debug.Log($"{time}");
+            info.pauses.Add(match.Index, time);
         }
         return info;
     }
@@ -141,6 +157,7 @@ public class DialogueManager : MonoBehaviour
     {
         public string text;
         public Dictionary<int, string> spriteChanges;
+        public Dictionary<int, float> pauses;
     }
 }
 

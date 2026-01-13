@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c021d70efdf8b74c957064e626c5b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterInterval: 0.1
+  letterInterval: 0.05
   textDuration: 3
 --- !u!114 &297444933835624451
 MonoBehaviour:

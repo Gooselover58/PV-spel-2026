@@ -71,7 +71,12 @@ public class GameManager : MonoBehaviour
         playerTrans.position = Global.respawnPoint;
         Global.currentRoom.ResetRoom();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+        if (Global.deaths == 5)
+        {
+            DialogueManager.Instance.WriteDialogue("Deaths_5");
+        }
 
         // Removes the respawn screen, respawns the player and resets their variables
         playerTrans.gameObject.SetActive(true);
