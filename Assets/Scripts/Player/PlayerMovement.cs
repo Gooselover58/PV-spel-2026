@@ -131,7 +131,8 @@ public class PlayerMovement : Entity
             playerGrappling.ResetPlayer();
         }
 
-        rb.drag = (movementInput.magnitude == 0) ? staticDrag : 0;
+        bool isGroundedAndFree = (IsGrounded() && playerGrappling.playerState == PlayerGrappling.PlayerState.FREE);
+        rb.drag = (movementInput.magnitude == 0 && isGroundedAndFree) ? staticDrag : 0;
 
         // Performs player movement if possible
         if (canMove)
