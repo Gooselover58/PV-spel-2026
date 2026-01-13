@@ -9,6 +9,7 @@ TagManager:
   - GrapplingHolder
   - Grappleable
   - Fragile
+  - Levels
   layers:
   - Default
   - TransparentFX

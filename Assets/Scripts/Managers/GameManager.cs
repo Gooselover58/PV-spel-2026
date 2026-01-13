@@ -22,10 +22,24 @@ public class GameManager : MonoBehaviour
 
     private Coroutine transitionRoutine;
 
+    private List<Room> levels = new List<Room>();
+
     private void Awake()
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
         Global.deaths = 0;
+
+        Transform levelHolder = GameObject.FindGameObjectWithTag("Levels").transform;
+        foreach (Transform level in levelHolder)
+        {
+            Room room = level.GetComponent<Room>();
+            if (room != null)
+            {
+                levels.Add(room);
+            }
+        }
+
+        Global.currentRoom = levels[0];
     }
 
     private void Start()

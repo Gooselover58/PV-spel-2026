@@ -9,6 +9,7 @@ public class ZoomTrigger : MonoBehaviour, ITrigger
     public void Triggered()
     {
         Global.gameCamScript.SetFullView(zoomIn);
+        UIManager.Instance.SetUIState("Dialogue", !zoomIn);
         gameObject.SetActive(false);
     }
 }
