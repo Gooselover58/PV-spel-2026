@@ -3,7 +3,7 @@
     [
         {
             "key": "Intro_01",
-            "text": "Default dialogue 1",
+            "text": "It looks like you killed John Wick's dog",
             "next": "Intro_02"
         },
         {
@@ -23,7 +23,7 @@
         },
         {
             "key": "Deaths_5",
-            "text": "<Shocked>5 Deaths! Failing is part of learning though, this is fine",
+            "text": "<Shocked>5 Deaths! Failing is part of learning though, this is fine, not!",
             "next": null
         }
 
