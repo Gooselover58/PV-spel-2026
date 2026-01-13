@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7482486991791994318, guid: 54203c3794f7bf54081257c968a0b7db, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 0.22
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7482486991791994318, guid: 54203c3794f7bf54081257c968a0b7db, type: 3}
       propertyPath: CollisionModule.m_Bounce.scalar
