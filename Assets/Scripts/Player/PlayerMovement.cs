@@ -23,6 +23,7 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpCooldown;
     [SerializeField] float freeInputTime;
     [SerializeField] LayerMask groundLayer;
+    [SerializeField] ParticleSystem jumpEffect;
 
     private float coyoteTime;
     private float jumpBufferTime;
@@ -100,6 +101,7 @@ public class PlayerMovement : Entity
         {
             Jump();
         }
+
     }
 
     private void FixedUpdate()
@@ -158,6 +160,7 @@ public class PlayerMovement : Entity
         isJumping = true;
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        jumpEffect.Play(true);
     }
 
     private bool IsGrounded()
@@ -176,5 +179,21 @@ public class PlayerMovement : Entity
     {
         canMove = false;
         rb.velocity = Vector2.zero;
+    }
+
+    private bool IsFlipped()
+    {
+        if (rb.velocity.x < 0)
+        {
+            return true;
+        }
+        else if (rb.velocity.x > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
