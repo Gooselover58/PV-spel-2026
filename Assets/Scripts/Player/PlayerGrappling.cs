@@ -112,10 +112,11 @@ public class PlayerGrappling : MonoBehaviour
 
     public void ResetGrapples()
     {
-        if (grappleRoutine == null)
+        remainingGrapples = baseGrapples;
+        /*if (grappleRoutine == null)
         {
             remainingGrapples = baseGrapples;
-        }
+        }*/
     }
 
     public void SetGrapples(int amount)

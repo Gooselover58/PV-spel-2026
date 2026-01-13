@@ -25,7 +25,6 @@ public class PlayerMovement : Entity
     [SerializeField] float freeInputTime;
     [SerializeField] LayerMask groundLayer;
 
-
     private float coyoteTime;
     private float jumpBufferTime;
     private float jumpCooldownTime;
@@ -147,11 +146,10 @@ public class PlayerMovement : Entity
 
     public override void BoostEntity(Vector2 dir, float power)
     {
-        if (!isJumping)
-        {
-            rb.AddForce(dir * power, ForceMode2D.Impulse);
-            playerGrappling.ResetGrapples();
-        }
+        rb.velocity = new Vector2(rb.velocity.x, 0);
+        isJumping = false;
+        rb.AddForce(dir * power, ForceMode2D.Impulse);
+        playerGrappling.ResetGrapples();
     }
 
     private void Jump()
