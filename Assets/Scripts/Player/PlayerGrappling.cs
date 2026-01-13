@@ -31,6 +31,7 @@ public class PlayerGrappling : MonoBehaviour
     [SerializeField] int baseGrapples;
     [SerializeField] float ropeWidth;
     [SerializeField] float explosionRadius;
+    [SerializeField] float explosionBoost;
 
     private void Awake()
     {
@@ -154,12 +155,19 @@ public class PlayerGrappling : MonoBehaviour
         // Gets the distance that the hook will travel during the windup
         float distance = (grapplePower / rb.mass) * grappleWindup;
 
-        // Fires a ray in the grapple direction to look for ground collisions
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, dir, distance, Global.groundLayer);
-        if (ray.collider != null)
+        // Fires three rays in the grapple direction to look for ground collisions
+        RaycastHit2D[] rays = new RaycastHit2D[3];
+        rays[0] = Physics2D.Raycast(transform.position, dir, distance, Global.groundLayer);
+        rays[1] = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), dir, distance, Global.groundLayer);
+        rays[2] = Physics2D.Raycast(transform.position + new Vector3(0, -0.25f, 0), dir, distance, Global.groundLayer);
+        foreach (RaycastHit2D ray in rays)
         {
-            // If there is an object in the way, decrease the windup time depending on the distance from the player to the object
-            windupTime *= (ray.distance / distance);
+            if (ray.collider != null)
+            {
+                // If there is an object in the way, decrease the windup time depending on the distance from the player to the object
+                windupTime *= (ray.distance / distance);
+                break;
+            }
         }
         return windupTime;
     }
@@ -247,6 +255,7 @@ public class PlayerGrappling : MonoBehaviour
                 col.gameObject.SetActive(false);
             }
         }
+        Global.playerMovement.BoostEntity(Vector2.up, explosionBoost);
     }
 
     private void OnCollisionEnter2D(Collision2D col)

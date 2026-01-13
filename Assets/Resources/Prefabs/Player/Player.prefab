@@ -463,3 +463,4 @@ MonoBehaviour:
   baseGrapples: 1
   ropeWidth: 0.2
   explosionRadius: 3
+  explosionBoost: 50

@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
 
     private Coroutine transitionRoutine;
 
-    public List<Powerup> activePowerups = new List<Powerup>();
-
     private void Awake()
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
@@ -57,7 +55,7 @@ public class GameManager : MonoBehaviour
         // Displays respawn screen and sets the player back to the respawn point
         UIManager.Instance.SetUIState("Death", true);
         playerTrans.position = Global.respawnPoint;
-        ResetPowerups();
+        Global.currentRoom.ResetRoom();
 
         yield return new WaitForSeconds(2f);
 
@@ -65,18 +63,6 @@ public class GameManager : MonoBehaviour
         playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
         Global.playerGrappling.ResetPlayer();
-    }
-
-    private void ResetPowerups()
-    {
-        foreach (Powerup powerup in activePowerups)
-        {
-            if (!powerup.gameObject.activeSelf)
-            {
-                continue;
-            }
-            powerup.ResetPowerup();
-        }
     }
 
     public void ChangeRoom(Room destination)
@@ -91,6 +77,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EnterNewRoom(Room destination)
     {
+        // Sets the current room to the destination
+        Global.currentRoom = destination;
+
         playerTrans.position = destination.enterPoint.position;
 
         yield return new WaitForSeconds(1f);

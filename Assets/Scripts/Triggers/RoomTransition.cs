@@ -9,7 +9,7 @@ public class RoomTransition : MonoBehaviour, ITrigger
 
     private void Awake()
     {
-        room = transform.parent.GetComponent<Room>();
+        room = transform.parent.parent.GetComponent<Room>();
     }
 
     public void Triggered()

@@ -18,7 +18,6 @@ public class Powerup : MonoBehaviour, ITrigger
     protected void OnEnable()
     {
         ResetPowerup();
-        GameManager.Instance.activePowerups.Add(this);
     }
 
     public virtual void Triggered()
