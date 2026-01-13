@@ -24,6 +24,7 @@ public class GrapplingSetter : Powerup
         col.enabled = false;
         sr.color = deactiveColor;
         Global.playerGrappling.SetGrapples(setGrappleAmount);
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15);
         CoolDown();
     }
 
