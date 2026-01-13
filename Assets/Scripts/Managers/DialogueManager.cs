@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -18,6 +19,8 @@ public class DialogueManager : MonoBehaviour
             return instance;
         }
     }
+
+    private string coolRegex = "<cool>";
 
     private TextAsset dialogueFile;
     private Dictionary<string, Dialogue> dialogueHolder = new Dictionary<string, Dialogue>();
@@ -64,8 +67,9 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator DynamicWrite(Dialogue dialogue)
     {
-        string text = dialogue.text;
+        string text = CheckRegex(dialogue.text);
         string writtenText = "";
+
         yield return new WaitForSeconds(letterInterval);
         for (int i = 0; i < text.Length; i++)
         {
@@ -82,6 +86,18 @@ public class DialogueManager : MonoBehaviour
         {
             UIManager.Instance.ChangeDialogueText("");
         }
+    }
+
+    private string CheckRegex(string dialogue)
+    {
+        string text = dialogue;
+        MatchCollection matches = Regex.Matches(text, coolRegex);
+        foreach (Match match in matches)
+        {
+            Debug.Log(match.Value);
+        }
+        text = Regex.Replace(text, coolRegex, "");
+        return text;
     }
 }
 

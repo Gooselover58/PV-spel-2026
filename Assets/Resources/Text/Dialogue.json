@@ -12,8 +12,13 @@
             "next": null
         },
         {
-            "key": "A",
-            "text": "Breaking news: Someone let that sink in.",
+            "key": "TestNormal",
+            "text": "<Normal>Normal words or something i dunno this is just for testing :3",
+            "next": null
+        },
+        {
+            "key": "TestCool",
+            "text": "<cool>Cool words or something i<cool> dunno this is also just for testing :3",
             "next": null
         }
     ]

@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerTrans = Global.playerTrans;
-        DialogueManager.Instance.WriteDialogue("Intro_01");
+        //DialogueManager.Instance.WriteDialogue("Intro_01");
     }
 
     public void RespawnPlayer()
