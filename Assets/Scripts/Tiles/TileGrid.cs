@@ -29,9 +29,24 @@ public class TileGrid : MonoBehaviour
 
             int2 pos = tile.Key;
 
+            Mesh newMesh = new Mesh();
+
+            newMesh.vertices = mesh.vertices;
+            newMesh.triangles = mesh.triangles;
+            newMesh.uv = mesh.uv;
+
+            Vector2[] uvCoords = newMesh.uv;
+
+            for (int i = 0; i < uvCoords.Length; i++)
+            {
+                uvCoords[i] = new Vector2(uvCoords[i].x / 4, uvCoords[i].y);
+            }
+
+            newMesh.uv = uvCoords;
+
             combineInstances.Add(new CombineInstance
             {
-                mesh = this.mesh,
+                mesh = newMesh,
                 transform = Matrix4x4.Translate(new Vector3(pos.x, pos.y, 0))
             });
 
