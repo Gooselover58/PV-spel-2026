@@ -25,7 +25,14 @@ public static class SaveManager
 
     private static void CreateNewSaveFile()
     {
+        Global.deaths = 0;
+        Global.dialogueTriggers = new bool[5];
+        for (int i = 0; i < Global.dialogueTriggers.Length; i++)
+        {
+            Global.dialogueTriggers[i] = false;
+        }
 
+        SaveGame();
     }
 }
 
@@ -33,4 +40,5 @@ public static class SaveManager
 public class PlayerData
 {
     public int deaths;
+    public bool[] dialogueTriggers;
 }
