@@ -28,7 +28,7 @@ public class InputManager : MonoBehaviour
         inputs.Add("Down", KeyCode.S);
 
         inputs.Add("Jump", KeyCode.Space);
-        inputs.Add("Grapple", KeyCode.K);
+        inputs.Add("Grapple", KeyCode.LeftShift);
     }
 
     public KeyCode GetInput(string key)
