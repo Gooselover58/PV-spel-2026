@@ -1,0 +1,21 @@
+
+Instruktioner för dialogsystem <3
+
+Byta sprite på fisken:
+Skriv <x> (då x är namnet på spriten du vill byta till) för att byta fiskens sprite när den säger det.
+
+Namnen på alla sprites finns i Sprites/NewsAnchor
+
+Exempel: "<Normal>Nu är fisken normal, <Sad>nu är fisken ledsen"
+
+
+Pausa texten:
+Skriv <Pause=x.y> (då x är hur länga du vill pausa i hela sekunder, och y är decimaler) för att pausa texten
+
+<Pause=1.0> pausar i 1 sekund
+<Pause=2.5> pausar i 2.5 sekunder
+<Pause=5.9> pausar i 5.9 sekunder
+etc
+
+Exempel: "Nu börjar jag vänta...<Pause=3.0>Nu har jag väntat 3 sekunder"
+
