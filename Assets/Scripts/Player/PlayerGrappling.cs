@@ -136,8 +136,6 @@ public class PlayerGrappling : MonoBehaviour
 
         currentSpawnHook = grapplingHooks.Dequeue();
 
-        rope.enabled = true;
-
         //the grappling stops and restarts
         if (grappleRoutine != null)
         {
@@ -165,7 +163,6 @@ public class PlayerGrappling : MonoBehaviour
             {
                 // If there is an object in the way, decrease the windup time depending on the distance from the player to the object
                 windupTime *= (ray.distance / distance);
-                Debug.Log(windupTime);
                 break;
             }
         }
@@ -177,14 +174,18 @@ public class PlayerGrappling : MonoBehaviour
         // Gets grappling direction with the players input
         Vector2 grappleDirection = new Vector2(movementInput.x, movementInput.y).normalized;
 
-        // Sets hook object to the right position and moves it
-        currentSpawnHook.transform.position = transform.position;
-        currentSpawnHook.SetActive(true);
-        rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
-        rbG.AddForce(grappleDirection * grapplePower * 2, ForceMode2D.Impulse);
-
         // Changes windup time if there is any objects in the grapple direction
         float windup = GetGrappleWindup(grappleDirection);
+
+        // Sets hook object to the right position and moves it unless an object is too close
+        if (windup > 0.015f)
+        {
+            rope.enabled = true;
+            currentSpawnHook.transform.position = transform.position;
+            currentSpawnHook.SetActive(true);
+            rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
+            rbG.AddForce(grappleDirection * grapplePower * 2, ForceMode2D.Impulse);
+        }
 
         // Waits
         yield return new WaitForSeconds(windup);
