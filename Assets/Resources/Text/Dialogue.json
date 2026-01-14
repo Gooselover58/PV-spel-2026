@@ -43,7 +43,7 @@
         },
         {
             "key": "Idle_1",
-            "text": "Hey man wanna hear a joke? A rhetorical question since i´m about to tell you, ",
+            "text": "Hey man wanna hear a joke? <Pause=2> A rhetorical question since i´m about to tell you, ",
             "next": "IdleJoke_1"
         },
         {
@@ -57,19 +57,29 @@
             "next": null
         },
         {
-            "key": "IdleJoke2",
+            "key": "IdleJoke_2",
             "text": "Hey, wanna hear another joke?",
             "next": "IdleJoke3"
         },
         {
-            "key": "IdleJoke3",
-            "text": "No? okay.....",
+            "key": "IdleJoke_3",
+            "text": "No?<Pause=2> okay.....",
             "next": "IdleJoke4"
         },
         {
-            "key": "IdleJoke4",
-            "text": "<There´s a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.>",
+            "key": "IdleJoke_4",
+            "text": "<Sad>(There´s a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.)",
             "next": null
         },
+        {
+            "key": "Mumlbe_1",
+            "text": "<Casual> He mumbles to himself, you can´t quite make out what but it had something to do about dinner tonight",
+            "next": null
+        },
+        {
+            "key": "",
+            "text": "",
+            "next": null
+        }
     ]
 }
