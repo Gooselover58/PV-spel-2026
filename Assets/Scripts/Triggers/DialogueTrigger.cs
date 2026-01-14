@@ -9,10 +9,16 @@ public class DialogueTrigger : MonoBehaviour, ITrigger
 
     public void Triggered()
     {
-        DialogueManager.Instance.WriteDialogue(dialogueKey);
-        if (Global.dialogueTriggers.Length > id)
+        if (Global.dialogueTriggers.Length <= id)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        if (!Global.dialogueTriggers[id])
         {
             Global.dialogueTriggers[id] = true;
+            DialogueManager.Instance.WriteDialogue(dialogueKey);
+            SaveManager.SaveGame();
         }
         gameObject.SetActive(false);
     }

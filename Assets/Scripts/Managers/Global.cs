@@ -21,7 +21,8 @@ public static class Global
     public static bool isPlayerHoldingBomb = false;
 
     public static int deaths = 0;
-    public static bool[] dialogueTriggers;
+    public static readonly int dialogueTriggerAmount = 5;
+    public static bool[] dialogueTriggers = new bool[dialogueTriggerAmount];
 }
 
 public interface ITrigger

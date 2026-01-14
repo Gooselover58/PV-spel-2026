@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
 
         SetRoom(levels[0]);
         //DialogueManager.Instance.WriteDialogue("Intro_01");
+        SaveManager.CreateNewSaveFile();
     }
 
     public void RespawnPlayer()

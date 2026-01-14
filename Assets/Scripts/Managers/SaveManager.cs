@@ -9,7 +9,17 @@ public static class SaveManager
 
     public static void SaveGame()
     {
+        PlayerData data = new PlayerData();
 
+        data.deaths = Global.deaths;
+        data.dialogueTriggers = new bool[Global.dialogueTriggerAmount];
+        for (int i = 0; i < Global.dialogueTriggers.Length; i++)
+        {
+            data.dialogueTriggers[i] = Global.dialogueTriggers[i];
+        }
+
+        string file = JsonUtility.ToJson(data, true);
+        File.WriteAllText(savePath, file);
     }
 
     public static void LoadGame()
@@ -21,12 +31,19 @@ public static class SaveManager
             return;
         }
 
+        PlayerData data = JsonUtility.FromJson<PlayerData>(savePath);
+
+        Global.deaths = data.deaths;
+        for (int i = 0; i < Global.dialogueTriggers.Length; i++)
+        {
+            Global.dialogueTriggers[i] = data.dialogueTriggers[i];
+        }
     }
 
-    private static void CreateNewSaveFile()
+    public static void CreateNewSaveFile()
     {
         Global.deaths = 0;
-        Global.dialogueTriggers = new bool[5];
+        Global.dialogueTriggers = new bool[Global.dialogueTriggerAmount];
         for (int i = 0; i < Global.dialogueTriggers.Length; i++)
         {
             Global.dialogueTriggers[i] = false;
