@@ -28,7 +28,7 @@
         },
         {
             "key": "FirstDeath",
-            "text": "Oh, we lost him.... <Pause=1.0> Anyway about the dog with ice cream sto... Oh he´s back.",
+            "text": "Oh, we lost him.... <Pause=1.0> Anyway about the dog with ice cream sto... Oh he's back.",
             "next": null
         },
         {
@@ -43,12 +43,12 @@
         },
         {
             "key": "Deaths_100",
-            "text": "<Sad> sigh, you´ve died 100 times. <Pause=2.0> I´m not mad but SUPER disappointed....",
+            "text": "<Sad> sigh, you've died 100 times. <Pause=2.0> I'm not mad but SUPER disappointed....",
             "next": null
         },
         {
             "key": "Idle_1",
-            "text": "Hey man wanna hear a joke? <Pause=2.0> A rhetorical question since i´m about to tell you, ",
+            "text": "Hey man wanna hear a joke? <Pause=2.0> A rhetorical question since i'm about to tell you, ",
             "next": "IdleJoke_1"
         },
         {
@@ -73,17 +73,12 @@
         },
         {
             "key": "IdleJoke_4",
-            "text": "<Sad>(There´s a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.)",
+            "text": "<Sad>(There's a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.)",
             "next": null
         },
         {
             "key": "Mumlbe_1",
-            "text": "<Casual> He mumbles to himself, you can´t quite make out what but it had something to do about dinner tonight",
-            "next": null
-        },
-        {
-            "key": "Arabic_Mumble",
-            "text": "فلسطين الحرة",
+            "text": "<Casual> He mumbles to himself, you can't quite make out what but it had something to do about dinner tonight",
             "next": null
         },
         {
@@ -93,7 +88,7 @@
         },
         {
             "key": "Idle_3",
-            "text": "<i/> he. he. Hello? Ah yes, hello darling!",
+            "text": "he. he. Hello? Ah yes, hello darling!",
             "next": null
         },
         {
