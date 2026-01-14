@@ -21,8 +21,9 @@ public class DialogueManager : MonoBehaviour
     }
 
     private Dictionary<string, Sprite> anchorExpressions = new Dictionary<string, Sprite>();
-    #pragma warning disable
+
     private string pausePattern = @"<Pause=([0-9]+\.[0-9]+)>";
+    private string fontPattern = @"<[/\/]?\w>";
 
     private TextAsset dialogueFile;
     private Dictionary<string, Dialogue> dialogueHolder = new Dictionary<string, Dialogue>();
@@ -106,6 +107,15 @@ public class DialogueManager : MonoBehaviour
                 i += 10;
                 continue;
             }
+            else if (info.fontSkips.ContainsKey(i))
+            {
+                for (int j = 0; j < info.fontSkips[i] + 1; j++)
+                {
+                    writtenText += text[i + j];
+                }
+                i += info.fontSkips[i];
+                continue;
+            }
             writtenText += text[i];
             UIManager.Instance.ChangeDialogueText(writtenText);
             yield return new WaitForSeconds(letterInterval);
@@ -127,6 +137,7 @@ public class DialogueManager : MonoBehaviour
         info.text = dialogue;
         info.spriteChanges = new Dictionary<int, string>();
         info.pauses = new Dictionary<int, float>();
+        info.fontSkips = new Dictionary<int, int>();
 
         Dictionary<string, Sprite>.KeyCollection keys = anchorExpressions.Keys;
         foreach (string pattern in keys)
@@ -149,6 +160,11 @@ public class DialogueManager : MonoBehaviour
 
             info.pauses.Add(match.Index, time);
         }
+        MatchCollection fontMatches = Regex.Matches(dialogue, fontPattern);
+        foreach (Match match in fontMatches)
+        {
+            info.fontSkips.Add(match.Index, match.Value.Length - 1);
+        }
         return info;
     }
 
@@ -157,6 +173,7 @@ public class DialogueManager : MonoBehaviour
         public string text;
         public Dictionary<int, string> spriteChanges;
         public Dictionary<int, float> pauses;
+        public Dictionary<int, int> fontSkips;
     }
 }
 

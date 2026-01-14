@@ -23,7 +23,7 @@
         },
         {
             "key": "TestPause",
-            "text": "Pause words<Pause=1.5> or something i dunno<Pause=5.0> this is also just for testing :3",
+            "text": "Pause words<Pause=1.5> or<Sad> <i>something i</i> dunno<Pause=1.0> this is <b>also just for testing :3</b>",
             "next": null
         },
         {
