@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -15,12 +18,38 @@ public class TileGrid : MonoBehaviour
 
     PhysicsShapeGroup2D colliders = new PhysicsShapeGroup2D();
 
+    public bool Editing;
+    public string Filename;
+
     void Start()
     {
-        TileMap.Add(new int2(0, 0), Tiles.tile);
-        TileMap.Add(new int2(1, 0), Tiles.tile);
+        Load();
 
         GenerateMesh();
+    }
+
+    void Save() 
+    {
+        TileMapFile tileMapFile = new TileMapFile();
+        tileMapFile.TileMap = TileMap;
+        FileStream fileStream = File.Create(Application.dataPath + "/tilemaps/" + Filename + ".dat");
+        BinaryFormatter formatter = new BinaryFormatter();
+
+        formatter.Serialize(fileStream, tileMapFile);
+        fileStream.Close();
+    }
+
+    void Load()
+    {
+        if (File.Exists(Application.dataPath + "/tilemaps/" + Filename + ".dat"))
+        {
+            FileStream fileStream = File.Open(Application.dataPath + "/tilemaps/" + Filename + ".dat", FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            fileStream.Position = 0;
+            TileMapFile tileMapFile = (TileMapFile)formatter.Deserialize(fileStream);
+            fileStream.Close();
+            TileMap = tileMapFile.TileMap;
+        }
     }
 
     void GenerateMesh()
@@ -30,6 +59,7 @@ public class TileGrid : MonoBehaviour
         combineInstances.Clear();
 
         colliders.Clear();
+
 
         foreach (var tile in TileMap)
         {
@@ -73,7 +103,24 @@ public class TileGrid : MonoBehaviour
 
     void Update()
     {
-
-        
+        if (Editing)
+        {
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Input.GetMouseButton(1))
+            { 
+                TileMap.TryAdd(new int2(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y)), Tiles.tile);
+                GenerateMesh();
+            }
+            if (Input.GetKeyDown("space"))
+            {
+                Save();
+            }
+        }
     }
+}
+
+[Serializable]
+public struct TileMapFile
+{
+    public Dictionary<int2, Tile> TileMap;
 }
