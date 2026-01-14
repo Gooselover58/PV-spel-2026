@@ -63,10 +63,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.35
+    y: 0.35
+    width: 0.6
+    height: 0.6
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -107,10 +107,10 @@ MonoBehaviour:
     height: 1
   zoomedRect:
     serializedVersion: 2
-    x: 0.45
-    y: 0.45
-    width: 0.5
-    height: 0.5
+    x: 0.35
+    y: 0.35
+    width: 0.6
+    height: 0.6
   followSpeed: 5
   offsetModifier: 0.1
 --- !u!114 &9032709148066524652
@@ -235,10 +235,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.35
+    y: 0.35
+    width: 0.6
+    height: 0.6
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
