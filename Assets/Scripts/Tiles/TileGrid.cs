@@ -13,17 +13,24 @@ public class TileGrid : MonoBehaviour
 
     private List<CombineInstance> combineInstances = new List<CombineInstance>();
 
+    PhysicsShapeGroup2D colliders = new PhysicsShapeGroup2D();
+
     void Start()
     {
         TileMap.Add(new int2(0, 0), Tiles.tile);
         TileMap.Add(new int2(1, 0), Tiles.tile);
+
+        GenerateMesh();
     }
 
-    void Update()
+    void GenerateMesh()
     {
-
         matrices.Clear();
         floats.Clear();
+        combineInstances.Clear();
+
+        colliders.Clear();
+
         foreach (var tile in TileMap)
         {
 
@@ -51,10 +58,22 @@ public class TileGrid : MonoBehaviour
             });
 
             floats.Add(tile.Value.GetSprite());
+
+            colliders.AddBox(new Vector2(pos.x, pos.y), new Vector2(1, 1));
+
+
         }
+
+        gameObject.GetComponent<CustomCollider2D>().SetCustomShapes(colliders);
 
         Mesh combinedMesh = new Mesh();
         combinedMesh.CombineMeshes(combineInstances.ToArray());
         gameObject.GetComponent<MeshFilter>().sharedMesh = combinedMesh;
+    }
+
+    void Update()
+    {
+
+        
     }
 }
