@@ -22,6 +22,7 @@ public class Bomb : Powerup
         col.enabled = false;
         sr.color = deactiveColor;
         Global.isPlayerHoldingBomb = true;
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, activeColor);
         CoolDown();
     }
 

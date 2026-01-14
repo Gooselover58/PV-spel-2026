@@ -36,6 +36,7 @@ public class Room : MonoBehaviour
 
     public void EnterRoom()
     {
+        ResetRoom();
         Global.respawnPoint = respawnPoint.position;
         Global.playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);

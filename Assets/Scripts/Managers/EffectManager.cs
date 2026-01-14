@@ -39,7 +39,7 @@ public class EffectManager : MonoBehaviour
         }
     }
 
-    public void PlayParticles(string key, Vector3 pos, int count)
+    public void PlayParticles(string key, Vector3 pos, int count, Color color = new Color())
     {
         if (!particles.ContainsKey(key))
         {
@@ -50,6 +50,10 @@ public class EffectManager : MonoBehaviour
         var emitParams = new ParticleSystem.EmitParams();
         emitParams.applyShapeToPosition = true;
         emitParams.position = pos;
+        if (color != new Color(0, 0, 0, 0))
+        {
+            emitParams.startColor = color;
+        }
 
         parts.Emit(emitParams, count);
     }
