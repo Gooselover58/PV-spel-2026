@@ -127,9 +127,6 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Grapple()
     {
-        // Decreases remaining grapples the player can do before touching the ground again
-        remainingGrapples--;
-
         //The player cant move while grappleing
         PlayerMovement.canMove = false;
         rb.gravityScale = 0;
@@ -158,16 +155,17 @@ public class PlayerGrappling : MonoBehaviour
         float distance = (grapplePower * 2 / rb.mass) * grappleWindup;
 
         // Fires three rays in the grapple direction to look for ground collisions
-        RaycastHit2D[] rays = new RaycastHit2D[3];
+        RaycastHit2D[] rays = new RaycastHit2D[1];
         rays[0] = Physics2D.Raycast(transform.position, dir, distance, Global.groundLayer);
-        rays[1] = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), dir, distance, Global.groundLayer);
-        rays[2] = Physics2D.Raycast(transform.position + new Vector3(0, -0.25f, 0), dir, distance, Global.groundLayer);
+        //rays[1] = Physics2D.Raycast(transform.position + new Vector3(0, 0.25f, 0), dir, distance, Global.groundLayer);
+        //rays[2] = Physics2D.Raycast(transform.position + new Vector3(0, -0.25f, 0), dir, distance, Global.groundLayer);
         foreach (RaycastHit2D ray in rays)
         {
             if (ray.collider != null)
             {
                 // If there is an object in the way, decrease the windup time depending on the distance from the player to the object
                 windupTime *= (ray.distance / distance);
+                Debug.Log(windupTime);
                 break;
             }
         }
@@ -193,6 +191,9 @@ public class PlayerGrappling : MonoBehaviour
 
         // Sets player in the grappling state
         playerState = PlayerState.GRAPPLING;
+
+        // Decreases remaining grapples the player can do before touching the ground again
+        remainingGrapples--;
 
         // Sets speed to 0
         rbG.velocity = Vector2.zero;

@@ -171,7 +171,7 @@ public class PlayerMovement : Entity
     private bool IsGrounded()
     {
         Collider2D col = Physics2D.OverlapCircle(groundCheckTrans.position, groundCheckSize, groundLayer);
-        if (col != null && jumpCooldownTime <= 0)
+        if (col != null && playerGrappling.playerState == PlayerGrappling.PlayerState.FREE && jumpCooldownTime <= 0)
         {
             isJumping = false;
             playerGrappling.ResetGrapples();
