@@ -87,6 +87,16 @@
             "next": null
         },
         {
+            "key": "Idle_2",
+            "text": "<i>ring ring</i> Sorry folks, my phones ringing,<Sad> <i> He distances himself from the table but remains in frame. ",
+            "next": "Idle_3"
+        },
+        {
+            "key": "Idle_3",
+            "text": "<i/> he. he. Hello? Ah yes, hello darling!",
+            "next": null
+        },
+        {
             "key": "",
             "text": "",
             "next": null
