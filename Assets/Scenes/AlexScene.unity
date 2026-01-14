@@ -3985,6 +3985,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 992037628730719578, guid: e35bfab5db3f05346871ca0127b7e4a7, type: 3}
+      propertyPath: idleDelayMax
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 992037628730719578, guid: e35bfab5db3f05346871ca0127b7e4a7, type: 3}
+      propertyPath: idleDelayMin
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1443412584100769742, guid: e35bfab5db3f05346871ca0127b7e4a7, type: 3}
       propertyPath: m_Name
       value: GameManager

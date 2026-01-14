@@ -34,11 +34,31 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] float letterInterval;
     [SerializeField] float textDuration;
+    [SerializeField] float idleDelayMin, idleDelayMax;
 
     private void Awake()
     {
         LoadDialogue();
         LoadExpressions();
+    }
+
+    private void Start()
+    {
+        //StartCoroutine(IdleDialogue());
+    }
+
+    private IEnumerator IdleDialogue()
+    {
+        while (true)
+        {
+            float idleWait = UnityEngine.Random.Range(idleDelayMin, idleDelayMax);
+            yield return new WaitForSeconds(idleWait);
+            Debug.Log("Tried writing idle dialogue");
+            if (writingRoutine == null)
+            {
+                WriteDialogue("Idle_1");
+            }
+        }
     }
 
     private void LoadDialogue()
@@ -128,6 +148,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             UIManager.Instance.ChangeDialogueText("");
+
         }
     }
 
