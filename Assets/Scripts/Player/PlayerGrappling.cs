@@ -76,7 +76,7 @@ public class PlayerGrappling : MonoBehaviour
         // Gets input from player
         movementInput = InputManager.Instance.GetMovement();
 
-        if (Input.GetKeyDown(InputManager.Instance.GetInput("Grapple")) && movementInput.magnitude > 0 && grappleCooldown < 0 && remainingGrapples > 0)
+        if (InputManager.Instance.GetInputDown("Grapple") && movementInput.magnitude > 0 && grappleCooldown < 0 && remainingGrapples > 0)
         {
             Grapple();
         }

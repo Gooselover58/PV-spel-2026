@@ -73,7 +73,7 @@ public class PlayerMovement : Entity
 
         bool pressedJump = false;
 
-        if (Input.GetKeyDown(InputManager.Instance.GetInput("Jump")))
+        if (InputManager.Instance.GetInputDown("Jump"))
         {
             pressedJump = true;
             jumpBufferTime = jumpBuffer;
@@ -83,7 +83,7 @@ public class PlayerMovement : Entity
             jumpBufferTime -= Time.deltaTime;
         }
 
-        if (!Input.GetKey(InputManager.Instance.GetInput("Jump")) && rb.velocity.y > 0 && isJumping)
+        if (!InputManager.Instance.GetInput("Jump") && rb.velocity.y > 0 && isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - jumpCancelSpeed);
         }
