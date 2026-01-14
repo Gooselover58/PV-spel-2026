@@ -19,3 +19,10 @@ etc
 
 Exempel: "Nu börjar jag vänta...<Pause=3.0>Nu har jag väntat 3 sekunder"
 
+Bold och Italic:
+Skriv <i> i början av texten du vill göra sne, och </i> på slutet.
+Skriv <b> i början av texten du vill göra fet, och </b> på slutet.
+
+Exempel: "<i>Den här texten är sne</i>, den här är inte det, och <b>Den här är fet</b>"
+
+
