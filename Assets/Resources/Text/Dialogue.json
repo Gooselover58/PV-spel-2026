@@ -3,12 +3,12 @@
     [
         {
             "key": "Intro_01",
-            "text": "Breaking News, a small man is trying to parkour through dangerous enviorments with some sort of a hook. And in another news, a new ice cream shop is run by a dog? More about that at nine.",
-            "next": "Intro_02"
+            "text": "Breaking News! A small man is trying to parkour through dangerous enviorments with some sort of a hook. And in another news, a new ice cream shop run by a dog? More at nine.",
+            "next": null
         },
         {
             "key": "Intro_02",
-            "text": "Default dialogue 2",
+            "text": "",
             "next": null
         },
         {
@@ -27,6 +27,11 @@
             "next": null
         },
         {
+            "key": "FirstDeath",
+            "text": "Oh, we lost him.... <Pause=1.0> Anyway about the dog with ice cream sto... Oh he´s back.",
+            "next": null
+        },
+        {
             "key": "Deaths_5",
             "text": "<Terrified>5 Deaths already?!<Pause=1.5> Uhhhh<Casual> failing is part of learning, folks!",
             "next": null
@@ -38,7 +43,7 @@
         },
         {
             "key": "Deaths_100",
-            "text": "<Disappointed> sigh, you´ve died 100 times. <Pause=2.0> I´m not mad but SUPER disappointed....",
+            "text": "<Sad> sigh, you´ve died 100 times. <Pause=2.0> I´m not mad but SUPER disappointed....",
             "next": null
         },
         {
@@ -77,9 +82,15 @@
             "next": null
         },
         {
+            "key": "Arabic_Mumble",
+            "text": "فلسطين الحرة",
+            "next": null
+        },
+        {
             "key": "",
             "text": "",
             "next": null
         }
+
     ]
 }
