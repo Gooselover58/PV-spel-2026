@@ -29,17 +29,8 @@ public class InputManager : MonoBehaviour
 
         inputs.Add("Jump", new KeyCode[] { KeyCode.Space });
         inputs.Add("Grapple", new KeyCode[] { KeyCode.LeftShift });
+        inputs.Add("Pause", new KeyCode[] { KeyCode.Escape });
     }
-
-    /*public KeyCode GetInput(string key)
-    {
-        if (!inputs.ContainsKey(key))
-        {
-            Debug.LogError("Could not find input in dictionary");
-            return KeyCode.None;
-        }
-        return inputs[key];
-    }*/
 
     public bool GetInput(string key)
     {

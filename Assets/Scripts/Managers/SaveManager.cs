@@ -7,6 +7,8 @@ public static class SaveManager
 {
     private static readonly string savePath = Path.Combine(Application.persistentDataPath, "SaveFile.json");
 
+    public static bool createNewSave = true;
+
     public static void SaveGame()
     {
         PlayerData data = new PlayerData();
