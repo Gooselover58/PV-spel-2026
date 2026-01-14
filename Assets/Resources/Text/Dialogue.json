@@ -35,6 +35,41 @@
             "key": "Deaths_10",
             "text": "<Terrified>10 DEATHS?!?!<Pause=1.5><Shocked> Well<Pause=1.0> uhm<Pause=1.0><Casual> Anyways!",
             "next": null
-        }
+        },
+        {
+            "key": "Deaths_100",
+            "text": "<Disappointed> sigh, you´ve died 100 times. <Pause=2> I´m not mad but SUPER disappointed....",
+            "next": null
+        },
+        {
+            "key": "Idle_1",
+            "text": "Hey man wanna hear a joke? A rhetorical question since i´m about to tell you, ",
+            "next": "IdleJoke_1"
+        },
+        {
+            "key": "IdleJoke_1",
+            "text": "A man went to get his prostate checked, and went into the doctors office, the doctor shook his hand and greeted him. ",
+            "next": "IdleJoke_1.5"
+        },
+        {
+            "key": "IdleJoke_1.5",
+            "text": "Then when he sat down on the table, the doctor said Now Jerry, dont get an erection, the man replied, My names not Jerry, it´s Erik, the doctor said I know, my names Jerry!",
+            "next": null
+        },
+        {
+            "key": "IdleJoke2",
+            "text": "Hey, wanna hear another joke?",
+            "next": "IdleJoke3"
+        },
+        {
+            "key": "IdleJoke3",
+            "text": "No? okay.....",
+            "next": "IdleJoke4"
+        },
+        {
+            "key": "IdleJoke4",
+            "text": "<There´s a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.>",
+            "next": null
+        },
     ]
 }
