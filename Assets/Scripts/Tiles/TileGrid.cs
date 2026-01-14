@@ -8,6 +8,7 @@ using UnityEngine;
 
 public class TileGrid : MonoBehaviour
 {
+
     public Dictionary<int2, Tile> TileMap = new Dictionary<int2, Tile>();
     [SerializeField] private Mesh mesh;
     [SerializeField] private Material material;
@@ -18,7 +19,10 @@ public class TileGrid : MonoBehaviour
 
     PhysicsShapeGroup2D colliders = new PhysicsShapeGroup2D();
 
+    // Set Editing to true to place allow placing tiles in play mode
     public bool Editing;
+
+    //set filename to the name of the file you're editing
     public string Filename;
 
     void Start()
@@ -28,6 +32,7 @@ public class TileGrid : MonoBehaviour
         GenerateMesh();
     }
 
+    // Saves tilemap to Assets/Tilemaps/Filename.dat (might not be visible in unity editor)
     void Save() 
     {
         TileMapFile tileMapFile = new TileMapFile();
