@@ -38,13 +38,13 @@ public class GameManager : MonoBehaviour
                 levels.Add(room);
             }
         }
-
-        SetRoom(levels[0]);
     }
 
     private void Start()
     {
         playerTrans = Global.playerTrans;
+
+        SetRoom(levels[0]);
         //DialogueManager.Instance.WriteDialogue("Intro_01");
     }
 
