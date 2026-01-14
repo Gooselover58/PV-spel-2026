@@ -3,7 +3,7 @@
     [
         {
             "key": "Intro_01",
-            "text": "It looks like you killed John Wick's dog",
+            "text": "Breaking News, a small man is trying to parkour through dangerous enviorments with some sort of a hook. And in another news, a new ice cream shop is run by a dog? More about that at nine.",
             "next": "Intro_02"
         },
         {
@@ -38,12 +38,12 @@
         },
         {
             "key": "Deaths_100",
-            "text": "<Disappointed> sigh, you´ve died 100 times. <Pause=2> I´m not mad but SUPER disappointed....",
+            "text": "<Disappointed> sigh, you´ve died 100 times. <Pause=2.0> I´m not mad but SUPER disappointed....",
             "next": null
         },
         {
             "key": "Idle_1",
-            "text": "Hey man wanna hear a joke? <Pause=2> A rhetorical question since i´m about to tell you, ",
+            "text": "Hey man wanna hear a joke? <Pause=2.0> A rhetorical question since i´m about to tell you, ",
             "next": "IdleJoke_1"
         },
         {
@@ -59,12 +59,12 @@
         {
             "key": "IdleJoke_2",
             "text": "Hey, wanna hear another joke?",
-            "next": "IdleJoke3"
+            "next": "IdleJoke_3"
         },
         {
             "key": "IdleJoke_3",
-            "text": "No?<Pause=2> okay.....",
-            "next": "IdleJoke4"
+            "text": "No?<Pause=2.0> okay.....",
+            "next": "IdleJoke_4"
         },
         {
             "key": "IdleJoke_4",
