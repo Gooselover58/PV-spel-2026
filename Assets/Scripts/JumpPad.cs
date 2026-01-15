@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
+    private Animator anim;
+
     [SerializeField] Vector2 boostDir;
     [SerializeField] float boostPower;
     [SerializeField] bool useBoostModifier;
@@ -12,6 +14,8 @@ public class JumpPad : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
+
         coolDown = 0f;
     }
 
@@ -27,6 +31,7 @@ public class JumpPad : MonoBehaviour
         {
             float power = (useBoostModifier) ? boostPower * Global.jumpPadBoostModifier : boostPower;
             entity.BoostEntity(boostDir, power);
+            anim.SetTrigger("Bounce");
             coolDown = 0.1f;
         }
     }
