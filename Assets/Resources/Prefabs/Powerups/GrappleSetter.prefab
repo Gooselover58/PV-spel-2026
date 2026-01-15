@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 620921302, guid: ecc9f9df7ab9d5042930a5c36fae3166, type: 3}
+  m_Sprite: {fileID: -1320545432, guid: ecc9f9df7ab9d5042930a5c36fae3166, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accea04b35057874fb668578ac13b4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetTime: 5
+  resetTime: 3
   deactiveSprite: {fileID: 0}
   particleColor: {r: 0.9333334, g: 0.6156863, b: 0.19215688, a: 1}
   setGrappleAmount: 1

@@ -25,10 +25,4 @@ public class RoomTransition : MonoBehaviour, ITrigger
         Global.playerTrans.gameObject.SetActive(false);
         GameManager.Instance.ChangeRoom(destination);
     }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawCube(transform.position, transform.localScale);
-    }
 }

@@ -180,6 +180,7 @@ public class PlayerGrappling : MonoBehaviour
         // Sets hook object to the right position and moves it unless an object is too close
         if (windup > 0.015f)
         {
+            Global.playerMovement.anim.SetTrigger("Grapple");
             rope.enabled = true;
             currentSpawnHook.transform.position = transform.position;
             currentSpawnHook.SetActive(true);

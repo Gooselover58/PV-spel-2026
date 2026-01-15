@@ -85,12 +85,17 @@ public class InputManager : MonoBehaviour
         y += (GetInput("Up")) ? 1 : 0;
         y += (GetInput("Down")) ? -1 : 0;
 
-        if (Global.playerMovement.rb.velocity.y == 0)
+        int speedInt;
+        if (Global.playerGrappling.playerState == PlayerGrappling.PlayerState.FREE)
         {
-            int speedInt = (x != 0) ? 1 : 0;
-            Global.playerMovement.anim.SetInteger("Speed", speedInt);
+            speedInt = (x != 0) ? 1 : 0;
         }
-        
+        else
+        {
+            speedInt = 0;
+        }
+        Global.playerMovement.anim.SetInteger("Speed", speedInt);
+
         Vector2 movement = new Vector2(x, y);
         return movement;
     }

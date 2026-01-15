@@ -5073,7 +5073,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4305903, y: 0.9777247}
+  m_Size: {x: 0.39, y: 0.86}
   m_EdgeRadius: 0
 --- !u!114 &4990064787120483401
 MonoBehaviour:
@@ -5269,7 +5269,7 @@ MonoBehaviour:
   moveSpeed: 10
   jumpForce: 175
   jumpCancelSpeed: 1.25
-  groundCheckSize: 1.14
+  groundCheckSize: 1
   coyoteJump: 0.3
   jumpBuffer: 0.25
   jumpCooldown: 0.05

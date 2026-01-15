@@ -61,6 +61,8 @@ public class PlayerMovement : Entity
 
     private void OnEnable()
     {
+        coyoteTime = 0;
+        jumpBufferTime = 0;
         canMove = true;
         rb.gravityScale = Global.playerGravityScale;
     }
