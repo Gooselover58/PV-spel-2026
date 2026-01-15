@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : Entity
 {
-    private Rigidbody2D rb;
+
     private Transform groundCheckTrans;
     private PlayerGrappling playerGrappling;
     private ParticleSystem jumpEffect;
+    private SpriteRenderer sR;
+    public Rigidbody2D rb;
+    public Animator anim;
 
     public static bool canMove;
     private bool isJumping;
@@ -35,6 +38,8 @@ public class PlayerMovement : Entity
     {
         jumpEffect = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        sR = GetComponent<SpriteRenderer>();
         groundCheckTrans = transform.GetChild(0);
         Global.playerTrans = transform;
         Global.playerRb = rb;
@@ -65,6 +70,7 @@ public class PlayerMovement : Entity
         if (IsGrounded())
         {
             coyoteTime = coyoteJump;
+            anim.SetInteger("JumpSpeed", 0);
         }
         else
         {
@@ -104,6 +110,14 @@ public class PlayerMovement : Entity
             Jump();
         }
 
+        if (rb.velocity.x < 0)
+        {
+            sR.flipX = true;
+        }
+        else if (rb.velocity.x > 0)
+        {
+            sR.flipX = false;
+        }
     }
 
     private void FixedUpdate()
@@ -166,11 +180,12 @@ public class PlayerMovement : Entity
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumpEffect.Play(true);
         AudioManager.Instance.PlaySFX("Jump");
+        anim.SetInteger("JumpSpeed", 1);
     }
 
     private bool IsGrounded()
     {
-        Collider2D col = Physics2D.OverlapCircle(groundCheckTrans.position, groundCheckSize, groundLayer);
+        Collider2D col = Physics2D.OverlapBox(groundCheckTrans.position, new Vector2(groundCheckSize,0.1f), 0,groundLayer);
         if (col != null && playerGrappling.playerState == PlayerGrappling.PlayerState.FREE && jumpCooldownTime <= 0)
         {
             isJumping = false;
@@ -186,19 +201,4 @@ public class PlayerMovement : Entity
         rb.velocity = Vector2.zero;
     }
 
-    private bool IsFlipped()
-    {
-        if (rb.velocity.x < 0)
-        {
-            return true;
-        }
-        else if (rb.velocity.x > 0)
-        {
-            return false;
-        }
-        else
-        {
-            return false;
-        }
-    }
 }
