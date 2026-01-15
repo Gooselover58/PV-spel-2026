@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
 
     private List<Room> levels = new List<Room>();
 
+    [SerializeField] int startLevelIndex;
+
     private void Awake()
     {
         Global.groundLayer = LayerMask.GetMask("Ground");
@@ -44,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         playerTrans = Global.playerTrans;
 
-        SetRoom(levels[0]);
+        SetRoom(levels[startLevelIndex]);
         //DialogueManager.Instance.WriteDialogue("Intro_01");
         SaveManager.CreateNewSaveFile();
     }
@@ -110,6 +112,8 @@ public class GameManager : MonoBehaviour
 
     private void SetRoom(Room room)
     {
+        playerTrans.position = room.enterPoint.position;
+        Global.gameCamScript.transform.position = room.enterPoint.position;
         Global.currentRoom = room;
         room.gameObject.SetActive(true);
         room.EnterRoom();
