@@ -85,18 +85,13 @@ public class InputManager : MonoBehaviour
         y += (GetInput("Up")) ? 1 : 0;
         y += (GetInput("Down")) ? -1 : 0;
 
-        if (x != 0 && Global.playerMovement.rb.velocity.y == 0)
+        if (Global.playerMovement.rb.velocity.y == 0)
         {
-            Global.playerMovement.anim.SetInteger("Speed", 1);
+            int speedInt = (x != 0) ? 1 : 0;
+            Global.playerMovement.anim.SetInteger("Speed", speedInt);
         }
-        else if (x == 0 && Global.playerMovement.rb.velocity.y == 0)
-        {
-            Global.playerMovement.anim.SetInteger("Speed", 0);
-        }
-
-
-
-            Vector2 movement = new Vector2(x, y);
+        
+        Vector2 movement = new Vector2(x, y);
         return movement;
     }
 }

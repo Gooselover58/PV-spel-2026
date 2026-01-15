@@ -9,7 +9,7 @@ public class PlayerMovement : Entity
     private Transform groundCheckTrans;
     private PlayerGrappling playerGrappling;
     private ParticleSystem jumpEffect;
-    private SpriteRenderer sR;
+    private SpriteRenderer sr;
     public Rigidbody2D rb;
     public Animator anim;
 
@@ -39,7 +39,7 @@ public class PlayerMovement : Entity
         jumpEffect = GetComponentInChildren<ParticleSystem>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        sR = GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         groundCheckTrans = transform.GetChild(0);
         Global.playerTrans = transform;
         Global.playerRb = rb;
@@ -110,14 +110,9 @@ public class PlayerMovement : Entity
             Jump();
         }
 
-        if (rb.velocity.x < 0)
-        {
-            sR.flipX = true;
-        }
-        else if (rb.velocity.x > 0)
-        {
-            sR.flipX = false;
-        }
+        bool shouldFlip = (rb.velocity.x < 0) ? true : false;
+        shouldFlip = (Mathf.Abs(rb.velocity.x) < 0.1f) ? sr.flipX : shouldFlip;
+        sr.flipX = shouldFlip;
     }
 
     private void FixedUpdate()
@@ -185,7 +180,7 @@ public class PlayerMovement : Entity
 
     private bool IsGrounded()
     {
-        Collider2D col = Physics2D.OverlapBox(groundCheckTrans.position, new Vector2(groundCheckSize,0.1f), 0,groundLayer);
+        Collider2D col = Physics2D.OverlapBox(groundCheckTrans.position, new Vector2(groundCheckSize, 0.1f), 0f, groundLayer);
         if (col != null && playerGrappling.playerState == PlayerGrappling.PlayerState.FREE && jumpCooldownTime <= 0)
         {
             isJumping = false;
