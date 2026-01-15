@@ -37,7 +37,7 @@ public class SoundUI : MonoBehaviour
         }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
-            AudioManager.Instance.PlaySFX("fart");
+            AudioManager.Instance.PlaySFX("Fart");
         }
     }
 }

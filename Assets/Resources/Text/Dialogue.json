@@ -59,21 +59,21 @@
         {
             "key": "IdleJoke_1.5",
             "text": "Then when he sat down on the table, the doctor said Now Jerry, dont get an erection, the man replied, My names not Jerry, it´s Erik, the doctor said I know, my names Jerry!",
-            "next": null
+            "next": "IdleJoke_2"
         },
         {
             "key": "IdleJoke_2",
-            "text": "Hey, wanna hear another joke?",
+            "text": "<Pause=10.0>Hey, wanna hear another joke?",
             "next": "IdleJoke_3"
         },
         {
             "key": "IdleJoke_3",
-            "text": "No?<Pause=2.0> okay.....",
+            "text": "<Pause=1.0> No?<Pause=2.0> okay.....",
             "next": "IdleJoke_4"
         },
         {
             "key": "IdleJoke_4",
-            "text": "<Sad>(There's a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears would betray his demeanor to you.)",
+            "text": "<Sad> <i>here's a great sadness in his eyes, you observe how he distants himself from the table with slow movements. Repressing the tears that would betray his demeanor to you.</i>",
             "next": null
         },
         {
@@ -83,19 +83,58 @@
         },
         {
             "key": "Idle_2",
-            "text": "<i>ring ring</i> Sorry folks, my phones ringing,<Sad> <i> He distances himself from the table but remains in frame. ",
+            "text": "<b>ring ring</b> Sorry folks, my phones ringing,<Sad> <i> He distances himself from the table but remains in frame. ",
             "next": "Idle_3"
         },
         {
             "key": "Idle_3",
-            "text": "he. he. Hello? Ah yes, hello darling!",
+            "text": "He. He. Hello? Ah yes, hello darling! .........",
+            "next": "Idle_4"
+        },
+        {
+            "key": "Idle_4",
+            "text": "<i> The newsanchor seems focused, listening carefully to the cellular device. </i>", 
+            "next": "Idle_5"
+        },
+        {
+            "key":"Idle_5",
+            "text":"That´s great darling! We should celebrate, I´ll get us a reservation at Dorsia! ........",
+            "next":"Idle_6"
+        },
+        {
+            "key":"Idle_6",
+            "text":"....... Okay........ Yes!...... Okay bye love!",
+            "next":"Idle_7"
+        },
+        {
+            "key":"Idle_7",
+            "text":"<Casual> <i> The newsanchor returns to his original seat, seeming alittle happier than before</i>",
+            "next":"Idle_8"
+        },
+        {
+            "key":"Idle_8",
+            "text":"Sorry folks! The wife called.",
             "next": null
         },
         {
-            "key": "",
-            "text": "",
+            "key":"End",
+            "text":"<Shocked><Pause=0.2><Happy> Well that´s it, you beat the game! You should celebrate by buying shares in our company, SCAMMING.",
+            "next":"End_2"
+        },
+        {
+            "key":"End_2",
+            "text":"<Terrified> Otherwise you`ll be on the news soon!!!! :)",
+            "next":"End_3"
+        },
+        {
+            "key":"End_3",
+            "text":"<Normal> Anyway time for a countdown! 5, 4, 3, 2, 1......... <Pause=5>",
+            "next":"End_4"
+        },
+        {
+            "key":"End_4",
+            "text":"<Shocked> TURN THE DAMN GAME OFF",
             "next": null
         }
-
     ]
 }
