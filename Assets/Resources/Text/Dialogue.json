@@ -98,7 +98,7 @@
         },
         {
             "key":"Idle_5",
-            "text":"That´s great darling! We should celebrate, I´ll get us a reservation at Dorsia! ........",
+            "text":"That's great darling! We should celebrate, I'll get us a reservation at Dorsia! ........",
             "next":"Idle_6"
         },
         {
@@ -118,7 +118,7 @@
         },
         {
             "key":"End",
-            "text":"<Shocked><Pause=0.2><Happy> Well that´s it, you beat the game! You should celebrate by buying shares in our company, SCAMMING.",
+            "text":"<Shocked><Pause=0.2><Happy> Well that's it, you beat the game! You should celebrate by buying shares in our company, SCAMMING.",
             "next":"End_2"
         },
         {
