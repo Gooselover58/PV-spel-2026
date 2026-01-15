@@ -5,32 +5,36 @@ using UnityEngine;
 public class GrapplingSetter : Powerup
 {
     private SpriteRenderer sr;
+    private Animator anim;
 
-    private Color activeColor;
-    private Color deactiveColor;
+    [SerializeField] Sprite deactiveSprite;
 
+    [SerializeField] Color particleColor;
     [SerializeField] int setGrappleAmount;
 
     protected override void Awake()
     {
         base.Awake();
         sr = GetComponent<SpriteRenderer>();
-        activeColor = sr.color;
-        deactiveColor = Color.grey;
+        anim = GetComponent<Animator>();
+
+        anim.SetBool("IsActive", true);
+        deactiveSprite = Resources.LoadAll<Sprite>("Sprites/HeartBetter")[2];
     }
 
     public override void Triggered()
     {
         col.enabled = false;
-        sr.color = deactiveColor;
+        anim.SetBool("IsActive", false);
+        sr.sprite = deactiveSprite;
         Global.playerGrappling.SetGrapples(setGrappleAmount);
-        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, activeColor);
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, particleColor);
         CoolDown();
     }
 
     public override void ResetPowerup()
     {
         base.ResetPowerup();
-        sr.color = activeColor;
+        anim.SetBool("IsActive", true);
     }
 }
