@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b6f877cc4c69b4b44bdd86d92683fc76
+guid: 9814991830a035244b4d6d259bf7f0e1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,9 +93,127 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: grapplesprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1140
+        width: 874
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5846ea5d5034e624ca23af451d7d80a0
+      internalID: -280169175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grapplesprites_1
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 1140
+        width: 874
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 253fe8d55d5faea4297e235a90d22997
+      internalID: 814817508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grapplesprites_2
+      rect:
+        serializedVersion: 2
+        x: 1748
+        y: 1140
+        width: 874
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b295511d96f3ecb4f9d69d15f9ea488a
+      internalID: 2064146498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grapplesprites_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 874
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e2dab980f8198f459de1a6c14c183ad
+      internalID: -436226391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grapplesprites_4
+      rect:
+        serializedVersion: 2
+        x: 874
+        y: 0
+        width: 874
+        height: 1140
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cd94730d6a3f0e4fbc13cffc794cb2c
+      internalID: 1605736047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +224,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      grapplesprites_0: -280169175
+      grapplesprites_1: 814817508
+      grapplesprites_2: 2064146498
+      grapplesprites_3: -436226391
+      grapplesprites_4: 1605736047
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
