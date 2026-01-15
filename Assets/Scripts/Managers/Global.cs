@@ -9,6 +9,7 @@ public static class Global
     public static PlayerMovement playerMovement;
     public static PlayerGrappling playerGrappling;
 
+    public static Camera gameCam;
     public static CameraScript gameCamScript;
 
     public static LayerMask groundLayer;

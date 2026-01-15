@@ -27,6 +27,7 @@ public class CameraScript : MonoBehaviour
 
     private void Awake()
     {
+        Global.gameCam = GetComponent<Camera>();
         Global.gameCamScript = this;
 
         cam = GetComponent<Camera>();

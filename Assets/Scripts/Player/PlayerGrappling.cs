@@ -47,7 +47,7 @@ public class PlayerGrappling : MonoBehaviour
         rope.enabled = false;
         rope.positionCount = 2;
         rope.widthMultiplier = ropeWidth;
-        rope.material = new Material(Shader.Find("Sprites/Default"));
+        rope.material = Resources.Load<Material>("Materials/Rope");
 
         CreateGrappleObjects(5);
     }

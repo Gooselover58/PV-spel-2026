@@ -5,7 +5,9 @@ using UnityEngine;
 public class Bomb : Powerup
 {
     private SpriteRenderer sr;
+    private Animator anim;
 
+    [SerializeField] Color particleColor;
     private Color activeColor;
     private Color deactiveColor;
 
@@ -13,16 +15,20 @@ public class Bomb : Powerup
     {
         base.Awake();
         sr = GetComponent<SpriteRenderer>();
-        activeColor = sr.color;
+        anim = GetComponent<Animator>();
+        activeColor = Color.white;
         deactiveColor = Color.grey;
+
+        anim.SetBool("IsActive", true);
     }
 
     public override void Triggered()
     {
         col.enabled = false;
+        anim.SetBool("IsActive", false);
         sr.color = deactiveColor;
         Global.isPlayerHoldingBomb = true;
-        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, activeColor);
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, particleColor);
         CoolDown();
     }
 
@@ -30,5 +36,6 @@ public class Bomb : Powerup
     {
         base.ResetPowerup();
         sr.color = activeColor;
+        anim.SetBool("IsActive", true);
     }
 }
