@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8129570454172144755}
   - component: {fileID: 761288026204752985}
   - component: {fileID: 5028781009373140969}
+  - component: {fileID: 7826416859980234408}
   - component: {fileID: 4282590998033498466}
   m_Layer: 0
   m_Name: GrappleSetterBetter
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.85329866, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: -1320545432, guid: ecc9f9df7ab9d5042930a5c36fae3166, type: 3}
+  m_Color: {r: 0.89824873, g: 0.29874206, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -131,6 +132,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &7826416859980234408
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667552869309661206}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fe4da0e3ce7769948b243cd024b20406, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4282590998033498466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,4 +166,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetTime: 5
+  deactiveSprite: {fileID: 0}
+  particleColor: {r: 0.80392164, g: 0.16470589, b: 0.3647059, a: 1}
   setGrappleAmount: 2

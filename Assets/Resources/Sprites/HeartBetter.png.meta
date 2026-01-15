@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 37380e4f959e8bf4aaa6a3a796bb64b6
+guid: ecc9f9df7ab9d5042930a5c36fae3166
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,49 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bomb_0
+      name: HeartBetter_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 150
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd632905bd7cb4242b9c6c710c95e544
+      internalID: -1320545432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeartBetter_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 150
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f177c803439ca94481f236f556ffee7
+      internalID: -582795017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HeartBetter_2
       rect:
         serializedVersion: 2
         x: 0
@@ -124,29 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8e3cd7433f3f854482db61829d0c3de
-      internalID: 33078313
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bomb_1
-      rect:
-        serializedVersion: 2
-        x: 150
-        y: 0
-        width: 150
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c379e1b12b2e77d4fad87b1fb1052789
-      internalID: 1679859438
+      spriteID: 2b89ff3a35b51d9429a35fe2dfc2d2df
+      internalID: 620921302
       vertices: []
       indices: 
       edges: []
@@ -162,8 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bomb_0: 33078313
-      Bomb_1: 1679859438
+      HeartBetter_0: -1320545432
+      HeartBetter_1: -582795017
+      HeartBetter_2: 620921302
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
