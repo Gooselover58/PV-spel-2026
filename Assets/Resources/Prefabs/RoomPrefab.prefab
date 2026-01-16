@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2531654338374993639}
   - component: {fileID: 3814404247575130368}
   - component: {fileID: 3176646794860642358}
+  - component: {fileID: 5342171825073916757}
   m_Layer: 6
   m_Name: Grappelable
   m_TagString: Grappleable
@@ -158,7 +159,7 @@ Tilemap:
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 0.9870857, g: 1, b: 0.49999988, a: 1}
+  m_Color: {r: 0.9765625, g: 1, b: 0, a: 1}
   m_Origin: {x: -30, y: -2, z: 0}
   m_Size: {x: 75, y: 45, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -337,6 +338,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5342171825073916757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159524423380545315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9cc8416cec6de419b7c683c2318acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 1, g: 1, b: 0, a: 1}
+  endColor: {r: 0.3584906, g: 0.3189719, b: 0, a: 1}
+  switchSpeed: 2
 --- !u!1 &307723584989995696
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +478,7 @@ GameObject:
   - component: {fileID: 7572646212590137055}
   - component: {fileID: 863315218241271955}
   - component: {fileID: 2503038973695902897}
+  - component: {fileID: 3979918131921448463}
   m_Layer: 6
   m_Name: Hazards
   m_TagString: Hazard
@@ -606,7 +623,7 @@ Tilemap:
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7106918, g: 0.07822072, b: 0.07822072, a: 1}
   m_Origin: {x: -30, y: -2, z: 0}
   m_Size: {x: 75, y: 45, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -785,6 +802,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3979918131921448463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2832356863634015383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc9cc8416cec6de419b7c683c2318acb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startColor: {r: 0.70980394, g: 0.078431375, b: 0.078431375, a: 1}
+  endColor: {r: 0.06376919, g: 0, b: 0.8238993, a: 1}
+  switchSpeed: 3
 --- !u!1 &4466441221689298890
 GameObject:
   m_ObjectHideFlags: 0
