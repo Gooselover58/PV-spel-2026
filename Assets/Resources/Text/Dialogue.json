@@ -143,7 +143,7 @@
         },
         {
             "key":"End",
-            "text":"<Shocked><Pause=0.2><Happy> Well that's it, you won!<Pause=1.0> You should celebrate by buying shares in my company, Legit Company LTD.",
+            "text":"<Shocked><Pause=0.2><Happy> Well that's it, you won!<Pause=1.0> You should celebrate by buying shares in my company, SCAMMIN AB.",
             "next":"End_2"
         },
         {
@@ -159,7 +159,29 @@
         {
             "key":"End_4",
             "text":"<Happy>Bye bye!<Pause=2.0>",
-            "next": null
-        }
+            "next": "End_5"
+        },
+        {
+            "key": "End_5",
+            "text":"<Pause=10.0> Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
+            "next": "End_6"
+        },
+        {
+            "key": "End_6",
+            "text": ".. on earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses,as we forgive those....",
+            "next": "End_7"
+ 
+
+        },
+        {
+            "key": "End_7",
+            "text": "who trespass against us. And lead us not into temptation, but deliver us from evil.",
+            "next": "End_8"
+                },
+                {
+                    "key": "End_8",
+                    "text": "For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.",
+                    "next": null
+                }
     ]
 }
