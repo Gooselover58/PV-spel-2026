@@ -47,6 +47,21 @@
             "next": null
         },
         {
+            "key": "IdleDialogue_1",
+            "text": "<Casual>Words",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_2",
+            "text": "<Happy>Words2",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_3",
+            "text": "<Shocked>Words3",
+            "next": null
+        },
+        {
             "key": "Idle_1",
             "text": "Hey man wanna hear a joke? <Pause=2.0> A rhetorical question since i'm about to tell you, ",
             "next": "IdleJoke_1"
@@ -128,7 +143,7 @@
         },
         {
             "key":"End_3",
-            "text":"<Normal> Anyway time for a countdown! 5, 4, 3, 2, 1......... <Pause=5>",
+            "text":"<Normal> Anyway time for a countdown! 5,<Pause=1.0> 4,<Pause=1.0> 3,<Pause=1.0> 2,<Pause=1.0> 1.........",
             "next":"End_4"
         },
         {

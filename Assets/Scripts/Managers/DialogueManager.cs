@@ -36,6 +36,9 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] float textDuration;
     [SerializeField] float idleDelayMin, idleDelayMax;
 
+    [SerializeField] string[] idleKeys;
+    private string lastIdle;
+
     private void Awake()
     {
         LoadDialogue();
@@ -44,19 +47,30 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(IdleDialogue());
+        StartCoroutine(IdleDialogue());
     }
 
     private IEnumerator IdleDialogue()
     {
+        if (idleKeys.Length < 3)
+        {
+            yield return null;
+        }
         while (true)
         {
             float idleWait = UnityEngine.Random.Range(idleDelayMin, idleDelayMax);
             yield return new WaitForSeconds(idleWait);
-            Debug.Log("Tried writing idle dialogue");
             if (writingRoutine == null)
             {
-                WriteDialogue("Idle_1");
+                string dialogueKey;
+                do
+                {
+                    int rand = UnityEngine.Random.Range(0, idleKeys.Length);
+                    dialogueKey = idleKeys[rand];
+                }
+                while (dialogueKey != lastIdle);
+                lastIdle = dialogueKey;
+                WriteDialogue(dialogueKey);
             }
         }
     }

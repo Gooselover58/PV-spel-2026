@@ -188,6 +188,8 @@ public class PlayerGrappling : MonoBehaviour
             rbG.AddForce(grappleDirection * grapplePower * 2, ForceMode2D.Impulse);
         }
 
+        AudioManager.Instance.PlaySFX("Grapple");
+
         // Waits
         yield return new WaitForSeconds(windup);
 
