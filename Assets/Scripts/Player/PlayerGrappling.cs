@@ -177,6 +177,8 @@ public class PlayerGrappling : MonoBehaviour
         // Changes windup time if there is any objects in the grapple direction
         float windup = GetGrappleWindup(grappleDirection);
 
+        rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
+
         // Sets hook object to the right position and moves it unless an object is too close
         if (windup > 0.015f)
         {
@@ -184,7 +186,6 @@ public class PlayerGrappling : MonoBehaviour
             rope.enabled = true;
             currentSpawnHook.transform.position = transform.position;
             currentSpawnHook.SetActive(true);
-            rbG = currentSpawnHook.GetComponent<Rigidbody2D>();
             rbG.AddForce(grappleDirection * grapplePower * 2, ForceMode2D.Impulse);
         }
 
