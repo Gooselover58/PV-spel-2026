@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Camera))]
@@ -10,6 +11,8 @@ public class CameraScript : MonoBehaviour
     private Transform playerTrans;
     private Rigidbody2D playerRb;
     private GameObject upsideDownCamObject;
+    public Volume vol;
+    public LensDistortion lsD;
 
     [SerializeField] Rect fullRect;
     [SerializeField] Rect zoomedRect;
@@ -30,6 +33,8 @@ public class CameraScript : MonoBehaviour
         Global.gameCam = GetComponent<Camera>();
         Global.gameCamScript = this;
 
+        vol = GetComponent<Volume>();
+        lsD = GetComponent<LensDistortion>();
         cam = GetComponent<Camera>();
         upsideDownCamObject = transform.GetChild(0).gameObject;
 
