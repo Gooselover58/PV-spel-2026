@@ -48,7 +48,7 @@
         },
         {
             "key": "IdleDialogue_1",
-            "text": "<Casual>Words",
+            "text": "<Casual> <i> If you like pina colada.....</i>",
             "next": null
         },
         {
@@ -63,12 +63,22 @@
         },
         {
             "key": "IdleDialogue_3",
-            "text": "<Shocked>Words3",
+            "text": "<Casual> <b> mmmmmm squid </b>",
             "next": null
         },
         {
             "key": "Level1_1",
             "text": "<Happy>I really like that spinning bench, it's cool",
+            "next": null
+        },
+        {
+            "key":"Level2_1",
+            "text":"<Terrified> Hope you brought your jumping shoes! <Normal>",
+            "next": null
+        },
+        {
+            "key":"Level3_1",
+            "text":"<Shocked> Uh New york called! <Pause=4.0> <Sad> That joke was inconsiderate and immature and I apologize",
             "next": null
         },
         {
@@ -108,7 +118,7 @@
         },
         {
             "key": "Idle_2",
-            "text": "<b>ring ring</b> Sorry folks, my phones ringing,<Sad> <i> He distances himself from the table but remains in frame. ",
+            "text": "<b>ring ring</b> Sorry folks, my phones ringing,<Sad> ",
             "next": "Idle_3"
         },
         {
@@ -158,12 +168,12 @@
         },
         {
             "key":"End_4",
-            "text":"<Happy>Bye bye!<Pause=2.0>",
+            "text":"<Happy>Bye bye!<Pause=2.0> <Casual>",
             "next": "End_5"
         },
         {
             "key": "End_5",
-            "text":"<Pause=10.0> Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
+            "text":"<Pause=10.0> <Happy> Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
             "next": "End_6"
         },
         {
