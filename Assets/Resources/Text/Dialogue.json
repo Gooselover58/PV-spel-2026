@@ -3,12 +3,12 @@
     [
         {
             "key": "Intro_01",
-            "text": "Breaking News! A small man is trying to parkour through dangerous enviorments with some sort of a hook. And in another news, a new ice cream shop run by a dog? More at nine.",
-            "next": null
+            "text": "Breaking News! A small man is trying to parkour through dangerous enviorments!",
+            "next": "Intro_02"
         },
         {
             "key": "Intro_02",
-            "text": "",
+            "text": "<Casual>And in other news, a new ice cream shop run by a dog? More at nine.",
             "next": null
         },
         {
@@ -48,7 +48,7 @@
         },
         {
             "key": "IdleDialogue_1",
-            "text": "<Casual> <i> If you like pina colada.....</i>",
+            "text": "<Casual><i>If you like pina colada.....</i>",
             "next": null
         },
         {
@@ -63,7 +63,27 @@
         },
         {
             "key": "IdleDialogue_3",
-            "text": "<Casual> <b> mmmmmm squid </b>",
+            "text": "<Casual><b>mmmmmm squid</b>",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_4",
+            "text": "<Casual>Breaking news: Blue color more dangerous than guns!",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_5",
+            "text": "<Shocked>I'll be getting evicted soon",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_6",
+            "text": "<Shocked><Pause=0.1>A<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Normal><Pause=0.1>H",
+            "next": null
+        },
+        {
+            "key": "IdleDialogue_7",
+            "text": "<Casual>Dolphin group arrested after coral fraud!",
             "next": null
         },
         {
@@ -73,12 +93,12 @@
         },
         {
             "key":"Level2_1",
-            "text":"<Terrified> Hope you brought your jumping shoes! <Normal>",
+            "text":"<Terrified>Hope you brought your jumping shoes!<Pause=1.0><Normal>",
             "next": null
         },
         {
             "key":"Level3_1",
-            "text":"<Shocked> Uh New york called! <Pause=4.0> <Sad> That joke was inconsiderate and immature and I apologize",
+            "text":"<Shocked>Uh New york called!<Pause=4.0><Sad> That joke was inconsiderate and immature and I apologize",
             "next": null
         },
         {
@@ -168,12 +188,12 @@
         },
         {
             "key":"End_4",
-            "text":"<Happy>Bye bye!<Pause=2.0> <Casual>",
+            "text":"<Happy>Bye bye!<Pause=2.0><Casual>",
             "next": "End_5"
         },
         {
             "key": "End_5",
-            "text":"<Pause=10.0> <Happy> Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
+            "text":"<Pause=10.0><Happy>Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
             "next": "End_6"
         },
         {

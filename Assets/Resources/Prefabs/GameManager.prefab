@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22503764535795643a335b8a675719fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startLevelIndex: 0
 --- !u!114 &992037628730719578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,8 +61,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c021d70efdf8b74c957064e626c5b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  letterInterval: 0.075
+  letterInterval: 0.05
   textDuration: 3
+  idleDelayMin: 10
+  idleDelayMax: 20
+  idleKeys:
+  - Idle_1
+  - IdleDialogue_2
+  - IdleDialogue_3
+  - IdleDialogue_1
+  - IdleDialogue_4
+  - IdleDialogue_5
+  - IdleDialogue_6
+  - IdleDialogue_7
 --- !u!114 &297444933835624451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c961bbfba87ea4280b44b5a5e32583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canOpenSettings: 0
+  hasSettings: 0
 --- !u!114 &8070295036848235568
 MonoBehaviour:
   m_ObjectHideFlags: 0
