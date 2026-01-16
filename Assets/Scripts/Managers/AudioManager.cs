@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,6 +23,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
         LoadSounds();
+        if (SceneManager.GetActiveScene().name == "s")
+        {
+            musicSource.enabled = true;
+            PlayMusic("MainMenu");
+        }
     }
 
     // Loads all sounds from Audio folder automatically
@@ -40,7 +45,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(string name)
     {
-        Sound s = Array.Find(musicSounds, x => x.name == name);
+        Sound s = Array.Find(sfxSounds, x => x.name == name);
         if (s == null)
         {
             Debug.Log("Music not found!");

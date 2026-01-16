@@ -74,7 +74,7 @@
         {
             "key": "Idle_1",
             "text": "<Casual>Wanna hear a joke or something?<Pause=2.0><Shocked> No?!<Pause=1.0><Sad> Okay...",
-            "next": "IdleJoke_1"
+            "next": null
         },
         {
             "key": "IdleJoke_1",
