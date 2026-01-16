@@ -78,7 +78,7 @@
         },
         {
             "key": "IdleDialogue_6",
-            "text": "<Shocked><Pause=0.1>A<Sad><Pause=0.1>A<Shocked><Pause=0.1>A<Sad><Pause=0.1>A<Shocked><Pause=0.1>A<Normal><Pause=0.1>H",
+            "text": "<Shocked><Pause=0.1>A<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Sad><Pause=0.1>H<Shocked><Pause=0.1>H<Normal><Pause=0.1>H",
             "next": null
         },
         {
