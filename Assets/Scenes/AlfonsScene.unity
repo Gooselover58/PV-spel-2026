@@ -1312,7 +1312,7 @@ Sprite:
         format: 0
         dimension: 0
       m_DataSize: 80
-      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf000000000000000000000000000000000000000000000000000000000000000000000000
+      _typelessdata: 000000bf0000003f000000000000003f0000003f00000000000000bf000000bf000000000000003f000000bf00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
     m_Bindpose: []
     textureRect:
       serializedVersion: 2
@@ -1577,6 +1577,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404716480871099602, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.ratio
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.textureScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.textureScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.dieWithParticles
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.sizeAffectsWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: TrailModule.minVertexDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: CollisionModule.collidesWith.m_Bits
+      value: 119
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outWeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372346571024686856, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2533145904954113366, guid: 0795952a03b1f0c40a0086dc66260a86, type: 3}
