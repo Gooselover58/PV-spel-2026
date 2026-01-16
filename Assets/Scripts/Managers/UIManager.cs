@@ -26,27 +26,53 @@ public class UIManager : MonoBehaviour
     private GameObject dialogueObject;
     private TextMeshProUGUI dialogueText;
     private GameObject deathScreenObject;
+    private GameObject settingsMenu;
+
+    public bool canOpenSettings;
+    public bool hasSettings;
 
     private void Awake()
     {
         LoadUI();
         SetUIState("Dialogue", false);
         SetUIState("Death", false);
+        SetUIState("Settings", false);
     }
 
     private void LoadUI()
     {
+        canOpenSettings = true;
+        hasSettings = false;
+
         Transform parentCanvas = GameObject.FindGameObjectWithTag("Canvas").transform;
         canvas = parentCanvas.GetChild(0);
         dialogueObject = canvas.GetChild(0).gameObject;
         dialogueText = dialogueObject.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         deathScreenObject = canvas.GetChild(1).gameObject;
+        settingsMenu = parentCanvas.GetChild(2).gameObject;
 
         canvas.gameObject.SetActive(true);
         dialogueText.text = "";
 
         uiElements.Add("Dialogue", dialogueObject);
         uiElements.Add("Death", deathScreenObject);
+        uiElements.Add("Settings", settingsMenu);
+    }
+
+    private void Update()
+    {
+        if (InputManager.Instance.GetInputDown("Settings") && canOpenSettings)
+        {
+            bool newSettingsState = !hasSettings;
+            SetUIState("Settings", newSettingsState);
+            hasSettings = newSettingsState;
+        }
+    }
+
+    public void DisableSettings()
+    {
+        hasSettings = false;
+        SetUIState("Settings", false);
     }
 
     public void SetUIState(string elementKey, bool state)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
         SaveManager.CreateNewSaveFile();
     }
 
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene("s");
+    }
+
     public void RespawnPlayer()
     {
         // Increases global death count
@@ -69,6 +75,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Respawn()
     {
+        UIManager.Instance.canOpenSettings = false;
+        UIManager.Instance.DisableSettings();
+
         // Displays respawn screen and sets the player back to the respawn point
         UIManager.Instance.SetUIState("Death", true);
         playerTrans.position = Global.respawnPoint;
@@ -88,6 +97,10 @@ public class GameManager : MonoBehaviour
         // Removes the respawn screen, respawns the player and resets their variables
         playerTrans.gameObject.SetActive(true);
         UIManager.Instance.SetUIState("Death", false);
+
+        UIManager.Instance.canOpenSettings = true;
+        UIManager.Instance.DisableSettings();
+
         Global.playerGrappling.ResetPlayer();
     }
 
@@ -103,9 +116,14 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator EnterNewRoom(Room destination)
     {
+        UIManager.Instance.canOpenSettings = false;
+        UIManager.Instance.DisableSettings();
         playerTrans.position = destination.enterPoint.position;
 
         yield return new WaitForSeconds(1f);
+
+        UIManager.Instance.canOpenSettings = true;
+        UIManager.Instance.DisableSettings();
 
         SetRoom(destination);
     }

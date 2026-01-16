@@ -53,7 +53,12 @@
         },
         {
             "key": "IdleDialogue_2",
-            "text": "<Happy>Words2",
+            "text": "<Casual>Wanna hear a joke or something?<Pause=2.0><Happy> Yes? Alright then!",
+            "next": "IdleDialogue_2_F"
+        },
+        {
+            "key": "IdleDialogue_2_F",
+            "text": "So, a man went to get his...<Pause=0.5><Shocked>Wait, this is not safe for advertising, nevermind then!",
             "next": null
         },
         {
@@ -62,8 +67,13 @@
             "next": null
         },
         {
+            "key": "Level1_1",
+            "text": "<Happy>I really like that spinning bench, it's cool",
+            "next": null
+        },
+        {
             "key": "Idle_1",
-            "text": "Hey man wanna hear a joke? <Pause=2.0> A rhetorical question since i'm about to tell you, ",
+            "text": "<Casual>Wanna hear a joke or something?<Pause=2.0><Shocked> No?!<Pause=1.0><Sad> Okay...",
             "next": "IdleJoke_1"
         },
         {

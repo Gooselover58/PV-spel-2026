@@ -68,7 +68,7 @@ public class DialogueManager : MonoBehaviour
                     int rand = UnityEngine.Random.Range(0, idleKeys.Length);
                     dialogueKey = idleKeys[rand];
                 }
-                while (dialogueKey != lastIdle);
+                while (dialogueKey == lastIdle);
                 lastIdle = dialogueKey;
                 WriteDialogue(dialogueKey);
             }
@@ -162,7 +162,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             UIManager.Instance.ChangeDialogueText("");
-
+            writingRoutine = null;
         }
     }
 

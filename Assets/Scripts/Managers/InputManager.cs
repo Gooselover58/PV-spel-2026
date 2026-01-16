@@ -29,7 +29,7 @@ public class InputManager : MonoBehaviour
 
         inputs.Add("Jump", new KeyCode[] { KeyCode.Space });
         inputs.Add("Grapple", new KeyCode[] { KeyCode.LeftShift });
-        inputs.Add("Pause", new KeyCode[] { KeyCode.Escape });
+        inputs.Add("Settings", new KeyCode[] { KeyCode.Escape });
     }
 
     public bool GetInput(string key)
