@@ -22,7 +22,7 @@ public static class Global
     public static bool isPlayerHoldingBomb = false;
 
     public static int deaths = 0;
-    public static readonly int dialogueTriggerAmount = 5;
+    public static readonly int dialogueTriggerAmount = 10;
     public static bool[] dialogueTriggers = new bool[dialogueTriggerAmount];
 }
 
