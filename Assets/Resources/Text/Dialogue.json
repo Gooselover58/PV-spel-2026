@@ -58,7 +58,7 @@
         },
         {
             "key": "IdleDialogue_2_F",
-            "text": "So, a man went to get his...<Pause=0.5><Shocked>Wait, this is not safe for advertising, nevermind then!",
+            "text": "So, a man went to get his...<Pause=0.5><Shocked>Wait, this is not safe for advertising<Pause=0.5><Sad>, nevermind then!",
             "next": null
         },
         {
@@ -143,22 +143,22 @@
         },
         {
             "key":"End",
-            "text":"<Shocked><Pause=0.2><Happy> Well that's it, you beat the game! You should celebrate by buying shares in our company, SCAMMING.",
+            "text":"<Shocked><Pause=0.2><Happy> Well that's it, you won!<Pause=1.0> You should celebrate by buying shares in my company, Legit Company LTD.",
             "next":"End_2"
         },
         {
             "key":"End_2",
-            "text":"<Terrified> Otherwise you`ll be on the news soon!!!! :)",
+            "text":"<Terrified>Otherwise i'll make a damning report on you!!!!",
             "next":"End_3"
         },
         {
             "key":"End_3",
-            "text":"<Normal> Anyway time for a countdown! 5,<Pause=1.0> 4,<Pause=1.0> 3,<Pause=1.0> 2,<Pause=1.0> 1.........",
+            "text":"<Normal>Anyway<Pause=0.5>, you can leave now! I'll count you down!<Pause=1.0> 5,<Pause=1.0> 4,<Pause=1.0> 3,<Pause=1.0> 2,<Pause=1.0> 1.........",
             "next":"End_4"
         },
         {
             "key":"End_4",
-            "text":"<Shocked> TURN THE DAMN GAME OFF",
+            "text":"<Happy>Bye bye!<Pause=2.0>",
             "next": null
         }
     ]
