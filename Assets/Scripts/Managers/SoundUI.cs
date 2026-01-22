@@ -6,6 +6,7 @@ using UnityEngine;
 public class SoundUI : MonoBehaviour
 {
     public Slider _music, _sfx;
+
     public void toggleM()
     {
         AudioManager.Instance.toggleMusic();
@@ -24,8 +25,8 @@ public class SoundUI : MonoBehaviour
     }
     public void fullscreen()
     {
-                Screen.fullScreen =!Screen.fullScreen;
-    Debug.Log("fullScreen");
+        Screen.fullScreen =!Screen.fullScreen;
+        Debug.Log("fullScreen");
     }
     public void fun()
     {

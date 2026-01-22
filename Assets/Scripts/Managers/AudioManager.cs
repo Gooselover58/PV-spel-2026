@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static float musicVolume;
+    public static float sfxVolume;
+
     public static AudioManager Instance;
 
     public Sound[] musicSounds, sfxSounds;
