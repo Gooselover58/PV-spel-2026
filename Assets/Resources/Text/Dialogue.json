@@ -118,7 +118,7 @@
         },
         {
             "key": "IdleJoke_2",
-            "text": "<Pause=10.0>Hey, wanna hear another joke?",
+            "text": "<Pause=9.0>Hey, wanna hear another joke?",
             "next": "IdleJoke_3"
         },
         {
@@ -193,7 +193,7 @@
         },
         {
             "key": "End_5",
-            "text":"<Pause=10.0><Happy>Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
+            "text":"<Pause=9.0><Happy>Our Father, who art in heaven, hallowed be thy Name, thy kingdom come, thy will be done....",
             "next":"End_6"
         },
         {
