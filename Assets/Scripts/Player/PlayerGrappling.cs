@@ -283,7 +283,7 @@ public class PlayerGrappling : MonoBehaviour
             Global.isPlayerHoldingBomb = false;
             Explode();
         }
-        else if (col.gameObject.CompareTag("Grappleable"))
+        if (col.gameObject.CompareTag("Grappleable"))
         {
             resetPlayer = false;
             playerState = PlayerState.ATTACHED;
