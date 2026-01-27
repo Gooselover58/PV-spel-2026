@@ -11,6 +11,7 @@ public class CameraScript : MonoBehaviour
     private Transform playerTrans;
     private Rigidbody2D playerRb;
     private GameObject upsideDownCamObject;
+    private Volume camVolume;
 
     [SerializeField] Rect fullRect;
     [SerializeField] Rect zoomedRect;
@@ -26,6 +27,9 @@ public class CameraScript : MonoBehaviour
     private Rect destinationRect;
     private float changeRectTime;
 
+    //private ChromaticAberration chromAbCom;
+    //private Bloom bloomCom;
+
     private void Awake()
     {
         Global.gameCam = GetComponent<Camera>();
@@ -33,6 +37,8 @@ public class CameraScript : MonoBehaviour
 
         cam = GetComponent<Camera>();
         upsideDownCamObject = transform.GetChild(0).gameObject;
+
+        //GetVolumeParameters();
 
         shouldFollowPlayer = true;
         SetUpsideDownCamera(false);
@@ -45,17 +51,30 @@ public class CameraScript : MonoBehaviour
         playerRb = Global.playerRb;
     }
 
+    /*private void GetVolumeParameters()
+    {
+        camVolume = GetComponent<Volume>();
+
+        VolumeProfile profile = camVolume.sharedProfile;
+
+        if (!profile.TryGet<ChromaticAberration>(out var chrom))
+        {
+            chrom = profile.Add<ChromaticAberration>(false);
+        }
+        chrom.active = true;
+        chromAbCom = chrom;
+
+        if (!profile.TryGet<Bloom>(out var bloom))
+        {
+            bloom = profile.Add<Bloom>(false);
+        }
+        bloom.active = true;
+        bloomCom = bloom;
+    }*/
+
     private void Update()
     {
         ChangeRect();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SetUpsideDownCamera(true);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            SetUpsideDownCamera(false);
-        }
     }
 
     private void FixedUpdate()
