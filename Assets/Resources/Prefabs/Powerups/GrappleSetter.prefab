@@ -169,3 +169,4 @@ MonoBehaviour:
   deactiveSprite: {fileID: 0}
   particleColor: {r: 0.9333334, g: 0.6156863, b: 0.19215688, a: 1}
   setGrappleAmount: 1
+  particleCount: 1000

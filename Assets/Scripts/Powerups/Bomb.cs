@@ -7,6 +7,7 @@ public class Bomb : Powerup
     private SpriteRenderer sr;
     private Animator anim;
 
+    [SerializeField] int particleCount;
     [SerializeField] Color particleColor;
     private Color activeColor;
     private Color deactiveColor;
@@ -28,7 +29,7 @@ public class Bomb : Powerup
         anim.SetBool("IsActive", false);
         sr.color = deactiveColor;
         Global.isPlayerHoldingBomb = true;
-        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, particleColor);
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, particleCount, particleColor);
         CoolDown();
     }
 

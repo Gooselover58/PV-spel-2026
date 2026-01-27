@@ -166,4 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetTime: 3
+  particleCount: 1000
   particleColor: {r: 0.76470596, g: 0.21176472, b: 0.18039216, a: 1}

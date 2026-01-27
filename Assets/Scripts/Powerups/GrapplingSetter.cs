@@ -11,6 +11,7 @@ public class GrapplingSetter : Powerup
 
     [SerializeField] Color particleColor;
     [SerializeField] int setGrappleAmount;
+    [SerializeField] int particleCount;
 
     protected override void Awake()
     {
@@ -28,7 +29,7 @@ public class GrapplingSetter : Powerup
         anim.SetBool("IsActive", false);
         sr.sprite = deactiveSprite;
         Global.playerGrappling.SetGrapples(setGrappleAmount);
-        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, 15, particleColor);
+        EffectManager.Instance.PlayParticles("GrappleReset", transform.position, particleCount, particleColor);
         CoolDown();
     }
 
