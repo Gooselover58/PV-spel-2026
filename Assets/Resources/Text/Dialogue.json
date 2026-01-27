@@ -12,11 +12,6 @@
             "next": null
         },
         {
-            "key": "TestNormal",
-            "text": "<Normal>Normal words or something i dunno this is just for testing :3",
-            "next": null
-        },
-        {
             "key": "TestCool",
             "text": "<Casual>Cool words or <Normal>something<Sad> i<Casual> dunno this is also<Terrified> just for testing :3",
             "next": null
@@ -198,20 +193,18 @@
         },
         {
             "key":"End_6",
-            "text":".. on earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses,as we forgive those....",
+            "text":"...on earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses,as we forgive those....",
             "next":"End_7"
- 
-
         },
         {
             "key":"End_7",
             "text":"who trespass against us. And lead us not into temptation, but deliver us from evil.",
             "next":"End_8"
-                },
-                {
-                    "key": "End_8",
-                    "text": "For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.",
-                    "next": null
-                }
+        },
+        {
+            "key": "End_8",
+            "text": "For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.",
+            "next": null
+        }
     ]
 }
