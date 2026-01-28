@@ -7,6 +7,12 @@ public class SoundUI : MonoBehaviour
 {
     public Slider _music, _sfx;
 
+    private void Awake()
+    {
+        _music.value = AudioManager.musicVolume;
+        _sfx.value = AudioManager.sfxVolume;
+    }
+
     public void toggleM()
     {
         AudioManager.Instance.toggleMusic();

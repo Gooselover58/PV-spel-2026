@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
-    public static float musicVolume;
-    public static float sfxVolume;
+    public static float musicVolume = 1f;
+    public static float sfxVolume = 1f;
 
     public static AudioManager Instance;
 
@@ -80,7 +80,8 @@ public class AudioManager : MonoBehaviour
     }
     public void SFXVolume(float volume)
     {
-        sfxSource.volume = volume;
+        sfxVolume = volume;
+        sfxSource.volume = sfxVolume;
     }
     public void toggleMusic()
     {
@@ -88,7 +89,8 @@ public class AudioManager : MonoBehaviour
     }
     public void MusicVolume(float volume)
     {
-        musicSource.volume = volume;
+        musicVolume = volume;
+        musicSource.volume = musicVolume;
     }
 }
 
