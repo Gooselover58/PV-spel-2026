@@ -20,6 +20,7 @@ public class PlayerMovement : Entity
 
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpForce;
+    [SerializeField] float attachedExtraJumpForce;
     [SerializeField] float jumpCancelSpeed;
     [SerializeField] float groundCheckSize;
     [SerializeField] float coyoteJump;
@@ -104,7 +105,7 @@ public class PlayerMovement : Entity
 
         if (pressedJump && playerGrappling.playerState == PlayerGrappling.PlayerState.ATTACHED)
         {
-            Jump();
+            Jump(attachedExtraJumpForce);
             playerGrappling.ResetPlayer();
         }
         else if (jumpBufferTime > 0 && coyoteTime > 0 && canMove)
@@ -167,14 +168,14 @@ public class PlayerMovement : Entity
         playerGrappling.ResetGrapples();
     }
 
-    private void Jump()
+    private void Jump(float extraForce = 0)
     {
         coyoteTime = 0;
         jumpBufferTime = 0;
         jumpCooldownTime = jumpCooldown;
         isJumping = true;
         rb.velocity = new Vector2(rb.velocity.x, 0);
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * (jumpForce + extraForce), ForceMode2D.Impulse);
         jumpEffect.Play(true);
         AudioManager.Instance.PlaySFX("Jump");
         anim.SetInteger("JumpSpeed", 1);
