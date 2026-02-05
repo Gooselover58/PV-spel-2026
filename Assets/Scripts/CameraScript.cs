@@ -7,6 +7,8 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
 {
+    public static float postProcessingWeight = 1f;
+
     private Camera cam;
     private Transform playerTrans;
     private Rigidbody2D playerRb;
@@ -127,5 +129,10 @@ public class CameraScript : MonoBehaviour
     public void SetUpsideDownCamera(bool state)
     {
         upsideDownCamObject.SetActive(state);
+    }
+
+    public static void SetPostProcessingWeight(float weight)
+    {
+        postProcessingWeight = weight;
     }
 }

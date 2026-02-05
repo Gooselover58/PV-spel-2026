@@ -5,12 +5,14 @@ using UnityEngine.UI;
 
 public class SoundUI : MonoBehaviour
 {
-    public Slider _music, _sfx;
+    public Slider _music, _sfx, _postProcessing;
+    public Image[] _toggles;
 
     private void Awake()
     {
         _music.value = AudioManager.musicVolume;
         _sfx.value = AudioManager.sfxVolume;
+        _postProcessing.value = CameraScript.postProcessingWeight;
     }
 
     public void ToggleMusic()
@@ -31,6 +33,11 @@ public class SoundUI : MonoBehaviour
     public void SfxVolume()
     {
         AudioManager.Instance.SFXVolume(_sfx.value);
+    }
+
+    public void PostProcessingIntensity()
+    {
+        CameraScript.SetPostProcessingWeight(_postProcessing.value);
     }
 
     public void FullScreen()
