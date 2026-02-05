@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-   using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class SoundUI : MonoBehaviour
 {
@@ -13,28 +13,33 @@ public class SoundUI : MonoBehaviour
         _sfx.value = AudioManager.sfxVolume;
     }
 
-    public void toggleM()
+    public void ToggleMusic()
     {
         AudioManager.Instance.toggleMusic();
     }
-    public void toggleS()
+
+    public void ToggleSFX()
     {
         AudioManager.Instance.toggleSFX();
     }
-    public void musicVolume()
+
+    public void MusicVolume()
     {
         AudioManager.Instance.MusicVolume(_music.value);
     }
-    public void sfxVolume()
+
+    public void SfxVolume()
     {
         AudioManager.Instance.SFXVolume(_sfx.value);
     }
-    public void fullscreen()
+
+    public void FullScreen()
     {
         Screen.fullScreen =!Screen.fullScreen;
         Debug.Log("fullScreen");
     }
-    public void fun()
+
+    public void Fun()
     {
         if(Input.GetKeyUp(KeyCode.Space))
         {

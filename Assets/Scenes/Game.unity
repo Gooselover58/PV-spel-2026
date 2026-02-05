@@ -102567,7 +102567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
       propertyPath: CollisionModule.m_Bounce.scalar
@@ -102664,6 +102664,38 @@ PrefabInstance:
     - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].value
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].inWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.maxCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[0].outWeight
+      value: 0.33333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2742082422403643546, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].outWeight
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 4278132899056809775, guid: cf9da8f4ca850f74b9c2484ac16dc392, type: 3}
       propertyPath: m_LocalPosition.x
@@ -236302,14 +236334,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 127643609104936666, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 503080291661239024, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: FullScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 573264807748852622, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_Name
+      value: MusicToggle
+      objectReference: {fileID: 0}
     - target: {fileID: 1015589696583441937, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
       propertyPath: m_Name
       value: ParentCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220309045155336374, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_Name
+      value: SFXToggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554596220234530534, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_Name
+      value: FullScreen
       objectReference: {fileID: 0}
     - target: {fileID: 2149728060091034223, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1726629553}
+    - target: {fileID: 2783495040843916696, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SfxVolume
+      objectReference: {fileID: 0}
     - target: {fileID: 2786555106312396724, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -236393,6 +236449,14 @@ PrefabInstance:
     - target: {fileID: 6979860953139543971, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514572328651707538, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MusicVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 7739168755544214226, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleSFX
       objectReference: {fileID: 0}
     - target: {fileID: 8485553313485174906, guid: 8d93f4990ce7ecf429be1a4c897c0226, type: 3}
       propertyPath: m_Camera
@@ -241905,6 +241969,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2314508232900417639, guid: 9bc5fafe460a0ff4c93a2bb3eb7839d2, type: 3}
       propertyPath: weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2314508232900417639, guid: 9bc5fafe460a0ff4c93a2bb3eb7839d2, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2314508232900417639, guid: 9bc5fafe460a0ff4c93a2bb3eb7839d2, type: 3}
