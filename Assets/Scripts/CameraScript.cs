@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
 {
+    public static bool isPostProcessingEnabled = true;
     public static float postProcessingWeight = 1f;
 
     private Camera cam;
@@ -40,6 +41,10 @@ public class CameraScript : MonoBehaviour
         cam = GetComponent<Camera>();
         upsideDownCamObject = transform.GetChild(0).gameObject;
 
+        camVolume = GetComponent<Volume>();
+        camVolume.enabled = isPostProcessingEnabled;
+        camVolume.weight = postProcessingWeight;
+
         //GetVolumeParameters();
 
         shouldFollowPlayer = true;
@@ -55,8 +60,6 @@ public class CameraScript : MonoBehaviour
 
     /*private void GetVolumeParameters()
     {
-        camVolume = GetComponent<Volume>();
-
         VolumeProfile profile = camVolume.sharedProfile;
 
         if (!profile.TryGet<ChromaticAberration>(out var chrom))
@@ -131,8 +134,21 @@ public class CameraScript : MonoBehaviour
         upsideDownCamObject.SetActive(state);
     }
 
+    public static void TogglePostProcessing()
+    {
+        isPostProcessingEnabled = !isPostProcessingEnabled;
+        if (Global.gameCamScript != null)
+        {
+            Global.gameCamScript.camVolume.enabled = isPostProcessingEnabled;
+        }
+    }
+
     public static void SetPostProcessingWeight(float weight)
     {
         postProcessingWeight = weight;
+        if (Global.gameCamScript != null)
+        {
+            Global.gameCamScript.camVolume.weight = postProcessingWeight;
+        }
     }
 }

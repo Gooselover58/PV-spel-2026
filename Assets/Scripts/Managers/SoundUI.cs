@@ -5,11 +5,22 @@ using UnityEngine.UI;
 
 public class SoundUI : MonoBehaviour
 {
+    public static bool isMusicOn = true;
+    public static bool isSFXOn = true;
+    public static bool isPostProcessingOn = true;
+
+    public Image _musicToggle, _sfxToggle, _postProcessingToggle;
     public Slider _music, _sfx, _postProcessing;
-    public Image[] _toggles;
+
+    [SerializeField] Color toggleOnColor;
+    [SerializeField] Color toggleOffColor;
 
     private void Awake()
     {
+        _musicToggle.color = (isMusicOn) ? toggleOnColor : toggleOffColor;
+        _sfxToggle.color = (isSFXOn) ? toggleOnColor : toggleOffColor;
+        _postProcessingToggle.color = (isPostProcessingOn) ? toggleOnColor : toggleOffColor;
+
         _music.value = AudioManager.musicVolume;
         _sfx.value = AudioManager.sfxVolume;
         _postProcessing.value = CameraScript.postProcessingWeight;
@@ -17,12 +28,23 @@ public class SoundUI : MonoBehaviour
 
     public void ToggleMusic()
     {
+        isMusicOn = !isMusicOn;
+        _musicToggle.color = (isMusicOn) ? toggleOnColor : toggleOffColor;
         AudioManager.Instance.toggleMusic();
     }
 
     public void ToggleSFX()
     {
+        isSFXOn = !isSFXOn;
+        _sfxToggle.color = (isSFXOn) ? toggleOnColor : toggleOffColor;
         AudioManager.Instance.toggleSFX();
+    }
+
+    public void TogglePostProcessing()
+    {
+        isPostProcessingOn = !isPostProcessingOn;
+        _postProcessingToggle.color = (isPostProcessingOn) ? toggleOnColor : toggleOffColor;
+        CameraScript.TogglePostProcessing();
     }
 
     public void MusicVolume()
