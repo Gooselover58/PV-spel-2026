@@ -7,6 +7,9 @@ using UnityEngine.Rendering.Universal;
 [RequireComponent(typeof(Camera))]
 public class CameraScript : MonoBehaviour
 {
+    public static bool isPostProcessingEnabled = true;
+    public static float postProcessingWeight = 1f;
+
     private Camera cam;
     private Transform playerTrans;
     private Rigidbody2D playerRb;
@@ -38,6 +41,10 @@ public class CameraScript : MonoBehaviour
         cam = GetComponent<Camera>();
         upsideDownCamObject = transform.GetChild(0).gameObject;
 
+        camVolume = GetComponent<Volume>();
+        camVolume.enabled = isPostProcessingEnabled;
+        camVolume.weight = postProcessingWeight;
+
         //GetVolumeParameters();
 
         shouldFollowPlayer = true;
@@ -53,8 +60,6 @@ public class CameraScript : MonoBehaviour
 
     /*private void GetVolumeParameters()
     {
-        camVolume = GetComponent<Volume>();
-
         VolumeProfile profile = camVolume.sharedProfile;
 
         if (!profile.TryGet<ChromaticAberration>(out var chrom))
@@ -86,7 +91,7 @@ public class CameraScript : MonoBehaviour
     {
         if (shouldFollowPlayer)
         {
-            cameraPointOffset = Vector2.zero;//cameraPointOffset = (Vector3)playerRb.velocity * offsetModifier;
+            cameraPointOffset = Vector2.zero;
             Vector3 camPos = transform.position;
             Vector3 offsetPlayerPos = playerTrans.position + cameraPointOffset;
             Vector3 toPlayer = offsetPlayerPos - transform.position;
@@ -127,5 +132,23 @@ public class CameraScript : MonoBehaviour
     public void SetUpsideDownCamera(bool state)
     {
         upsideDownCamObject.SetActive(state);
+    }
+
+    public static void TogglePostProcessing()
+    {
+        isPostProcessingEnabled = !isPostProcessingEnabled;
+        if (Global.gameCamScript != null)
+        {
+            Global.gameCamScript.camVolume.enabled = isPostProcessingEnabled;
+        }
+    }
+
+    public static void SetPostProcessingWeight(float weight)
+    {
+        postProcessingWeight = weight;
+        if (Global.gameCamScript != null)
+        {
+            Global.gameCamScript.camVolume.weight = postProcessingWeight;
+        }
     }
 }
