@@ -28,6 +28,7 @@ public class PlayerMovement : Entity
     [SerializeField] float jumpCooldown;
     [SerializeField] float freeInputTime;
     [SerializeField] float staticDrag;
+    [SerializeField] int particleAmount;
     [SerializeField] LayerMask groundLayer;
 
     private float coyoteTime;
@@ -176,7 +177,8 @@ public class PlayerMovement : Entity
         isJumping = true;
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * (jumpForce + extraForce), ForceMode2D.Impulse);
-        jumpEffect.Play(true);
+        Vector3 particleBase = transform.position + new Vector3(0, -0.51f, 0);
+        EffectManager.Instance.PlayParticles("Jump Effect", particleBase, particleAmount);
         AudioManager.Instance.PlaySFX("Jump");
         anim.SetInteger("JumpSpeed", 1);
     }
