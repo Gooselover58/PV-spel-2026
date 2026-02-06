@@ -445,7 +445,6 @@ MonoBehaviour:
   jumpCooldown: 0.05
   freeInputTime: 0.25
   staticDrag: 1.5
-  particleAmount: 50
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
