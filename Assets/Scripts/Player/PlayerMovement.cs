@@ -171,14 +171,16 @@ public class PlayerMovement : Entity
 
     private void Jump(float extraForce = 0)
     {
+        Vector3 particleBase = transform.position + new Vector3(0, -0.51f, 0);
+        EffectManager.Instance.PlayParticles("Jump Effect", particleBase, particleAmount);
         coyoteTime = 0;
         jumpBufferTime = 0;
         jumpCooldownTime = jumpCooldown;
         isJumping = true;
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * (jumpForce + extraForce), ForceMode2D.Impulse);
-        Vector3 particleBase = transform.position + new Vector3(0, -0.51f, 0);
-        EffectManager.Instance.PlayParticles("Jump Effect", particleBase, particleAmount);
+
+
         AudioManager.Instance.PlaySFX("Jump");
         anim.SetInteger("JumpSpeed", 1);
     }
