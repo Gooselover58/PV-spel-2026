@@ -25,13 +25,11 @@ public class CameraScript : MonoBehaviour
     private Vector3 cameraPointOffset;
     private bool shouldFollowPlayer;
     private bool shouldChangeRect;
+    private bool isFull;
 
     private Rect startRect;
     private Rect destinationRect;
     private float changeRectTime;
-
-    //private ChromaticAberration chromAbCom;
-    //private Bloom bloomCom;
 
     private void Awake()
     {
@@ -45,7 +43,6 @@ public class CameraScript : MonoBehaviour
         camVolume.enabled = isPostProcessingEnabled;
         camVolume.weight = postProcessingWeight;
 
-        //GetVolumeParameters();
 
         shouldFollowPlayer = true;
         SetUpsideDownCamera(false);
@@ -58,27 +55,13 @@ public class CameraScript : MonoBehaviour
         playerRb = Global.playerRb;
     }
 
-    /*private void GetVolumeParameters()
-    {
-        VolumeProfile profile = camVolume.sharedProfile;
-
-        if (!profile.TryGet<ChromaticAberration>(out var chrom))
-        {
-            chrom = profile.Add<ChromaticAberration>(false);
-        }
-        chrom.active = true;
-        chromAbCom = chrom;
-
-        if (!profile.TryGet<Bloom>(out var bloom))
-        {
-            bloom = profile.Add<Bloom>(false);
-        }
-        bloom.active = true;
-        bloomCom = bloom;
-    }*/
-
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            SetFullView(!isFull);
+            UIManager.Instance.SetUIState("Dialogue", !isFull);
+        }
         ChangeRect();
     }
 
@@ -118,6 +101,7 @@ public class CameraScript : MonoBehaviour
     public void SetFullView(bool state)
     {
         startRect = cam.rect;
+        isFull = state;
         destinationRect = (state) ? fullRect : zoomedRect;
         changeRectTime = 0f;
         shouldChangeRect = true;
@@ -125,6 +109,7 @@ public class CameraScript : MonoBehaviour
 
     private void ResetView(bool full)
     {
+        isFull = full;
         cam.rect = (full) ? fullRect : zoomedRect;
         shouldChangeRect = false;
     }
