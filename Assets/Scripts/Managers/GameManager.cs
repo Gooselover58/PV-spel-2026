@@ -52,6 +52,16 @@ public class GameManager : MonoBehaviour
         SaveManager.CreateNewSaveFile();
     }
 
+    // PURELY FOR "DEVELOPMENT" PURPOSES
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SceneManager.LoadScene("AlexScene");
+        }
+    }
+    // DELETE IF POSSIBLE
+
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("s");

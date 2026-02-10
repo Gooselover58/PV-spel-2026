@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 225722237}
   - component: {fileID: 225722239}
   - component: {fileID: 225722238}
+  - component: {fileID: 225722241}
   - component: {fileID: 225722240}
   m_Layer: 0
   m_Name: SillyCamera
@@ -266,8 +267,21 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: 4182c9a3f98ca014cbef8f517bdd0aec, type: 2}
+--- !u!114 &225722241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225722236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac85c1450826004792aadbf15b9b47b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sillySpeed: 1
 --- !u!1 &656103641
 GameObject:
   m_ObjectHideFlags: 0

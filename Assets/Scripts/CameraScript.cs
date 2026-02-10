@@ -57,11 +57,13 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
+        // PURELY FOR "DEVELOPMENT" PURPOSES
         if (Input.GetKeyDown(KeyCode.O))
         {
             SetFullView(!isFull);
             UIManager.Instance.SetUIState("Dialogue", !isFull);
         }
+        // DELETE IF POSSIBLE
         ChangeRect();
     }
 
