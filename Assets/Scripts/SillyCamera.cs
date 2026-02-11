@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 
 public class SillyCamera : MonoBehaviour
 {
@@ -31,10 +30,6 @@ public class SillyCamera : MonoBehaviour
         {
             dialogue.transform.parent.gameObject.SetActive(false);
             volume.weight += sillyIncrease;
-        }
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            SceneManager.LoadScene("Game");
         }
     }
 
