@@ -25,7 +25,7 @@ public class SillyManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-
+            DialogueManager.Instance.WriteDialogue("Trailer_1");
         }
     }
 

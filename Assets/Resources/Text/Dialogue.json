@@ -205,6 +205,26 @@
             "key": "End_8",
             "text": "For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.",
             "next": null
+        },
+        {
+            "key": "Silly",
+            "text": "What is even happening anymore<Pause=3.0>",
+            "next": null
+        },
+        {
+            "key": "Trailer_1",
+            "text": "<Normal>Breaking news!<Pause=0.5> A strange <b>Fish</b> person is<Shocked><Pause=0.5>.<Pause=0.5>.<Pause=0.5>.",
+            "next": "Trailer_2"
+        },
+        {
+            "key": "Trailer_2",
+            "text": "<Terrified> doing <i>sick</i> <b>Platforming</b> while <b>Hooked on Acid</b>?!?!<Pause=3.0>",
+            "next": "Trailer_3"
+        },
+        {
+            "key": "Trailer_3",
+            "text": "",
+            "next": null
         }
     ]
 }

@@ -20,11 +20,16 @@ public class SillyCamera : MonoBehaviour
         dialogue.text = "";
     }
 
+    private void Start()
+    {
+        dialogue.transform.parent.gameObject.SetActive(true);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R) && dialogue.transform.parent.gameObject.activeSelf)
         {
-            StartCoroutine(DialogueThingy());
+            DialogueManager.Instance.WriteDialogue("Silly");
         }
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -33,7 +38,7 @@ public class SillyCamera : MonoBehaviour
         }
     }
 
-    private IEnumerator DialogueThingy()
+    /*private IEnumerator DialogueThingy()
     {
         string dialogueText = "Revolutionary gameplay!!!";
         string writtenText = "";
@@ -43,5 +48,5 @@ public class SillyCamera : MonoBehaviour
             dialogue.text = writtenText;
             yield return new WaitForSeconds(sillyTextSpeed);
         }
-    }
+    }*/
 }
